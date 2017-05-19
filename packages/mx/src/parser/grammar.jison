@@ -38,275 +38,122 @@ RegularExpressionChar ([^\n\r\\\/\[])|{RegularExpressionBackslashSequence}|{Regu
 RegularExpressionBody {RegularExpressionFirstChar}{RegularExpressionChar}*
 RegularExpressionLiteral {RegularExpressionBody}\/{RegularExpressionFlags}
 
-Text [^<{]+
-AttributeText [^\"{]+
+Space [\t \u00a0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000]
+Text [^{\n]+
+AttributeText [^\"]+
+Quote [\"]
 
-%x html
-%x attr
-%x regexp
-%x expr
-%x comment
-%options flex
-%%
-
-"<"                                this.begin("html"); return "<";
-"<!--"                             this.begin("comment"); return "<!--";
-"{"                                return "TEXT";
-"{{"                               this.begin("expr"); return "{{";
-"{%"                               this.begin("expr"); return "{%";
-{Text}                             return "TEXT";
-
-<html>">"                          this.popState(); return ">";
-<html>"input"                      return "INPUT";
-<html>"br"                         return "BR";
-<html>"hr"                         return "HR";
-<html>"link"                       return "LINK";
-<html>"meta"                       return "META";
-<html>([\w-]+)                     return "IDENTIFIER";
-<html>\s+                          /* skip whitespaces */
-<html>":"                          return ":";
-<html>"="                          return "=";
-<html>"{{"                         this.begin("expr"); return "{{";
-<html>(\")                         this.begin("attr"); return "QUOTE";
-<html>"/"                          return "/";
-
-<attr>"{"                          return "TEXT";
-<attr>"{{"                         this.begin("expr"); return "{{";
-<attr>"{%"                         this.begin("expr"); return "{%";
-<attr>{AttributeText}              return "TEXT";
-<attr>(\")                         this.popState(); return "QUOTE";
-
-<regexp>{RegularExpressionLiteral} this.popState(); return "REGEXP_LITERAL";
-
-<expr>"}}"                         this.popState(); return "}}";
-<expr>"%}"                         this.popState(); return "%" + "}";
-<expr>\s+                          /* skip whitespaces */
-<expr>"/*"(.|\r|\n)*?"*/"          /* skip comments */
-<expr>"//".*($|\r\n|\r|\n)         /* skip comments */
-<expr>{StringLiteral}              return "STRING_LITERAL";
-<expr>"import"                     return "IMPORT";
-<expr>"from"                       return "FROM";
-<expr>"if"                         return "IF";
-<expr>"else"                       return "ELSE";
-<expr>"endif"                      return "ENDIF";
-<expr>"for"                        return "FOR";
-<expr>"endfor"                     return "ENDFOR";
-<expr>"of"                         return "OF";
-<expr>"in"                         return "IN";
-<expr>"instanceof"                 return "INSTANCEOF";
-<expr>"true"                       return "TRUE";
-<expr>"false"                      return "FALSE";
-<expr>"null"                       return "NULL";
-<expr>"this"                       return "THIS";
-<expr>"unsafe"                     return "UNSAFE";
-<expr>{Identifier}                 return "IDENTIFIER";
-<expr>{DecimalLiteral}             return "NUMERIC_LITERAL";
-<expr>{HexIntegerLiteral}          return "NUMERIC_LITERAL";
-<expr>{OctalIntegerLiteral}        return "NUMERIC_LITERAL";
-<expr>"{"                          return "{";
-<expr>"}"                          return "}";
-<expr>"("                          return "(";
-<expr>")"                          return ")";
-<expr>"["                          return "[";
-<expr>"]"                          return "]";
-<expr>"."                          return ".";
-<expr>";"                          return ";";
-<expr>","                          return ",";
-<expr>"?"                          return "?";
-<expr>":"                          return ":";
-<expr>"==="                        return "===";
-<expr>"=="                         return "==";
-<expr>"="                          return "=";
-<expr>"!=="                        return "!==";
-<expr>"!="                         return "!=";
-<expr>"!"                          return "!";
-<expr>"<<="                        return "<<=";
-<expr>"<<"                         return "<<";
-<expr>"<="                         return "<=";
-<expr>"<"                          return "<";
-<expr>">>>="                       return ">>>=";
-<expr>">>>"                        return ">>>";
-<expr>">>="                        return ">>=";
-<expr>">>"                         return ">>";
-<expr>">="                         return ">=";
-<expr>">"                          return ">";
-<expr>"+="                         return "+=";
-<expr>"++"                         return "++";
-<expr>"+"                          return "+";
-<expr>"-="                         return "-=";
-<expr>"--"                         return "--";
-<expr>"-"                          return "-";
-<expr>"*="                         return "*=";
-<expr>"*"                          return "*";
-<expr>"/="                         return "/=";
-<expr>"/"                          return "/";
-<expr>"%="                         return "%=";
-<expr>"%"                          return "%";
-<expr>"&&"                         return "&&";
-<expr>"&="                         return "&=";
-<expr>"&"                          return "&";
-<expr>"||"                         return "||";
-<expr>"|="                         return "|=";
-<expr>"|"                          return "|";
-<expr>"^="                         return "^=";
-<expr>"^"                          return "^";
-<expr>"~"                          return "~";
-<expr>"..."                        return "...";
-
-<comment>"-->"                     this.popState(); return "-->";
-<comment>((?!\-\-\>).)*            return "COMMENT";
-
-<<EOF>>                            return "EOF";
+%s INITIAL TAG ATTR
 
 %%
+<<EOF>>                            %{
+                                      const tokens = ["EOF"];
+                                
+                                      while (0 < current()) {
+                                        tokens.push("DEDENT");
+                                        indents.pop();
+                                      }
+                                    
+                                      if (tokens.length) {
+                                        return tokens;
+                                      }
+                                   %}
+<INITIAL>{Space}*[\n\r]		         /* eat blank lines */
+<INITIAL>{Space}*                  %{
+                                     const indent = yytext.length;
+
+                                     if (indent > current()) {
+                                       indents.push(indent);
+                                       this.begin("TAG");
+                                       return "INDENT";
+                                     } else if (indent < current()) {
+                                       const tokens = [];
+                                       while (indent < current()) {
+                                         tokens.push("DEDENT");
+                                         indents.pop();
+                                       }
+                                       this.begin("TAG");
+                                       return tokens;
+                                     } else {
+                                       this.begin("TAG");
+                                     }
+                                   %}
+
+<TAG>\n+                           this.begin("INITIAL"); return "NEWLINE";
+<TAG>[\s\t\f]+                     /* skip whitespace, separate tokens */
+<TAG>"="                           return "=";
+<TAG>{Quote}                       this.begin("ATTR"); return "QUOTE";
+<TAG>{Identifier}                  return "IDENTIFIER";
+
+<ATTR>{AttributeText}              return "TEXT";
+<ATTR>{Quote}                      this.popState(); return "QUOTE";
+
+%%
+
+const indents = [0];
+const current = () => indents[indents.length - 1];
+
+/*
+
+while(t=lex())console.error(self.terminals_[t])
+
+*/
+
 /lex
 
-%start Document /* Define Start Production */
-%% /* Define Grammar Productions */
+%start Document
+%options token-stack
+
+%%
 
 Document
-    : ElementList EOF
+    : StatementList EOF
         {
             $$ = new DocumentNode($1, createSourceLocation(@1, @2));
             return $$;
         }
     ;
 
-
-ElementList
-    : Element
+StatementList
+    : Statement
         {
             $$ = [$1];
         }
-    | ElementList Element
+    | StatementList Statement
         {
             $$ = $1.concat($2);
         }
-    |
-        {
-            $$ = [];
-        }
     ;
 
-
-Element
-    : TEXT
+StatementBlock
+    : INDENT StatementList DEDENT
         {
-          $$ = new TextNode($1, createSourceLocation(@1, @1));
+            $$ = $2;
         }
-    | Statement
-        {
-            $$ = $1;
-        }
-    | "<!--" COMMENT "-->"
-        {
-            $$ = new CommentNode($2, createSourceLocation(@1, @3));
-        }
-    | "<" EmptyTag AttributeList ">"
-        {
-            $$ = new ElementNode($2, $3, [], createSourceLocation(@1, @4));
-        }
-    | "<" EmptyTag AttributeList "/" ">"
-            {
-                $$ = new ElementNode($2, $3, [], createSourceLocation(@1, @5));
-            }
-    | "<" IDENTIFIER AttributeList "/" ">"
-        {
-            $$ = new ElementNode($2, $3, [], createSourceLocation(@1, @5));
-        }
-    | "<" IDENTIFIER AttributeList ">" "<" "/" IDENTIFIER ">"
-        {
-            if ($2 == $7) {
-                $$ = new ElementNode($2, $3, [], createSourceLocation(@1, @8));
-            } else {
-                throw new SyntaxError(
-                    "Syntax error on line " + (yylineno + 1) + ":\n" +
-                    "Tag identifiers should be same (<" + $2 + "> != </" + $7 + ">)"
-                );
-            }
-        }
-    | "<" IDENTIFIER AttributeList ">" ElementList  "<" "/" IDENTIFIER ">"
-        {
-            if ($2 == $8) {
-                $$ = new ElementNode($2, $3, $5, createSourceLocation(@1, @9));
-            } else {
-                throw new SyntaxError(
-                    "Syntax error on line " + (yylineno + 1) + ":\n" +
-                    "Tag identifiers should be same (<" + $2 + "> != </" + $8 + ">)"
-                );
-            }
-        }
-    ;
-
-
-EmptyTag
-    : INPUT
-    | BR
-    | HR
-    | LINK
-    | META
     ;
 
 Statement
-    : ExpressionStatement
-    | ImportStatement
-    | IfStatement
-    | ForStatement
-    | UnsafeStatement
+    : Tag
     ;
 
-
-ExpressionStatement
-    : "{{" Expression "}}"
+Tag
+    : IDENTIFIER NEWLINE
         {
-            $$ = new ExpressionStatementNode($2, createSourceLocation(@1, @3));
+            $$ = new ElementNode($1, [], [], createSourceLocation(@1, @2));
+        }
+    | IDENTIFIER AttributeList NEWLINE
+        {
+            $$ = new ElementNode($1, $2, [], createSourceLocation(@1, @3));
+        }
+    | IDENTIFIER NEWLINE StatementBlock
+        {
+            $$ = new ElementNode($1, [], $3, createSourceLocation(@1, @3));
+        }
+    | IDENTIFIER AttributeList NEWLINE StatementBlock
+        {
+            $$ = new ElementNode($1, $2, $4, createSourceLocation(@1, @4));
         }
     ;
-
-
-ImportStatement
-    : "{%" IMPORT IdentifierName FROM StringLiteral "%}"
-       {
-            $$ = new ImportStatementNode($3, $5, createSourceLocation(@1, @4));
-       }
-    ;
-
-
-IfStatement
-    :  "{%" IF Expression "%}" ElementList "{%" ENDIF "%}"
-        {
-            $$ = new IfStatementNode($3, $5, null, createSourceLocation(@1, @8));
-        }
-    |  "{%" IF Expression "%}" ElementList "{%" ELSE "%}" ElementList "{%" ENDIF "%}"
-        {
-            $$ = new IfStatementNode($3, $5, $9, createSourceLocation(@1, @12));
-        }
-    ;
-
-
-ForStatement
-    :  "{%" FOR Expression "%}" ElementList "{%" ENDFOR "%}"
-        {
-            $$ = new ForStatementNode($3, $5, null, createSourceLocation(@1, @8));
-        }
-    |  "{%" FOR IDENTIFIER "OF" Expression "%}" ElementList "{%" ENDFOR "%}"
-        {
-            $$ = new ForStatementNode($5, $7, {value: $3}, createSourceLocation(@1, @10));
-        }
-    |  "{%" FOR IDENTIFIER "," IDENTIFIER "OF" Expression "%}" ElementList "{%" ENDFOR "%}"
-        {
-            $$ = new ForStatementNode($7, $9, {key: $3, value: $5}, createSourceLocation(@1, @11));
-        }
-    ;
-
-
-UnsafeStatement
-    :  "{%" UNSAFE Expression "%}"
-        {
-            $$ = new UnsafeStatementNode($3, createSourceLocation(@1, @4));
-        }
-    ;
-
 
 AttributeList
     : Attribute
@@ -317,59 +164,18 @@ AttributeList
         {
             $$ = $1.concat($2);
         }
-    |
-        {
-            $$ = [];
-        }
     ;
-
 
 Attribute
     : PlainAttribute
-    | SpreadAttribute
-    | Directive
     ;
 
-
 PlainAttribute
-    : IDENTIFIER
-        {
-            $$ = new AttributeNode($1, null, createSourceLocation(@1, @1));
-        }
-    | IDENTIFIER "=" ExpressionStatement
-        {
-            $$ = new AttributeNode($1, [$3], createSourceLocation(@1, @3));
-        }
-    | IDENTIFIER "=" QUOTE AttributeValue QUOTE
+    : IDENTIFIER "=" QUOTE AttributeValue QUOTE
         {
             $$ = new AttributeNode($1, $4, createSourceLocation(@1, @5));
         }
     ;
-
-
-SpreadAttribute
-    : "{{" "..." IdentifierName "}}"
-        {
-          $$ = new SpreadAttributeNode($3, createSourceLocation(@1, @4));
-        }
-    ;
-
-
-Directive
-    : ":" IDENTIFIER
-        {
-            $$ = new DirectiveNode($2, null, createSourceLocation(@1, @2));
-        }
-    | ":" IDENTIFIER "=" ExpressionStatement
-        {
-            $$ = new DirectiveNode($2, [$4], createSourceLocation(@1, @4));
-        }
-    | ":" IDENTIFIER "=" QUOTE AttributeValue QUOTE
-        {
-            $$ = new DirectiveNode($2, $5, createSourceLocation(@1, @6));
-        }
-    ;
-
 
 AttributeValue
     :
@@ -377,583 +183,6 @@ AttributeValue
         {
             $$ = [new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1))];
         }
-    | ExpressionStatement
-        {
-            $$ = [$1];
-        }
-    | AttributeValue TEXT
-        {
-            $$ = $1.concat(new LiteralNode(JSON.stringify($2), createSourceLocation(@1, @1)));
-        }
-    | AttributeValue ExpressionStatement
-        {
-            $$ = $1.concat($2);
-        }
-    ;
-
-
-
-PrimaryExpression
-    : "THIS"
-        {
-            $$ = new ThisExpressionNode(createSourceLocation(@1, @1));
-        }
-    | "IDENTIFIER"
-        {
-            $$ = new IdentifierNode($1, createSourceLocation(@1, @1));
-        }
-    | Literal
-    | ArrayLiteral
-    | "(" Expression ")"
-        {
-            $$ = $2;
-        }
-    | ObjectLiteral
-    ;
-
-
-ArrayLiteral
-    : "[" "]"
-        {
-            $$ = new ArrayExpressionNode([], createSourceLocation(@1, @2));
-        }
-    | "[" Elision "]"
-        {
-            $$ = new ArrayExpressionNode($2, createSourceLocation(@1, @3));
-        }
-    | "[" ElementList "]"
-        {
-            $$ = new ArrayExpressionNode($2, createSourceLocation(@1, @3));
-        }
-    | "[" ElementList "," "]"
-        {
-            $$ = new ArrayExpressionNode($2.concat(null), createSourceLocation(@1, @4));
-        }
-    | "[" ElementList "," Elision "]"
-        {
-            $$ = new ArrayExpressionNode($2.concat($4), createSourceLocation(@1, @5));
-        }
-    ;
-
-ElementList
-    : AssignmentExpression
-        {
-            $$ = [$1];
-        }
-    | Elision AssignmentExpression
-        {
-            $$ = $1.concat($2);
-        }
-    | ElementList "," AssignmentExpression
-        {
-            $$ = $1.concat($3);
-        }
-    | ElementList "," Elision AssignmentExpression
-        {
-            $$ = $1.concat($3).concat($4);
-        }
-    ;
-
-Elision
-    : ","
-        {
-            $$ = [null, null];
-        }
-    | Elision ","
-        {
-            $$ = $1.concat(null);
-        }
-    ;
-
-ObjectLiteral
-    : "{" "}"
-        {
-            $$ = new ObjectExpressionNode([], createSourceLocation(@1, @2));
-        }
-    | "{" PropertyNameAndValueList "}"
-        {
-            $$ = new ObjectExpressionNode($2, createSourceLocation(@1, @3));
-        }
-    | "{" PropertyNameAndValueList "," "}"
-        {
-            $$ = new ObjectExpressionNode($2, createSourceLocation(@1, @4));
-        }
-    ;
-
-PropertyNameAndValueList
-    : PropertyAssignment
-        {
-            $$ = [$1];
-        }
-    | PropertyNameAndValueList "," PropertyAssignment
-        {
-            $$ = $1.concat($3);
-        }
-    ;
-
-PropertyAssignment
-    : PropertyName ":" AssignmentExpression
-        {
-            $$ = {key: $1, value: $3, kind: "init"};
-        }
-    | "IDENTIFIER" PropertyName "(" ")" "{" FunctionBody "}"
-        {
-            if ($1 === "get") {
-                $$ = {key: $2, value: (new FunctionExpressionNode(null, [], $6, false, false, createSourceLocation(@2, @7))), kind: "get"};
-            } else {
-                this.parseError("Invalid getter", {});
-            }
-        }
-    | "IDENTIFIER" PropertyName "(" PropertySetParameterList ")" "{" FunctionBody "}"
-        {
-            if ($1 === "set") {
-                $$ = {key: $2, value: (new FunctionExpressionNode(null, $4, $7, false, false, createSourceLocation(@2, @8))), kind: "set"};
-            } else {
-                this.parseError("Invalid setter", {});
-            }
-        }
-    ;
-
-PropertyName
-    : IdentifierName
-    | StringLiteral
-    | NumericLiteral
-    ;
-
-PropertySetParameterList
-    : "IDENTIFIER"
-        {
-            $$ = [new IdentifierNode($1, createSourceLocation(@1, @1))];
-        }
-    ;
-
-MemberExpression
-    : PrimaryExpression
-    | FunctionExpression
-    | MemberExpression "[" Expression "]"
-        {
-            $$ = new MemberExpressionNode($1, $3, true, createSourceLocation(@1, @4));
-        }
-    | MemberExpression "." AccessorName
-        {
-            $$ = new MemberExpressionNode($1, $3, false, createSourceLocation(@1, @3));
-        }
-    | "NEW" MemberExpression Arguments
-        {
-            $$ = new NewExpressionNode($2, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-NewExpression
-    : MemberExpression
-    | "NEW" NewExpression
-        {
-            $$ = new NewExpressionNode($2, null, createSourceLocation(@1, @2));
-        }
-    ;
-
-CallExpression
-    : MemberExpression Arguments
-        {
-            $$ = new CallExpressionNode($1, $2, createSourceLocation(@1, @2));
-        }
-    | CallExpression Arguments
-        {
-            $$ = new CallExpressionNode($1, $2, createSourceLocation(@1, @2));
-        }
-    | CallExpression "[" Expression "]"
-        {
-            $$ = new MemberExpressionNode($1, $3, true, createSourceLocation(@1, @4));
-        }
-    | CallExpression "." AccessorName
-        {
-            $$ = new MemberExpressionNode($1, $3, false, createSourceLocation(@1, @3));
-        }
-    ;
-
-FilterExpression
-    : Expression "|" AccessorName
-        {
-            $$ = new FilterExpressionNode($3, [$1], createSourceLocation(@1, @2));
-        }
-    | Expression "|" AccessorName Arguments
-        {
-            $$ = new FilterExpressionNode($3, [$1].concat($4), createSourceLocation(@1, @2));
-        }
-    | FilterExpression "|" AccessorName
-        {
-            $$ = new FilterExpressionNode($3, [$1], createSourceLocation(@1, @2));
-        }
-    | FilterExpression "|" AccessorName Arguments
-        {
-            $$ = new FilterExpressionNode($3, [$1].concat($4), createSourceLocation(@1, @2));
-        }
-    ;
-
-IdentifierName
-    : "IDENTIFIER"
-        {
-            $$ = new IdentifierNode($1, createSourceLocation(@1, @1));
-        }
-    | ReservedWord
-        {
-            $$ = new IdentifierNode($1, createSourceLocation(@1, @1));
-        }
-    ;
-
-AccessorName
-    : "IDENTIFIER"
-        {
-            $$ = new AccessorNode($1, createSourceLocation(@1, @1));
-        }
-    | ReservedWord
-        {
-            $$ = new AccessorNode($1, createSourceLocation(@1, @1));
-        }
-    ;
-
-Arguments
-    : "(" ")"
-        {
-            $$ = [];
-        }
-    | "(" ArgumentList ")"
-        {
-            $$ = $2;
-        }
-    ;
-
-ArgumentList
-    : AssignmentExpression
-        {
-            $$ = [$1];
-        }
-    | ArgumentList "," AssignmentExpression
-        {
-            $$ = $1.concat($3);
-        }
-    ;
-
-
-LeftHandSideExpression
-    : NewExpression
-    | CallExpression
-    ;
-
-
-PostfixExpression
-    : LeftHandSideExpression
-    | LeftHandSideExpression "++"
-        {
-            $$ = new UpdateExpressionNode("++", $1, false, createSourceLocation(@1, @2));
-        }
-    | LeftHandSideExpression "--"
-        {
-            $$ = new UpdateExpressionNode("--", $1, false, createSourceLocation(@1, @2));
-        }
-    ;
-
-
-UnaryExpression
-    : PostfixExpression
-    | UnaryExpr
-    ;
-
-
-UnaryExpr
-    : "TYPEOF" UnaryExpression
-        {
-            $$ = new UnaryExpressionNode("typeof", true, $2, createSourceLocation(@1, @2));
-        }
-    | "++" UnaryExpression
-        {
-            $$ = new UpdateExpressionNode("++", $2, true, createSourceLocation(@1, @2));
-        }
-    | "--" UnaryExpression
-        {
-            $$ = new UpdateExpressionNode("--", $2, true, createSourceLocation(@1, @2));
-        }
-    | "+" UnaryExpression
-        {
-            $$ = new UnaryExpressionNode("+", true, $2, createSourceLocation(@1, @2));
-        }
-    | "-" UnaryExpression
-        {
-            $$ = new UnaryExpressionNode("-", true, $2, createSourceLocation(@1, @2));
-        }
-    | "~" UnaryExpression
-        {
-            $$ = new UnaryExpressionNode("~", true, $2, createSourceLocation(@1, @2));
-        }
-    | "!" UnaryExpression
-        {
-            $$ = new UnaryExpressionNode("!", true, $2, createSourceLocation(@1, @2));
-        }
-    ;
-
-
-MultiplicativeExpression
-    : UnaryExpression
-    | MultiplicativeExpression "*" UnaryExpression
-        {
-            $$ = new BinaryExpressionNode("*", $1, $3, createSourceLocation(@1, @3));
-        }
-    | MultiplicativeExpression "/" UnaryExpression
-        {
-            $$ = new BinaryExpressionNode("/", $1, $3, createSourceLocation(@1, @3));
-        }
-    | MultiplicativeExpression "%" UnaryExpression
-        {
-            $$ = new BinaryExpressionNode("%", $1, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-
-AdditiveExpression
-    : MultiplicativeExpression
-    | AdditiveExpression "+" MultiplicativeExpression
-        {
-            $$ = new BinaryExpressionNode("+", $1, $3, createSourceLocation(@1, @3));
-        }
-    | AdditiveExpression "-" MultiplicativeExpression
-        {
-            $$ = new BinaryExpressionNode("-", $1, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-
-ShiftExpression
-    : AdditiveExpression
-    | ShiftExpression "<<" AdditiveExpression
-        {
-            $$ = new BinaryExpressionNode("<<", $1, $3, createSourceLocation(@1, @3));
-        }
-    | ShiftExpression ">>" AdditiveExpression
-        {
-            $$ = new BinaryExpressionNode(">>", $1, $3, createSourceLocation(@1, @3));
-        }
-    | ShiftExpression ">>>" AdditiveExpression
-        {
-            $$ = new BinaryExpressionNode(">>>", $1, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-
-RelationalExpression
-    : ShiftExpression
-    | RelationalExpression "<" ShiftExpression
-        {
-            $$ = new BinaryExpressionNode("<", $1, $3, createSourceLocation(@1, @3));
-        }
-    | RelationalExpression ">" ShiftExpression
-        {
-            $$ = new BinaryExpressionNode(">", $1, $3, createSourceLocation(@1, @3));
-        }
-    | RelationalExpression "<=" ShiftExpression
-        {
-            $$ = new BinaryExpressionNode("<=", $1, $3, createSourceLocation(@1, @3));
-        }
-    | RelationalExpression ">=" ShiftExpression
-        {
-            $$ = new BinaryExpressionNode(">=", $1, $3, createSourceLocation(@1, @3));
-        }
-    | RelationalExpression "INSTANCEOF" ShiftExpression
-        {
-            $$ = new BinaryExpressionNode("instanceof", $1, $3, createSourceLocation(@1, @3));
-        }
-    | RelationalExpression "IN" ShiftExpression
-        {
-            $$ = new BinaryExpressionNode("in", $1, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-
-EqualityExpression
-    : RelationalExpression
-    | EqualityExpression "==" RelationalExpression
-        {
-            $$ = new BinaryExpressionNode("==", $1, $3, createSourceLocation(@1, @3));
-        }
-    | EqualityExpression "!=" RelationalExpression
-        {
-            $$ = new BinaryExpressionNode("!=", $1, $3, createSourceLocation(@1, @3));
-        }
-    | EqualityExpression "===" RelationalExpression
-        {
-            $$ = new BinaryExpressionNode("===", $1, $3, createSourceLocation(@1, @3));
-        }
-    | EqualityExpression "!==" RelationalExpression
-        {
-            $$ = new BinaryExpressionNode("!==", $1, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-
-LogicalANDExpression
-    : EqualityExpression
-    | LogicalANDExpression "&&" EqualityExpression
-        {
-            $$ = new LogicalExpressionNode("&&", $1, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-
-LogicalORExpression
-    : LogicalANDExpression
-    | LogicalORExpression "||" LogicalANDExpression
-        {
-            $$ = new LogicalExpressionNode("||", $1, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-
-ConditionalExpression
-    : LogicalORExpression
-    | LogicalORExpression "?" AssignmentExpression ":" AssignmentExpression
-        {
-            $$ = new ConditionalExpressionNode($1, $3, $5, createSourceLocation(@1, @5));
-        }
-    ;
-
-
-AssignmentExpression
-    : ConditionalExpression
-    | FilterExpression
-    | LeftHandSideExpression "=" AssignmentExpression
-        {
-            $$ = new AssignmentExpressionNode("=", $1, $3, createSourceLocation(@1, @3));
-        }
-    | LeftHandSideExpression AssignmentOperator AssignmentExpression
-        {
-            $$ = new AssignmentExpressionNode($2, $1, $3, createSourceLocation(@1, @3));
-        }
-    ;
-
-
-AssignmentOperator
-    : "*="
-    | "/="
-    | "%="
-    | "+="
-    | "-="
-    | "<<="
-    | ">>="
-    | ">>>="
-    | "&="
-    | "^="
-    | "|="
-    ;
-
-Expression
-    : AssignmentExpression
-    | Expression "," AssignmentExpression
-        {
-            if ($1.type === "SequenceExpression") {
-                $1.expressions.concat($3);
-                $1.loc = createSourceLocation(@1, @3);
-                $$ = $1;
-            } else {
-                $$ = new SequenceExpressionNode([$1, $3], createSourceLocation(@1, @3));
-            }
-        }
-    ;
-
-
-Literal
-    : NullLiteral
-    | BooleanLiteral
-    | NumericLiteral
-    | StringLiteral
-    | RegularExpressionLiteral
-    ;
-
-NullLiteral
-    : "NULL"
-        {
-            $$ = new LiteralNode(null, createSourceLocation(@1, @1));
-        }
-    ;
-
-BooleanLiteral
-    : "TRUE"
-        {
-            $$ = new LiteralNode(true, createSourceLocation(@1, @1));
-        }
-    | "FALSE"
-        {
-            $$ = new LiteralNode(false, createSourceLocation(@1, @1));
-        }
-    ;
-
-NumericLiteral
-    : "NUMERIC_LITERAL"
-        {
-            $$ = new LiteralNode(parseNumericLiteral($1), createSourceLocation(@1, @1));
-        }
-    ;
-
-StringLiteral
-    : "STRING_LITERAL"
-        {
-            $$ = new LiteralNode($1, createSourceLocation(@1, @1));
-        }
-    ;
-
-RegularExpressionLiteral
-    : RegularExpressionLiteralBegin "REGEXP_LITERAL"
-        {
-            $$ = new LiteralNode(parseRegularExpressionLiteral($1 + $2), createSourceLocation(@1, @2));
-        }
-    ;
-
-RegularExpressionLiteralBegin
-    : "/"
-        {
-            yy.lexer.begin("regexp");
-        }
-    | "/="
-        {
-            yy.lexer.begin("regexp");
-        }
-    ;
-
-ReservedWord
-    : "BREAK"
-    | "CASE"
-    | "CATCH"
-    | "CONTINUE"
-    | "DEBUGGER"
-    | "DEFAULT"
-    | "DELETE"
-    | "DO"
-    | "ELSE"
-    | "FINALLY"
-    | "FOR"
-    | "FUNCTION"
-    | "IF"
-    | "IN"
-    | "INSTANCEOF"
-    | "NEW"
-    | "RETURN"
-    | "SWITCH"
-    | "THIS"
-    | "THROW"
-    | "TRY"
-    | "TYPEOF"
-    | "VAR"
-    | "VOID"
-    | "WHILE"
-    | "WITH"
-    | "TRUE"
-    | "FALSE"
-    | "NULL"
-    | "CLASS"
-    | "CONST"
-    | "ENUM"
-    | "EXPORT"
-    | "EXTENDS"
-    | "IMPORT"
-    | "SUPER"
     ;
 
 %%

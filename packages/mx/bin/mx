@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+const fs = require('fs')
+const parser = require('../src/parser')
+const drawGraph = require('../src/graph')
+
+const file = __dirname + '/../test.mx'
+const code = fs.readFileSync(file, {encoding: 'utf8'})
+
+// var t = ['IDENTIFIER', 'IDENTIFIER', '=', 'QUOTE', 'TEXT', 'QUOTE', 'NEWLINE',
+//   'INDENT',
+//     'IDENTIFIER', 'NEWLINE',
+//         'INDENT',
+//              'IDENTIFIER', 'NEWLINE',
+//              'IDENTIFIER', 'IDENTIFIER', '=', 'QUOTE', 'TEXT', 'QUOTE', 'NEWLINE',
+//              'IDENTIFIER', 'NEWLINE',
+//         'DEDENT',
+//     'IDENTIFIER', 'NEWLINE',
+//   'DEDENT',
+//
+//   'EOF']
+// function AlphabetScanner() {
+//   var text = "";
+//   this.yytext = "";
+//   this.yyloc = {
+//     first_column: 0,
+//     first_line: 1,
+//     last_line: 1,
+//     last_column: 0
+//   };
+//   this.yylloc = this.yyloc;
+//   this.setInput = function(text_) {
+//     text = text_;
+//   };
+//   this.lex = function() {
+//     return t.shift();
+//   };
+// }
+//
+// let parser = new Parser()
+// parser.lexer = new AlphabetScanner();
+
+
+
+const ast = parser.parse(file, code)
+
+// console.log(JSON.stringify(ast, null, 2))
+console.log(drawGraph(ast))
+
+
+let IDENTIFIER = value => ({type: 'IDENTIFIER', value})
+let NEWLINE = () => ({type: 'NEWLINE'})
+let INDENT = () => ({type: 'INDENT'})
+let DEDENT = () => ({type: 'DEDENT'})
+let tokens = [IDENTIFIER('div'), NEWLINE(), INDENT(), IDENTIFIER(),]
+
