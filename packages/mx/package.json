@@ -1,0 +1,31 @@
+{
+  "name": "mx",
+  "version": "1.0.0",
+  "description": "Markup without JSX",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "make build",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aviasales/mx.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Anton Medvedev <anton@medv.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aviasales/mx/issues"
+  },
+  "homepage": "https://github.com/aviasales/mx#readme",
+  "dependencies": {
+    "source-map": "^0.5.6"
+  },
+  "devDependencies": {
+    "jison": "^0.4.17",
+    "preprocessor": "^1.4.0"
+  }
+}
