@@ -84,6 +84,7 @@ Quote [\"]
 <TAG>"="                           return "=";
 <TAG>{Quote}                       this.begin("ATTR"); return "QUOTE";
 <TAG>{Identifier}                  return "IDENTIFIER";
+<TAG>{Text}                        return "TEXT";
 
 <ATTR>{AttributeText}              return "TEXT";
 <ATTR>{Quote}                      this.popState(); return "QUOTE";
@@ -141,9 +142,17 @@ Tag
         {
             $$ = new ElementNode($1, [], [], createSourceLocation(@1, @2));
         }
+    | IDENTIFIER ContentList NEWLINE
+        {
+            $$ = new ElementNode($1, [], $2, createSourceLocation(@1, @3));
+        }
     | IDENTIFIER AttributeList NEWLINE
         {
             $$ = new ElementNode($1, $2, [], createSourceLocation(@1, @3));
+        }
+    | IDENTIFIER AttributeList ContentList NEWLINE
+        {
+            $$ = new ElementNode($1, $2, $3, createSourceLocation(@1, @4));
         }
     | IDENTIFIER NEWLINE StatementBlock
         {
@@ -155,10 +164,32 @@ Tag
         }
     ;
 
+ContentList
+    : Content
+        {
+            $$ = [$1];
+        }
+    | ContentList Content
+        {
+            $$ = $1.concat($2);
+        }
+    ;
+
+Content
+    : IDENTIFIER
+        {
+            $$ = new TextNode($1, createSourceLocation(@1, @1));
+        }
+    | TEXT
+        {
+            $$ = new TextNode($1, createSourceLocation(@1, @1));
+        }
+    ;
+
 AttributeList
     : Attribute
         {
-            $$ = [$1]
+            $$ = [$1];
         }
     | AttributeList Attribute
         {

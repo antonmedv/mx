@@ -1,8 +1,5 @@
 div
-  a class="link"
-    abbr
-      c
-        canvas id="video" class="wow"
-      embed
+  p Hello world!
+  span class="warning" Beware of dragons 🔥
   b
-
+    p aß©ÍÎsÍÎ
