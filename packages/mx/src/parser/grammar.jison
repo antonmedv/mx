@@ -43,7 +43,7 @@ Text [^{\n]+
 AttributeText [^\"]+
 Quote [\"]
 
-%s INITIAL TAG ATTR
+%s INITIAL TAG ATTR TEXT
 
 %%
 <<EOF>>                            %{
@@ -82,6 +82,8 @@ Quote [\"]
 <TAG>\n+                           this.begin("INITIAL"); return "NEWLINE";
 <TAG>[\s\t\f]+                     /* skip whitespace, separate tokens */
 <TAG>"="                           return "=";
+<TAG>"|"                           return "|";
+<TAG>"."                           this.begin("TEXT"); return ".";
 <TAG>{Quote}                       this.begin("ATTR"); return "QUOTE";
 <TAG>{Identifier}                  return "IDENTIFIER";
 <TAG>{Text}                        return "TEXT";
@@ -89,16 +91,21 @@ Quote [\"]
 <ATTR>{AttributeText}              return "TEXT";
 <ATTR>{Quote}                      this.popState(); return "QUOTE";
 
+<TEXT>\n+                          return "NEWLINE";
+<TEXT>.*                           %{
+                                     const lead = yytext.search(/\S/);
+                                     if (lead > current()) {
+                                       return "TEXT"
+                                     } else {
+                                       this.begin("INITIAL");
+                                       this.unput(yytext);
+                                     }
+                                   %}
+
 %%
 
 const indents = [0];
 const current = () => indents[indents.length - 1];
-
-/*
-
-while(t=lex())console.error(self.terminals_[t])
-
-*/
 
 /lex
 
@@ -134,7 +141,19 @@ StatementBlock
     ;
 
 Statement
-    : Tag
+    : Text
+    | Tag
+    ;
+
+Text
+    : "|" NEWLINE
+        {
+            $$ = new TextNode(" ", createSourceLocation(@1, @2));
+        }
+    | "|" ContentList NEWLINE
+        {
+            $$ = new ElementNode("text", [], $2, createSourceLocation(@1, @3));
+        }
     ;
 
 Tag
@@ -145,6 +164,10 @@ Tag
     | IDENTIFIER ContentList NEWLINE
         {
             $$ = new ElementNode($1, [], $2, createSourceLocation(@1, @3));
+        }
+    | IDENTIFIER "." NEWLINE Block
+        {
+            $$ = new ElementNode($1, [], [$4], createSourceLocation(@1, @4));
         }
     | IDENTIFIER AttributeList NEWLINE
         {
@@ -184,6 +207,29 @@ Content
         {
             $$ = new TextNode($1, createSourceLocation(@1, @1));
         }
+    ;
+
+Block
+    : BlockLines
+        {
+            $$ = new TextNode($1, createSourceLocation(@1, @1));
+        }
+    ;
+
+BlockLines
+    : BlockParts
+        {
+            $$ = $1;
+        }
+    | BlockLines BlockParts
+        {
+            $$ = $1 + $2;
+        }
+    ;
+
+BlockParts
+    : NEWLINE
+    | TEXT
     ;
 
 AttributeList
