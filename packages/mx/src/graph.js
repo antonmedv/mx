@@ -14,7 +14,7 @@ module.exports = function drawGraph(ast) {
             return node.value.toString();
           case 'Accessor':
             return '.' + node.name;
-          case 'Tag':
+          case 'Element':
             return '<' + node.name + '>';
           case 'Text':
             return '"' + node.text.replace(/[\s]+/g, '') + '"';
@@ -36,7 +36,7 @@ module.exports = function drawGraph(ast) {
             return [];
           case  'Accessor':
             return [];
-          case 'Tag':
+          case 'Element':
             return node.body.concat(node.attributes);
           case 'Text':
             return [];

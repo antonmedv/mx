@@ -75,7 +75,7 @@ var index = (function(){
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[1,8],$V2=[1,9],$V3=[5,9,13,16,29],$V4=[1,15],$V5=[1,16],$V6=[1,22],$V7=[14,16,21],$V8=[2,19],$V9=[1,28],$Va=[1,40],$Vb=[1,41],$Vc=[5,9,13,14,16,21,29];
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"Document":3,"StatementList":4,"EOF":5,"Statement":6,"StatementBlock":7,"INDENT":8,"DEDENT":9,"Text":10,"Tag":11,"If":12,"|":13,"NEWLINE":14,"ContentList":15,"IDENTIFIER":16,".":17,"Block":18,"AttributeList":19,"Content":20,"TEXT":21,"BlockLines":22,"BlockParts":23,"Attribute":24,"PlainAttribute":25,"=":26,"QUOTE":27,"AttributeValue":28,"IF":29,"ELSE":30,"$accept":0,"$end":1},
+symbols_: {"error":2,"Document":3,"ElementList":4,"EOF":5,"Element":6,"ElementBlock":7,"INDENT":8,"DEDENT":9,"Text":10,"Tag":11,"If":12,"|":13,"NEWLINE":14,"ContentList":15,"IDENTIFIER":16,".":17,"Block":18,"AttributeList":19,"Content":20,"TEXT":21,"BlockLines":22,"BlockParts":23,"Attribute":24,"PlainAttribute":25,"=":26,"QUOTE":27,"AttributeValue":28,"IF":29,"ELSE":30,"$accept":0,"$end":1},
 terminals_: {2:"error",5:"EOF",8:"INDENT",9:"DEDENT",13:"|",14:"NEWLINE",16:"IDENTIFIER",17:".",21:"TEXT",26:"=",27:"QUOTE",29:"IF",30:"ELSE"},
 productions_: [0,[3,2],[4,1],[4,2],[7,3],[6,1],[6,1],[6,1],[10,2],[10,3],[11,2],[11,3],[11,4],[11,3],[11,4],[11,3],[11,4],[15,1],[15,2],[20,1],[20,1],[18,1],[22,1],[22,2],[23,1],[23,1],[19,1],[19,2],[24,1],[25,5],[28,0],[28,1],[12,3],[12,6],[12,5]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
@@ -106,47 +106,47 @@ case 4:
 break;
 case 8:
 
-            this.$ = new TextNode(" ", createSourceLocation(_$[$0-1], _$[$0]));
+            this.$ = new ElementNode(" ", createSourceLocation(_$[$0-1], _$[$0]));
         
 break;
 case 9:
 
-            this.$ = new TagNode("text", [], $$[$0-1], createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new ElementNode("text", [], $$[$0-1], createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 10:
 
-            this.$ = new TagNode($$[$0-1], [], [], createSourceLocation(_$[$0-1], _$[$0]));
+            this.$ = new ElementNode($$[$0-1], [], [], createSourceLocation(_$[$0-1], _$[$0]));
         
 break;
 case 11:
 
-            this.$ = new TagNode($$[$0-2], [], $$[$0-1], createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new ElementNode($$[$0-2], [], $$[$0-1], createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 12:
 
-            this.$ = new TagNode($$[$0-3], [], [$$[$0]], createSourceLocation(_$[$0-3], _$[$0]));
+            this.$ = new ElementNode($$[$0-3], [], [$$[$0]], createSourceLocation(_$[$0-3], _$[$0]));
         
 break;
 case 13:
 
-            this.$ = new TagNode($$[$0-2], $$[$0-1], [], createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new ElementNode($$[$0-2], $$[$0-1], [], createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 14:
 
-            this.$ = new TagNode($$[$0-3], $$[$0-2], $$[$0-1], createSourceLocation(_$[$0-3], _$[$0]));
+            this.$ = new ElementNode($$[$0-3], $$[$0-2], $$[$0-1], createSourceLocation(_$[$0-3], _$[$0]));
         
 break;
 case 15:
 
-            this.$ = new TagNode($$[$0-2], [], $$[$0], createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new ElementNode($$[$0-2], [], $$[$0], createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 16:
 
-            this.$ = new TagNode($$[$0-3], $$[$0-2], $$[$0], createSourceLocation(_$[$0-3], _$[$0]));
+            this.$ = new ElementNode($$[$0-3], $$[$0-2], $$[$0], createSourceLocation(_$[$0-3], _$[$0]));
         
 break;
 case 19: case 20: case 21:
@@ -176,17 +176,17 @@ case 31:
 break;
 case 32:
 
-            this.$ = new IfNode(null, $$[$0], null, createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new IfStatementNode(null, $$[$0], null, createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 33:
 
-            this.$ = new IfNode(null, $$[$0-3], $$[$0], createSourceLocation(_$[$0-5], _$[$0]));
+            this.$ = new IfStatementNode(null, $$[$0-3], $$[$0], createSourceLocation(_$[$0-5], _$[$0]));
         
 break;
 case 34:
 
-            this.$ = new IfNode(null, $$[$0-2], $$[$0], createSourceLocation(_$[$0-4], _$[$0]));
+            this.$ = new IfStatementNode(null, $$[$0-2], $$[$0], createSourceLocation(_$[$0-4], _$[$0]));
         
 break;
 }
@@ -400,25 +400,25 @@ parser.parse = function (source, code) {
 };
 /* End Parser Customization Methods */
 function DocumentNode(body, loc) {
-  this.type = "Document";
+  this.type = 'Document';
   this.body = body;
   this.loc = loc;
 }
 
 function TextNode(text, loc) {
-  this.type = "Text";
+  this.type = 'Text';
   this.text = text;
   this.loc = loc;
 }
 
 function CommentNode(comment, loc) {
-  this.type = "Comment";
+  this.type = 'Comment';
   this.comment = comment;
   this.loc = loc;
 }
 
-function TagNode(name, attributes, body, loc) {
-  this.type = "Tag";
+function ElementNode(name, attributes, body, loc) {
+  this.type = 'Element';
   this.name = name;
   this.attributes = attributes;
   this.body = body;
@@ -426,22 +426,15 @@ function TagNode(name, attributes, body, loc) {
 }
 
 function AttributeNode(name, body, loc) {
-  this.type = "Attribute";
+  this.type = 'Attribute';
   this.name = name;
   this.body = body;
   this.loc = loc;
 }
 
 function SpreadAttributeNode(identifier, loc) {
-  this.type = "SpreadAttribute";
+  this.type = 'SpreadAttribute';
   this.identifier = identifier;
-  this.loc = loc;
-}
-
-function DirectiveNode(name, body, loc) {
-  this.type = "Directive";
-  this.name = name;
-  this.body = body;
   this.loc = loc;
 }
 
@@ -458,8 +451,8 @@ function ImportStatementNode(identifier, path, loc) {
   this.loc = loc;
 }
 
-function IfNode(cond, then, otherwise, loc) {
-  this.type = "If";
+function IfStatementNode(cond, then, otherwise, loc) {
+  this.type = 'IfStatement';
   this.cond = cond;
   this.then = then;
   this.otherwise = otherwise;
@@ -467,51 +460,39 @@ function IfNode(cond, then, otherwise, loc) {
 }
 
 function ForStatementNode(expr, body, options, loc) {
-  this.type = "ForStatement";
+  this.type = 'ForStatement';
   this.expr = expr;
   this.body = body;
   this.options = options;
   this.loc = loc;
 }
 
-function UnsafeStatementNode(html, loc) {
-  this.type = "UnsafeStatement";
-  this.html = html;
-  this.loc = loc;
-}
-
-function FilterExpressionNode(callee, args, loc) {
-  this.type = "FilterExpression";
-  this.callee = callee;
-  this.arguments = args;
-  this.loc = loc;
-}
 
 function ThisExpressionNode(loc) {
-  this.type = "ThisExpression";
+  this.type = 'ThisExpression';
   this.loc = loc;
 }
 
 function ArrayExpressionNode(elements, loc) {
-  this.type = "ArrayExpression";
+  this.type = 'ArrayExpression';
   this.elements = elements;
   this.loc = loc;
 }
 
 function ObjectExpressionNode(properties, loc) {
-  this.type = "ObjectExpression";
+  this.type = 'ObjectExpression';
   this.properties = properties;
   this.loc = loc;
 }
 
 function SequenceExpressionNode(expressions, loc) {
-  this.type = "SequenceExpression";
+  this.type = 'SequenceExpression';
   this.expressions = expressions;
   this.loc = loc;
 }
 
 function UnaryExpressionNode(operator, prefix, argument, loc) {
-  this.type = "UnaryExpression";
+  this.type = 'UnaryExpression';
   this.operator = operator;
   this.prefix = prefix;
   this.argument = argument;
@@ -519,7 +500,7 @@ function UnaryExpressionNode(operator, prefix, argument, loc) {
 }
 
 function BinaryExpressionNode(operator, left, right, loc) {
-  this.type = "BinaryExpression";
+  this.type = 'BinaryExpression';
   this.operator = operator;
   this.left = left;
   this.right = right;
@@ -527,7 +508,7 @@ function BinaryExpressionNode(operator, left, right, loc) {
 }
 
 function AssignmentExpressionNode(operator, left, right, loc) {
-  this.type = "AssignmentExpression";
+  this.type = 'AssignmentExpression';
   this.operator = operator;
   this.left = left;
   this.right = right;
@@ -535,7 +516,7 @@ function AssignmentExpressionNode(operator, left, right, loc) {
 }
 
 function UpdateExpressionNode(operator, argument, prefix, loc) {
-  this.type = "UpdateExpression";
+  this.type = 'UpdateExpression';
   this.operator = operator;
   this.argument = argument;
   this.prefix = prefix;
@@ -543,7 +524,7 @@ function UpdateExpressionNode(operator, argument, prefix, loc) {
 }
 
 function LogicalExpressionNode(operator, left, right, loc) {
-  this.type = "LogicalExpression";
+  this.type = 'LogicalExpression';
   this.operator = operator;
   this.left = left;
   this.right = right;
@@ -551,7 +532,7 @@ function LogicalExpressionNode(operator, left, right, loc) {
 }
 
 function ConditionalExpressionNode(test, consequent, alternate, loc) {
-  this.type = "ConditionalExpression";
+  this.type = 'ConditionalExpression';
   this.test = test;
   this.consequent = consequent;
   this.alternate = alternate;
@@ -559,21 +540,21 @@ function ConditionalExpressionNode(test, consequent, alternate, loc) {
 }
 
 function NewExpressionNode(callee, args, loc) {
-  this.type = "NewExpression";
+  this.type = 'NewExpression';
   this.callee = callee;
   this.arguments = args;
   this.loc = loc;
 }
 
 function CallExpressionNode(callee, args, loc) {
-  this.type = "CallExpression";
+  this.type = 'CallExpression';
   this.callee = callee;
   this.arguments = args;
   this.loc = loc;
 }
 
 function MemberExpressionNode(object, property, computed, loc) {
-  this.type = "MemberExpression";
+  this.type = 'MemberExpression';
   this.object = object;
   this.property = property;
   this.computed = computed;
@@ -581,19 +562,19 @@ function MemberExpressionNode(object, property, computed, loc) {
 }
 
 function IdentifierNode(name, loc) {
-  this.type = "Identifier";
+  this.type = 'Identifier';
   this.name = name;
   this.loc = loc;
 }
 
 function AccessorNode(name, loc) {
-  this.type = "Accessor";
+  this.type = 'Accessor';
   this.name = name;
   this.loc = loc;
 }
 
 function LiteralNode(value, loc) {
-  this.type = "Literal";
+  this.type = 'Literal';
   this.value = value;
   this.loc = loc;
 }
@@ -602,16 +583,13 @@ const ast = exports.ast = {};
 ast.DocumentNode = DocumentNode;
 ast.TextNode = TextNode;
 ast.CommentNode = CommentNode;
-ast.TagNode = TagNode;
+ast.ElementNode = ElementNode;
 ast.AttributeNode = AttributeNode;
 ast.SpreadAttributeNode = SpreadAttributeNode;
-ast.DirectiveNode = DirectiveNode;
 ast.ExpressionStatementNode = ExpressionStatementNode;
 ast.ImportStatementNode = ImportStatementNode;
-ast.IfNode = IfNode;
+ast.IfStatementNode = IfStatementNode;
 ast.ForStatementNode = ForStatementNode;
-ast.UnsafeStatementNode = UnsafeStatementNode;
-ast.FilterExpressionNode = FilterExpressionNode;
 ast.ThisExpressionNode = ThisExpressionNode;
 ast.ArrayExpressionNode = ArrayExpressionNode;
 ast.ObjectExpressionNode = ObjectExpressionNode;

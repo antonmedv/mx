@@ -3,13 +3,13 @@
 exports[`ignore empty lines 1`] = `
 DocumentNode {
   "body": Array [
-    TagNode {
+    ElementNode {
       "attributes": Array [],
       "body": Array [
-        TagNode {
+        ElementNode {
           "attributes": Array [],
           "body": Array [
-            TagNode {
+            ElementNode {
               "attributes": Array [],
               "body": Array [],
               "loc": SourceLocation {
@@ -24,7 +24,7 @@ DocumentNode {
                 },
               },
               "name": "h1",
-              "type": "Tag",
+              "type": "Element",
             },
           ],
           "loc": SourceLocation {
@@ -39,9 +39,9 @@ DocumentNode {
             },
           },
           "name": "div",
-          "type": "Tag",
+          "type": "Element",
         },
-        TagNode {
+        ElementNode {
           "attributes": Array [],
           "body": Array [],
           "loc": SourceLocation {
@@ -56,7 +56,7 @@ DocumentNode {
             },
           },
           "name": "footer",
-          "type": "Tag",
+          "type": "Element",
         },
       ],
       "loc": SourceLocation {
@@ -71,7 +71,7 @@ DocumentNode {
         },
       },
       "name": "body",
-      "type": "Tag",
+      "type": "Element",
     },
   ],
   "loc": SourceLocation {
@@ -92,7 +92,7 @@ DocumentNode {
 exports[`parse attributes 1`] = `
 DocumentNode {
   "body": Array [
-    TagNode {
+    ElementNode {
       "attributes": Array [
         AttributeNode {
           "body": Array [
@@ -172,7 +172,7 @@ DocumentNode {
         },
       },
       "name": "div",
-      "type": "Tag",
+      "type": "Element",
     },
   ],
   "loc": SourceLocation {
@@ -193,7 +193,7 @@ DocumentNode {
 exports[`parse attributes with children 1`] = `
 DocumentNode {
   "body": Array [
-    TagNode {
+    ElementNode {
       "attributes": Array [
         AttributeNode {
           "body": Array [
@@ -229,7 +229,7 @@ DocumentNode {
         },
       ],
       "body": Array [
-        TagNode {
+        ElementNode {
           "attributes": Array [],
           "body": Array [],
           "loc": SourceLocation {
@@ -244,7 +244,7 @@ DocumentNode {
             },
           },
           "name": "p",
-          "type": "Tag",
+          "type": "Element",
         },
       ],
       "loc": SourceLocation {
@@ -259,7 +259,7 @@ DocumentNode {
         },
       },
       "name": "div",
-      "type": "Tag",
+      "type": "Element",
     },
   ],
   "loc": SourceLocation {
@@ -280,7 +280,7 @@ DocumentNode {
 exports[`parse attributes with content 1`] = `
 DocumentNode {
   "body": Array [
-    TagNode {
+    ElementNode {
       "attributes": Array [
         AttributeNode {
           "body": Array [
@@ -374,7 +374,7 @@ DocumentNode {
         },
       },
       "name": "div",
-      "type": "Tag",
+      "type": "Element",
     },
   ],
   "loc": SourceLocation {
@@ -395,13 +395,13 @@ DocumentNode {
 exports[`parse indent and dedent 1`] = `
 DocumentNode {
   "body": Array [
-    TagNode {
+    ElementNode {
       "attributes": Array [],
       "body": Array [
-        TagNode {
+        ElementNode {
           "attributes": Array [],
           "body": Array [
-            TagNode {
+            ElementNode {
               "attributes": Array [],
               "body": Array [],
               "loc": SourceLocation {
@@ -416,7 +416,7 @@ DocumentNode {
                 },
               },
               "name": "h1",
-              "type": "Tag",
+              "type": "Element",
             },
           ],
           "loc": SourceLocation {
@@ -431,12 +431,12 @@ DocumentNode {
             },
           },
           "name": "header",
-          "type": "Tag",
+          "type": "Element",
         },
-        TagNode {
+        ElementNode {
           "attributes": Array [],
           "body": Array [
-            TagNode {
+            ElementNode {
               "attributes": Array [],
               "body": Array [],
               "loc": SourceLocation {
@@ -451,9 +451,9 @@ DocumentNode {
                 },
               },
               "name": "div",
-              "type": "Tag",
+              "type": "Element",
             },
-            TagNode {
+            ElementNode {
               "attributes": Array [],
               "body": Array [],
               "loc": SourceLocation {
@@ -468,7 +468,7 @@ DocumentNode {
                 },
               },
               "name": "p",
-              "type": "Tag",
+              "type": "Element",
             },
           ],
           "loc": SourceLocation {
@@ -483,9 +483,9 @@ DocumentNode {
             },
           },
           "name": "section",
-          "type": "Tag",
+          "type": "Element",
         },
-        TagNode {
+        ElementNode {
           "attributes": Array [],
           "body": Array [],
           "loc": SourceLocation {
@@ -500,7 +500,7 @@ DocumentNode {
             },
           },
           "name": "footer",
-          "type": "Tag",
+          "type": "Element",
         },
       ],
       "loc": SourceLocation {
@@ -515,7 +515,7 @@ DocumentNode {
         },
       },
       "name": "body",
-      "type": "Tag",
+      "type": "Element",
     },
   ],
   "loc": SourceLocation {
@@ -536,7 +536,7 @@ DocumentNode {
 exports[`parse single tag 1`] = `
 DocumentNode {
   "body": Array [
-    TagNode {
+    ElementNode {
       "attributes": Array [],
       "body": Array [],
       "loc": SourceLocation {
@@ -551,7 +551,7 @@ DocumentNode {
         },
       },
       "name": "div",
-      "type": "Tag",
+      "type": "Element",
     },
   ],
   "loc": SourceLocation {
@@ -608,10 +608,10 @@ DocumentNode {
 exports[`parse tag with block of text 1`] = `
 DocumentNode {
   "body": Array [
-    TagNode {
+    ElementNode {
       "attributes": Array [],
       "body": Array [
-        TagNode {
+        ElementNode {
           "attributes": Array [],
           "body": Array [
             TextNode {
@@ -646,9 +646,9 @@ DocumentNode {
             },
           },
           "name": "p",
-          "type": "Tag",
+          "type": "Element",
         },
-        TagNode {
+        ElementNode {
           "attributes": Array [],
           "body": Array [],
           "loc": SourceLocation {
@@ -663,7 +663,7 @@ DocumentNode {
             },
           },
           "name": "footer",
-          "type": "Tag",
+          "type": "Element",
         },
       ],
       "loc": SourceLocation {
@@ -678,7 +678,7 @@ DocumentNode {
         },
       },
       "name": "div",
-      "type": "Tag",
+      "type": "Element",
     },
   ],
   "loc": SourceLocation {
@@ -699,7 +699,7 @@ DocumentNode {
 exports[`parse tag with content 1`] = `
 DocumentNode {
   "body": Array [
-    TagNode {
+    ElementNode {
       "attributes": Array [],
       "body": Array [
         TextNode {
@@ -775,7 +775,7 @@ DocumentNode {
         },
       },
       "name": "p",
-      "type": "Tag",
+      "type": "Element",
     },
   ],
   "loc": SourceLocation {

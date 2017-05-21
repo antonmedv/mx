@@ -115,32 +115,32 @@ const current = () => indents[indents.length - 1];
 %%
 
 Document
-    : StatementList EOF
+    : ElementList EOF
         {
             $$ = new DocumentNode($1, createSourceLocation(@1, @2));
             return $$;
         }
     ;
 
-StatementList
-    : Statement
+ElementList
+    : Element
         {
             $$ = [$1];
         }
-    | StatementList Statement
+    | ElementList Element
         {
             $$ = $1.concat($2);
         }
     ;
 
-StatementBlock
-    : INDENT StatementList DEDENT
+ElementBlock
+    : INDENT ElementList DEDENT
         {
             $$ = $2;
         }
     ;
 
-Statement
+Element
     : Text
     | Tag
     | If
@@ -149,42 +149,42 @@ Statement
 Text
     : "|" NEWLINE
         {
-            $$ = new TextNode(" ", createSourceLocation(@1, @2));
+            $$ = new ElementNode(" ", createSourceLocation(@1, @2));
         }
     | "|" ContentList NEWLINE
         {
-            $$ = new TagNode("text", [], $2, createSourceLocation(@1, @3));
+            $$ = new ElementNode("text", [], $2, createSourceLocation(@1, @3));
         }
     ;
 
 Tag
     : IDENTIFIER NEWLINE
         {
-            $$ = new TagNode($1, [], [], createSourceLocation(@1, @2));
+            $$ = new ElementNode($1, [], [], createSourceLocation(@1, @2));
         }
     | IDENTIFIER ContentList NEWLINE
         {
-            $$ = new TagNode($1, [], $2, createSourceLocation(@1, @3));
+            $$ = new ElementNode($1, [], $2, createSourceLocation(@1, @3));
         }
     | IDENTIFIER "." NEWLINE Block
         {
-            $$ = new TagNode($1, [], [$4], createSourceLocation(@1, @4));
+            $$ = new ElementNode($1, [], [$4], createSourceLocation(@1, @4));
         }
     | IDENTIFIER AttributeList NEWLINE
         {
-            $$ = new TagNode($1, $2, [], createSourceLocation(@1, @3));
+            $$ = new ElementNode($1, $2, [], createSourceLocation(@1, @3));
         }
     | IDENTIFIER AttributeList ContentList NEWLINE
         {
-            $$ = new TagNode($1, $2, $3, createSourceLocation(@1, @4));
+            $$ = new ElementNode($1, $2, $3, createSourceLocation(@1, @4));
         }
-    | IDENTIFIER NEWLINE StatementBlock
+    | IDENTIFIER NEWLINE ElementBlock
         {
-            $$ = new TagNode($1, [], $3, createSourceLocation(@1, @3));
+            $$ = new ElementNode($1, [], $3, createSourceLocation(@1, @3));
         }
-    | IDENTIFIER AttributeList NEWLINE StatementBlock
+    | IDENTIFIER AttributeList NEWLINE ElementBlock
         {
-            $$ = new TagNode($1, $2, $4, createSourceLocation(@1, @4));
+            $$ = new ElementNode($1, $2, $4, createSourceLocation(@1, @4));
         }
     ;
 
@@ -264,17 +264,17 @@ AttributeValue
     ;
 
 If
-    : IF NEWLINE StatementBlock
+    : IF NEWLINE ElementBlock
         {
-            $$ = new IfNode(null, $3, null, createSourceLocation(@1, @3));
+            $$ = new IfStatementNode(null, $3, null, createSourceLocation(@1, @3));
         }
-    | IF NEWLINE StatementBlock ELSE NEWLINE StatementBlock
+    | IF NEWLINE ElementBlock ELSE NEWLINE ElementBlock
         {
-            $$ = new IfNode(null, $3, $6, createSourceLocation(@1, @6));
+            $$ = new IfStatementNode(null, $3, $6, createSourceLocation(@1, @6));
         }
-    | IF NEWLINE StatementBlock ELSE If
+    | IF NEWLINE ElementBlock ELSE If
         {
-            $$ = new IfNode(null, $3, $5, createSourceLocation(@1, @5));
+            $$ = new IfStatementNode(null, $3, $5, createSourceLocation(@1, @5));
         }
     ;
 
