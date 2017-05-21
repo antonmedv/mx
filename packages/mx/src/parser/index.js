@@ -999,7 +999,7 @@ case 13:return "NEWLINE";
 break;
 case 14:
                                      const lead = yy_.yytext.search(/\S/);
-                                     if (lead > current()) {
+                                     if (lead > current() || lead === -1) {
                                        return "TEXT"
                                      } else {
                                        this.begin("INITIAL");

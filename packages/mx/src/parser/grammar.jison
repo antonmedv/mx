@@ -92,7 +92,7 @@ Quote [\"]
 <TEXT>\n+                          return "NEWLINE";
 <TEXT>.*                           %{
                                      const lead = yytext.search(/\S/);
-                                     if (lead > current()) {
+                                     if (lead > current() || lead === -1) {
                                        return "TEXT"
                                      } else {
                                        this.begin("INITIAL");

@@ -190,6 +190,208 @@ DocumentNode {
 }
 `;
 
+exports[`parse attributes with children 1`] = `
+DocumentNode {
+  "body": Array [
+    TagNode {
+      "attributes": Array [
+        AttributeNode {
+          "body": Array [
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 12,
+                  "line": 1,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 8,
+                  "line": 1,
+                },
+              },
+              "type": "Literal",
+              "value": "\\"code\\"",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 13,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 4,
+              "line": 1,
+            },
+          },
+          "name": "id",
+          "type": "Attribute",
+        },
+      ],
+      "body": Array [
+        TagNode {
+          "attributes": Array [],
+          "body": Array [],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 3,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 2,
+            },
+          },
+          "name": "p",
+          "type": "Tag",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 3,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "div",
+      "type": "Tag",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 3,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse attributes with content 1`] = `
+DocumentNode {
+  "body": Array [
+    TagNode {
+      "attributes": Array [
+        AttributeNode {
+          "body": Array [
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 13,
+                  "line": 1,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 11,
+                  "line": 1,
+                },
+              },
+              "type": "Literal",
+              "value": "\\"hi\\"",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 14,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 4,
+              "line": 1,
+            },
+          },
+          "name": "class",
+          "type": "Attribute",
+        },
+      ],
+      "body": Array [
+        TextNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 20,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 15,
+              "line": 1,
+            },
+          },
+          "text": "Hello",
+          "type": "Text",
+        },
+        TextNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 26,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 21,
+              "line": 1,
+            },
+          },
+          "text": "world",
+          "type": "Text",
+        },
+        TextNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 27,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 26,
+              "line": 1,
+            },
+          },
+          "text": "!",
+          "type": "Text",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 2,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "div",
+      "type": "Tag",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 2,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
 exports[`parse indent and dedent 1`] = `
 DocumentNode {
   "body": Array [
@@ -392,6 +594,194 @@ DocumentNode {
     "end": Position {
       "column": 3,
       "line": 1,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse tag with block of text 1`] = `
+DocumentNode {
+  "body": Array [
+    TagNode {
+      "attributes": Array [],
+      "body": Array [
+        TagNode {
+          "attributes": Array [],
+          "body": Array [
+            TextNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 0,
+                  "line": 7,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 0,
+                  "line": 3,
+                },
+              },
+              "text": "    Beware of dragons
+
+    Dragons are very dangerous creatures,
+    They live in a caves in the mountains.
+",
+              "type": "Text",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 7,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 2,
+            },
+          },
+          "name": "p",
+          "type": "Tag",
+        },
+        TagNode {
+          "attributes": Array [],
+          "body": Array [],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 8,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 7,
+            },
+          },
+          "name": "footer",
+          "type": "Tag",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 8,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "div",
+      "type": "Tag",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 8,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse tag with content 1`] = `
+DocumentNode {
+  "body": Array [
+    TagNode {
+      "attributes": Array [],
+      "body": Array [
+        TextNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 8,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 1,
+            },
+          },
+          "text": "Beware",
+          "type": "Text",
+        },
+        TextNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 11,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 9,
+              "line": 1,
+            },
+          },
+          "text": "of",
+          "type": "Text",
+        },
+        TextNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 19,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 12,
+              "line": 1,
+            },
+          },
+          "text": "dragons",
+          "type": "Text",
+        },
+        TextNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 22,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 20,
+              "line": 1,
+            },
+          },
+          "text": "🔥",
+          "type": "Text",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 2,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "p",
+      "type": "Tag",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 2,
     },
     "source": "file.mx",
     "start": Position {

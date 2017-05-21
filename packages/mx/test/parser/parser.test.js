@@ -41,3 +41,37 @@ test('parse attributes', t => {
   t.snapshot(parse(code))
 })
 
+test('parse attributes with children', t => {
+  const code = `
+  div id="code"
+    p
+  `
+  t.snapshot(parse(code))
+})
+
+test('parse tag with content', t => {
+  const code = `
+  p Beware of dragons 🔥
+  `
+  t.snapshot(parse(code))
+})
+
+test('parse attributes with content', t => {
+  const code = `
+  div class="hi" Hello world!
+  `
+  t.snapshot(parse(code))
+})
+
+test('parse tag with block of text', t => {
+  const code = `
+  div
+    p.
+      Beware of dragons
+
+      Dragons are very dangerous creatures,
+      They live in a caves in the mountains.
+    footer
+  `
+  t.snapshot(parse(code))
+})
