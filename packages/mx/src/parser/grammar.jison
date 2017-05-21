@@ -47,7 +47,7 @@ Quote [\"]
 
 %%
 <<EOF>>                            %{
-                                      const tokens = ["EOF"];
+                                      const tokens = ["EOF", "NEWLINE"]; // newline before eof is a hack for simplify grammar
                                 
                                       while (0 < current()) {
                                         tokens.push("DEDENT");
@@ -159,31 +159,31 @@ Text
 Tag
     : IDENTIFIER NEWLINE
         {
-            $$ = new ElementNode($1, [], [], createSourceLocation(@1, @2));
+            $$ = new TagNode($1, [], [], createSourceLocation(@1, @2));
         }
     | IDENTIFIER ContentList NEWLINE
         {
-            $$ = new ElementNode($1, [], $2, createSourceLocation(@1, @3));
+            $$ = new TagNode($1, [], $2, createSourceLocation(@1, @3));
         }
     | IDENTIFIER "." NEWLINE Block
         {
-            $$ = new ElementNode($1, [], [$4], createSourceLocation(@1, @4));
+            $$ = new TagNode($1, [], [$4], createSourceLocation(@1, @4));
         }
     | IDENTIFIER AttributeList NEWLINE
         {
-            $$ = new ElementNode($1, $2, [], createSourceLocation(@1, @3));
+            $$ = new TagNode($1, $2, [], createSourceLocation(@1, @3));
         }
     | IDENTIFIER AttributeList ContentList NEWLINE
         {
-            $$ = new ElementNode($1, $2, $3, createSourceLocation(@1, @4));
+            $$ = new TagNode($1, $2, $3, createSourceLocation(@1, @4));
         }
     | IDENTIFIER NEWLINE StatementBlock
         {
-            $$ = new ElementNode($1, [], $3, createSourceLocation(@1, @3));
+            $$ = new TagNode($1, [], $3, createSourceLocation(@1, @3));
         }
     | IDENTIFIER AttributeList NEWLINE StatementBlock
         {
-            $$ = new ElementNode($1, $2, $4, createSourceLocation(@1, @4));
+            $$ = new TagNode($1, $2, $4, createSourceLocation(@1, @4));
         }
     ;
 

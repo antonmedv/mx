@@ -939,7 +939,7 @@ performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:
-                                      const tokens = ["EOF"];
+                                      const tokens = ["EOF", "NEWLINE"]; // newline before eof is a hack for simplify grammar
                                 
                                       while (0 < current()) {
                                         tokens.push("DEDENT");

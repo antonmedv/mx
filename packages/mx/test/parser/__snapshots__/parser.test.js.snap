@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parse single tag 1`] = `
+DocumentNode {
+  "body": Array [
+    ElementNode {
+      "attributes": Array [],
+      "body": Array [],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 3,
+          "line": 1,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "div",
+      "type": "Element",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 3,
+      "line": 1,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;

@@ -1,11 +1,6 @@
 div
   p Hello world!
-  span class="warning" Beware of dragons 🔥
-  b
-    p.
-      This is real text
-      🔥
-      I love it!
-    p
-      input.
-        amaxing!
+  |
+  | Beware of dragons 🔥
+  |
+

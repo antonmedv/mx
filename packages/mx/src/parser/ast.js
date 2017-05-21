@@ -16,8 +16,8 @@ function CommentNode(comment, loc) {
   this.loc = loc;
 }
 
-function ElementNode(name, attributes, body, loc) {
-  this.type = "Element";
+function TagNode(name, attributes, body, loc) {
+  this.type = "tag";
   this.name = name;
   this.attributes = attributes;
   this.body = body;
@@ -201,7 +201,7 @@ const ast = exports.ast = {};
 ast.DocumentNode = DocumentNode;
 ast.TextNode = TextNode;
 ast.CommentNode = CommentNode;
-ast.ElementNode = ElementNode;
+ast.TagNode = TagNode;
 ast.AttributeNode = AttributeNode;
 ast.SpreadAttributeNode = SpreadAttributeNode;
 ast.DirectiveNode = DirectiveNode;

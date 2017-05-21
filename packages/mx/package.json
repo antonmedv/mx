@@ -4,7 +4,8 @@
   "description": "Markup without JSX",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava",
+    "watch": "ava --watch",
     "build": "make build",
     "prepublish": "npm run build"
   },
@@ -26,7 +27,15 @@
     "source-map": "^0.5.6"
   },
   "devDependencies": {
+    "ava": "^0.19.1",
+    "dedent": "^0.7.0",
+    "jest": "^20.0.3",
     "jison": "^0.4.17",
     "preprocessor": "^1.4.0"
+  },
+  "ava": {
+    "files": [
+      "**/*.test.js"
+    ]
   }
 }
