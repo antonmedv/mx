@@ -1,6 +1,3 @@
-div
-  p Hello world!
-  |
-  | Beware of dragons 🔥
-  |
-
+body
+  header
+  section

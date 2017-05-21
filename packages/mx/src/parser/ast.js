@@ -17,7 +17,7 @@ function CommentNode(comment, loc) {
 }
 
 function TagNode(name, attributes, body, loc) {
-  this.type = "tag";
+  this.type = "Tag";
   this.name = name;
   this.attributes = attributes;
   this.body = body;

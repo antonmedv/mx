@@ -111,42 +111,42 @@ case 7:
 break;
 case 8:
 
-            this.$ = new ElementNode("text", [], $$[$0-1], createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new TagNode("text", [], $$[$0-1], createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 9:
 
-            this.$ = new ElementNode($$[$0-1], [], [], createSourceLocation(_$[$0-1], _$[$0]));
+            this.$ = new TagNode($$[$0-1], [], [], createSourceLocation(_$[$0-1], _$[$0]));
         
 break;
 case 10:
 
-            this.$ = new ElementNode($$[$0-2], [], $$[$0-1], createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new TagNode($$[$0-2], [], $$[$0-1], createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 11:
 
-            this.$ = new ElementNode($$[$0-3], [], [$$[$0]], createSourceLocation(_$[$0-3], _$[$0]));
+            this.$ = new TagNode($$[$0-3], [], [$$[$0]], createSourceLocation(_$[$0-3], _$[$0]));
         
 break;
 case 12:
 
-            this.$ = new ElementNode($$[$0-2], $$[$0-1], [], createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new TagNode($$[$0-2], $$[$0-1], [], createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 13:
 
-            this.$ = new ElementNode($$[$0-3], $$[$0-2], $$[$0-1], createSourceLocation(_$[$0-3], _$[$0]));
+            this.$ = new TagNode($$[$0-3], $$[$0-2], $$[$0-1], createSourceLocation(_$[$0-3], _$[$0]));
         
 break;
 case 14:
 
-            this.$ = new ElementNode($$[$0-2], [], $$[$0], createSourceLocation(_$[$0-2], _$[$0]));
+            this.$ = new TagNode($$[$0-2], [], $$[$0], createSourceLocation(_$[$0-2], _$[$0]));
         
 break;
 case 15:
 
-            this.$ = new ElementNode($$[$0-3], $$[$0-2], $$[$0], createSourceLocation(_$[$0-3], _$[$0]));
+            this.$ = new TagNode($$[$0-3], $$[$0-2], $$[$0], createSourceLocation(_$[$0-3], _$[$0]));
         
 break;
 case 18: case 19: case 20:
@@ -346,7 +346,7 @@ function Position(line, column) {
 
 function createSourceLocation(firstToken, lastToken) {
   return new SourceLocation(
-    parser.source, // Some sort of magic. In this way we can pass filename into jison generated parser.  
+    parser.source, // Some sort of magic. In this way we can pass filename into jison generated parser.
     new Position(firstToken.first_line, firstToken.first_column),
     new Position(lastToken.last_line, lastToken.last_column)
   );
@@ -377,6 +377,10 @@ const originalParseMethod = parser.parse;
 
 parser.parse = function (source, code) {
   parser.source = source;
+  // Insert final newline
+  if (!/\n$/.test(code)) {
+    code += '\n';
+  }
   return originalParseMethod.call(this, code);
 };
 /* End Parser Customization Methods */
@@ -398,8 +402,8 @@ function CommentNode(comment, loc) {
   this.loc = loc;
 }
 
-function ElementNode(name, attributes, body, loc) {
-  this.type = "Element";
+function TagNode(name, attributes, body, loc) {
+  this.type = "Tag";
   this.name = name;
   this.attributes = attributes;
   this.body = body;
@@ -583,7 +587,7 @@ const ast = exports.ast = {};
 ast.DocumentNode = DocumentNode;
 ast.TextNode = TextNode;
 ast.CommentNode = CommentNode;
-ast.ElementNode = ElementNode;
+ast.TagNode = TagNode;
 ast.AttributeNode = AttributeNode;
 ast.SpreadAttributeNode = SpreadAttributeNode;
 ast.DirectiveNode = DirectiveNode;
@@ -939,16 +943,14 @@ performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:
-                                      const tokens = ["EOF", "NEWLINE"]; // newline before eof is a hack for simplify grammar
-                                
+                                      const tokens = ["EOF"];
+
                                       while (0 < current()) {
                                         tokens.push("DEDENT");
                                         indents.pop();
                                       }
-                                    
-                                      if (tokens.length) {
-                                        return tokens;
-                                      }
+
+                                      return tokens;
                                    
 break;
 case 1:/* eat blank lines */

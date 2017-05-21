@@ -47,16 +47,14 @@ Quote [\"]
 
 %%
 <<EOF>>                            %{
-                                      const tokens = ["EOF", "NEWLINE"]; // newline before eof is a hack for simplify grammar
-                                
+                                      const tokens = ["EOF"];
+
                                       while (0 < current()) {
                                         tokens.push("DEDENT");
                                         indents.pop();
                                       }
-                                    
-                                      if (tokens.length) {
-                                        return tokens;
-                                      }
+
+                                      return tokens;
                                    %}
 <INITIAL>{Space}*[\n\r]		         /* eat blank lines */
 <INITIAL>{Space}*                  %{
@@ -152,7 +150,7 @@ Text
         }
     | "|" ContentList NEWLINE
         {
-            $$ = new ElementNode("text", [], $2, createSourceLocation(@1, @3));
+            $$ = new TagNode("text", [], $2, createSourceLocation(@1, @3));
         }
     ;
 

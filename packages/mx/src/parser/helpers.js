@@ -11,7 +11,7 @@ function Position(line, column) {
 
 function createSourceLocation(firstToken, lastToken) {
   return new SourceLocation(
-    parser.source, // Some sort of magic. In this way we can pass filename into jison generated parser.  
+    parser.source, // Some sort of magic. In this way we can pass filename into jison generated parser.
     new Position(firstToken.first_line, firstToken.first_column),
     new Position(lastToken.last_line, lastToken.last_column)
   );
@@ -42,6 +42,10 @@ const originalParseMethod = parser.parse;
 
 parser.parse = function (source, code) {
   parser.source = source;
+  // Insert final newline
+  if (!/\n$/.test(code)) {
+    code += '\n';
+  }
   return originalParseMethod.call(this, code);
 };
 /* End Parser Customization Methods */

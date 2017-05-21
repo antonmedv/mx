@@ -1,9 +1,376 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ignore empty lines 1`] = `
+DocumentNode {
+  "body": Array [
+    TagNode {
+      "attributes": Array [],
+      "body": Array [
+        TagNode {
+          "attributes": Array [],
+          "body": Array [
+            TagNode {
+              "attributes": Array [],
+              "body": Array [],
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 0,
+                  "line": 5,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 4,
+                  "line": 4,
+                },
+              },
+              "name": "h1",
+              "type": "Tag",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 2,
+              "line": 6,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 2,
+            },
+          },
+          "name": "div",
+          "type": "Tag",
+        },
+        TagNode {
+          "attributes": Array [],
+          "body": Array [],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 7,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 6,
+            },
+          },
+          "name": "footer",
+          "type": "Tag",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 7,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "body",
+      "type": "Tag",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 7,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse attributes 1`] = `
+DocumentNode {
+  "body": Array [
+    TagNode {
+      "attributes": Array [
+        AttributeNode {
+          "body": Array [
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 12,
+                  "line": 1,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 8,
+                  "line": 1,
+                },
+              },
+              "type": "Literal",
+              "value": "\\"code\\"",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 13,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 4,
+              "line": 1,
+            },
+          },
+          "name": "id",
+          "type": "Attribute",
+        },
+        AttributeNode {
+          "body": Array [
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 25,
+                  "line": 1,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 21,
+                  "line": 1,
+                },
+              },
+              "type": "Literal",
+              "value": "\\"cool\\"",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 26,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 14,
+              "line": 1,
+            },
+          },
+          "name": "class",
+          "type": "Attribute",
+        },
+      ],
+      "body": Array [],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 2,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "div",
+      "type": "Tag",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 2,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse indent and dedent 1`] = `
+DocumentNode {
+  "body": Array [
+    TagNode {
+      "attributes": Array [],
+      "body": Array [
+        TagNode {
+          "attributes": Array [],
+          "body": Array [
+            TagNode {
+              "attributes": Array [],
+              "body": Array [],
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 0,
+                  "line": 4,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 4,
+                  "line": 3,
+                },
+              },
+              "name": "h1",
+              "type": "Tag",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 2,
+              "line": 4,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 2,
+            },
+          },
+          "name": "header",
+          "type": "Tag",
+        },
+        TagNode {
+          "attributes": Array [],
+          "body": Array [
+            TagNode {
+              "attributes": Array [],
+              "body": Array [],
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 0,
+                  "line": 6,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 4,
+                  "line": 5,
+                },
+              },
+              "name": "div",
+              "type": "Tag",
+            },
+            TagNode {
+              "attributes": Array [],
+              "body": Array [],
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 0,
+                  "line": 7,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 4,
+                  "line": 6,
+                },
+              },
+              "name": "p",
+              "type": "Tag",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 2,
+              "line": 7,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 4,
+            },
+          },
+          "name": "section",
+          "type": "Tag",
+        },
+        TagNode {
+          "attributes": Array [],
+          "body": Array [],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 8,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 7,
+            },
+          },
+          "name": "footer",
+          "type": "Tag",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 8,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "body",
+      "type": "Tag",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 8,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
 exports[`parse single tag 1`] = `
 DocumentNode {
   "body": Array [
-    ElementNode {
+    TagNode {
+      "attributes": Array [],
+      "body": Array [],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 2,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "div",
+      "type": "Tag",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 2,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse single tag 2`] = `
+DocumentNode {
+  "body": Array [
+    TagNode {
       "attributes": Array [],
       "body": Array [],
       "loc": SourceLocation {
@@ -18,7 +385,7 @@ DocumentNode {
         },
       },
       "name": "div",
-      "type": "Element",
+      "type": "tag",
     },
   ],
   "loc": SourceLocation {
