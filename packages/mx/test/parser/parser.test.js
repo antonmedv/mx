@@ -1,5 +1,4 @@
 const test = require('ava')
-const dedent = require('dedent')
 const parse = require('./parse')
 
 test('parse single tag', t => {

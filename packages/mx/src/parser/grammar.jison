@@ -56,7 +56,7 @@ Quote [\"]
 
                                       return tokens;
                                    %}
-<INITIAL>{Space}*[\n\r]		         /* eat blank lines */
+<INITIAL>{Space}*\n		             /* eat blank lines */
 <INITIAL>{Space}*                  %{
                                      const indent = yytext.length;
 
@@ -78,10 +78,12 @@ Quote [\"]
                                    %}
 
 <TAG>\n+                           this.begin("INITIAL"); return "NEWLINE";
-<TAG>[\s\t\f]+                     /* skip whitespace, separate tokens */
+<TAG>{Space}+                      /* skip whitespace, separate tokens */
 <TAG>"="                           return "=";
 <TAG>"|"                           return "|";
 <TAG>"."                           this.begin("TEXT"); return ".";
+<TAG>"if"                          return "IF";
+<TAG>"else"                        return "ELSE";
 <TAG>{Quote}                       this.begin("ATTR"); return "QUOTE";
 <TAG>{Identifier}                  return "IDENTIFIER";
 <TAG>{Text}                        return "TEXT";
@@ -141,6 +143,7 @@ StatementBlock
 Statement
     : Text
     | Tag
+    | If
     ;
 
 Text
@@ -257,6 +260,21 @@ AttributeValue
     | TEXT
         {
             $$ = [new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1))];
+        }
+    ;
+
+If
+    : IF NEWLINE StatementBlock
+        {
+            $$ = new IfNode(null, $3, null, createSourceLocation(@1, @3));
+        }
+    | IF NEWLINE StatementBlock ELSE NEWLINE StatementBlock
+        {
+            $$ = new IfNode(null, $3, $6, createSourceLocation(@1, @6));
+        }
+    | IF NEWLINE StatementBlock ELSE If
+        {
+            $$ = new IfNode(null, $3, $5, createSourceLocation(@1, @5));
         }
     ;
 

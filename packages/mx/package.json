@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "ava",
-    "watch": "ava --watch",
     "build": "make build",
     "prepublish": "npm run build"
   },

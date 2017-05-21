@@ -57,8 +57,8 @@ function ImportStatementNode(identifier, path, loc) {
   this.loc = loc;
 }
 
-function IfStatementNode(cond, then, otherwise, loc) {
-  this.type = "IfStatement";
+function IfNode(cond, then, otherwise, loc) {
+  this.type = "If";
   this.cond = cond;
   this.then = then;
   this.otherwise = otherwise;
@@ -207,7 +207,7 @@ ast.SpreadAttributeNode = SpreadAttributeNode;
 ast.DirectiveNode = DirectiveNode;
 ast.ExpressionStatementNode = ExpressionStatementNode;
 ast.ImportStatementNode = ImportStatementNode;
-ast.IfStatementNode = IfStatementNode;
+ast.IfNode = IfNode;
 ast.ForStatementNode = ForStatementNode;
 ast.UnsafeStatementNode = UnsafeStatementNode;
 ast.FilterExpressionNode = FilterExpressionNode;

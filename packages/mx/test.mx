@@ -1,10 +1,7 @@
-div
-  p.
-    Beware of dragons
- 
-    Dragons are very dangerous creatures,
-    They live in a caves in the mountains.
-		
-		
-
-  footer
+body
+  if
+    div
+  else if
+    div
+  else
+    p
