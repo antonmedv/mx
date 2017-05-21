@@ -26,10 +26,10 @@ test('ignore empty lines', t => {
   const code = `
   body
     div
-      
-      h1
-    
-    footer
+` + '\n' +
+`      h1
+` + '      \n' +
+`    footer
   `
   t.snapshot(parse(code))
 })
