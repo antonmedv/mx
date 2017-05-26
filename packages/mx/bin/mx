@@ -6,8 +6,13 @@ const drawGraph = require('../src/graph')
 const file = __dirname + '/../test.mx'
 const code = fs.readFileSync(file, {encoding: 'utf8'})
 
+const lexer = parser.Parser.prototype.lexer;
+lexer.setInput(code)
+let token;
+while(token != 1) {
+  token = lexer.lex()
+  console.log(parser.Parser.prototype.terminals_[token] || token);
+}
 
 const ast = parser.parse(file, code)
-
-//console.log(JSON.stringify(ast, null, 2))
 console.log(drawGraph(ast))

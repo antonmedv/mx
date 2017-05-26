@@ -556,31 +556,32 @@ symbols_: {
   "$end": 1,
   ".": 4,
   "=": 5,
-  "Attribute": 26,
-  "AttributeList": 25,
-  "AttributeValue": 28,
-  "Block": 22,
-  "BlockLines": 23,
-  "BlockParts": 24,
-  "Content": 21,
-  "ContentList": 20,
+  "ATTRIBUTE": 10,
+  "Attribute": 27,
+  "AttributeList": 26,
+  "AttributeValue": 29,
+  "Block": 23,
+  "BlockLines": 24,
+  "BlockParts": 25,
+  "Content": 22,
+  "ContentList": 21,
   "DEDENT": 7,
-  "Document": 14,
-  "ELSE": 13,
+  "Document": 15,
+  "ELSE": 14,
   "EOF": 1,
-  "Element": 17,
-  "ElementBlock": 16,
-  "ElementList": 15,
-  "IDENTIFIER": 9,
-  "IF": 12,
+  "Element": 18,
+  "ElementBlock": 17,
+  "ElementList": 16,
+  "IF": 13,
   "INDENT": 6,
-  "If": 29,
+  "If": 30,
   "NEWLINE": 8,
-  "PlainAttribute": 27,
-  "QUOTE": 11,
-  "TEXT": 10,
-  "Tag": 19,
-  "Text": 18,
+  "PlainAttribute": 28,
+  "QUOTE": 12,
+  "SELECTOR": 9,
+  "TEXT": 11,
+  "Tag": 20,
+  "Text": 19,
   "error": 2,
   "|": 3
 },
@@ -593,11 +594,12 @@ terminals_: {
   6: "INDENT",
   7: "DEDENT",
   8: "NEWLINE",
-  9: "IDENTIFIER",
-  10: "TEXT",
-  11: "QUOTE",
-  12: "IF",
-  13: "ELSE"
+  9: "SELECTOR",
+  10: "ATTRIBUTE",
+  11: "TEXT",
+  12: "QUOTE",
+  13: "IF",
+  14: "ELSE"
 },
 TERROR: 2,
 EOF: 1,
@@ -690,31 +692,31 @@ collect_expected_token_set: function parser_collect_expected_token_set(state, do
 },
 productions_: bp({
   pop: u([
-  14,
-  15,
   15,
   16,
+  16,
+  17,
   s,
-  [17, 3],
-  18,
-  18,
+  [18, 3],
+  19,
+  19,
   s,
-  [19, 7],
-  20,
-  20,
+  [20, 7],
   21,
   21,
   22,
-  23,
+  22,
   23,
   24,
   24,
   25,
+  25,
+  26,
   s,
-  [25, 4, 1],
-  28,
+  [26, 4, 1],
+  29,
   s,
-  [29, 3]
+  [30, 3]
 ]),
   rule: u([
   2,
@@ -793,42 +795,42 @@ case 9:
     break;
 
 case 10:
-    /*! Production::    Tag : IDENTIFIER NEWLINE */
+    /*! Production::    Tag : SELECTOR NEWLINE */
     this.$ = new ElementNode(yyvstack[yysp - 1], [], [], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
 case 11:
-    /*! Production::    Tag : IDENTIFIER ContentList NEWLINE */
+    /*! Production::    Tag : SELECTOR ContentList NEWLINE */
     this.$ = new ElementNode(yyvstack[yysp - 2], [], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
 case 12:
-    /*! Production::    Tag : IDENTIFIER "." NEWLINE Block */
+    /*! Production::    Tag : SELECTOR "." NEWLINE Block */
     this.$ = new ElementNode(yyvstack[yysp - 3], [], [yyvstack[yysp]], createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
 case 13:
-    /*! Production::    Tag : IDENTIFIER AttributeList NEWLINE */
+    /*! Production::    Tag : SELECTOR AttributeList NEWLINE */
     this.$ = new ElementNode(yyvstack[yysp - 2], yyvstack[yysp - 1], [], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
 case 14:
-    /*! Production::    Tag : IDENTIFIER AttributeList ContentList NEWLINE */
+    /*! Production::    Tag : SELECTOR AttributeList ContentList NEWLINE */
     this.$ = new ElementNode(yyvstack[yysp - 3], yyvstack[yysp - 2], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
 case 15:
-    /*! Production::    Tag : IDENTIFIER NEWLINE ElementBlock */
+    /*! Production::    Tag : SELECTOR NEWLINE ElementBlock */
     this.$ = new ElementNode(yyvstack[yysp - 2], [], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
 case 16:
-    /*! Production::    Tag : IDENTIFIER AttributeList NEWLINE ElementBlock */
+    /*! Production::    Tag : SELECTOR AttributeList NEWLINE ElementBlock */
     this.$ = new ElementNode(yyvstack[yysp - 3], yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
 case 19:
-    /*! Production::    Content : IDENTIFIER */
+    /*! Production::    Content : ATTRIBUTE */
 case 20:
     /*! Production::    Content : TEXT */
 case 21:
@@ -847,7 +849,7 @@ case 23:
     break;
 
 case 29:
-    /*! Production::    PlainAttribute : IDENTIFIER "=" QUOTE AttributeValue QUOTE */
+    /*! Production::    PlainAttribute : ATTRIBUTE "=" QUOTE AttributeValue QUOTE */
     this.$ = new AttributeNode(yyvstack[yysp - 4], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 4], yylstack[yysp]));
     break;
 
@@ -921,13 +923,13 @@ table: bt({
   symbol: u([
   3,
   9,
-  12,
-  14,
+  13,
   15,
-  17,
+  16,
   18,
   19,
-  29,
+  20,
+  30,
   1,
   1,
   c,
@@ -935,75 +937,77 @@ table: bt({
   c,
   [9, 4],
   8,
-  9,
   10,
-  20,
+  11,
   21,
+  22,
   4,
   c,
   [6, 5],
-  25,
   26,
   27,
+  28,
   8,
   c,
   [9, 3],
-  21,
+  22,
   1,
   3,
   6,
   7,
   9,
-  12,
-  16,
+  13,
+  17,
   c,
   [11, 4],
   c,
   [16, 4],
-  20,
   21,
-  26,
+  22,
   27,
+  28,
   5,
   c,
   [8, 3],
   6,
-  16,
+  17,
   c,
   [51, 3],
   c,
   [61, 5],
   8,
-  10,
-  22,
+  11,
   23,
   24,
+  25,
   c,
   [38, 11],
-  11,
+  12,
   1,
   3,
   c,
   [11, 3],
-  13,
+  14,
   c,
   [5, 4],
   c,
   [92, 5],
   3,
-  s,
-  [7, 4, 1],
-  12,
-  24,
-  10,
-  11,
-  28,
+  7,
   8,
+  9,
+  11,
+  13,
+  25,
+  11,
   12,
   29,
-  11,
+  8,
+  13,
+  30,
+  12,
   6,
-  16
+  17
 ]),
   type: u([
   s,
@@ -2958,7 +2962,7 @@ var lexer = {
 var YYSTATE = YY_START;
 switch($avoiding_name_collisions) {
 case 0 : 
-/*! Conditions:: INITIAL TAG ATTR TEXT */ 
+/*! Conditions:: INITIAL TAG LINE VALUE TEXT */ 
 /*! Rule::       $ */ 
  
                                       const tokens = ["EOF"];
@@ -3009,28 +3013,49 @@ case 4 :
 /*! Rule::       {Space}+ */ 
  /* skip whitespace, separate tokens */ 
 break;
-case 7 : 
+case 8 : 
 /*! Conditions:: TAG */ 
+/*! Rule::       {Selector} */ 
+ 
+                                     this.begin("LINE");
+                                     if (/\.$/.test(yy_.yytext)) {
+                                       this.unput('.');
+                                     }
+                                     return 9;
+                                    
+break;
+case 9 : 
+/*! Conditions:: LINE */ 
+/*! Rule::       \n+ */ 
+ this.begin("INITIAL"); return 8; 
+break;
+case 10 : 
+/*! Conditions:: LINE */ 
+/*! Rule::       {Space}+ */ 
+ /* skip whitespace, separate tokens */ 
+break;
+case 11 : 
+/*! Conditions:: LINE */ 
 /*! Rule::       \. */ 
  this.begin("TEXT"); return 4; 
 break;
-case 10 : 
-/*! Conditions:: TAG */ 
-/*! Rule::       {Quote} */ 
- this.begin("ATTR"); return 11; 
-break;
 case 14 : 
-/*! Conditions:: ATTR */ 
+/*! Conditions:: LINE */ 
 /*! Rule::       {Quote} */ 
- this.popState(); return 11; 
+ this.begin("VALUE"); return 12; 
 break;
-case 16 : 
+case 17 : 
+/*! Conditions:: VALUE */ 
+/*! Rule::       {Quote} */ 
+ this.popState(); return 12; 
+break;
+case 19 : 
 /*! Conditions:: TEXT */ 
 /*! Rule::       .* */ 
  
                                      const lead = yy_.yytext.search(/\S/);
                                      if (lead > current() || lead === -1) {
-                                       return 10
+                                       return 11
                                      } else {
                                        this.begin("INITIAL");
                                        this.unput(yy_.yytext);
@@ -3044,29 +3069,29 @@ default:
     simpleCaseActionClusters: {
 
   /*! Conditions:: TAG */ 
-  /*! Rule::       = */ 
-   5 : 5,
-  /*! Conditions:: TAG */ 
   /*! Rule::       \| */ 
-   6 : 3,
+   5 : 3,
   /*! Conditions:: TAG */ 
   /*! Rule::       if */ 
-   8 : 12,
+   6 : 13,
   /*! Conditions:: TAG */ 
   /*! Rule::       else */ 
-   9 : 13,
-  /*! Conditions:: TAG */ 
-  /*! Rule::       {Identifier} */ 
-   11 : 9,
-  /*! Conditions:: TAG */ 
-  /*! Rule::       {Text} */ 
-   12 : 10,
-  /*! Conditions:: ATTR */ 
-  /*! Rule::       {AttributeText} */ 
+   7 : 14,
+  /*! Conditions:: LINE */ 
+  /*! Rule::       = */ 
+   12 : 5,
+  /*! Conditions:: LINE */ 
+  /*! Rule::       {Attribute} */ 
    13 : 10,
+  /*! Conditions:: LINE */ 
+  /*! Rule::       {Text} */ 
+   15 : 11,
+  /*! Conditions:: VALUE */ 
+  /*! Rule::       {ValueText} */ 
+   16 : 11,
   /*! Conditions:: TEXT */ 
   /*! Rule::       \n+ */ 
-   15 : 8
+   18 : 8
 },
     rules: [
 /^(?:$)/,
@@ -3074,13 +3099,16 @@ default:
 /^(?:([\t   -​\u2028\u2029　])*)/,
 /^(?:\n+)/,
 /^(?:([\t   -​\u2028\u2029　])+)/,
-/^(?:=)/,
 /^(?:\|)/,
-/^(?:\.)/,
 /^(?:if)/,
 /^(?:else)/,
+/^(?:([\w#.][\w\-.]*))/,
+/^(?:\n+)/,
+/^(?:([\t   -​\u2028\u2029　])+)/,
+/^(?:\.)/,
+/^(?:=)/,
+/^(?:(\w+))/,
 /^(?:(["]))/,
-/^(?:((?:(?:[^\u0000-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-ͯ͵͸͹;-΅·΋΍΢϶҂-҉Ԩ-԰՗՘՚-ՠֈ-׏׫-ׯ׳-؟ً-٭ٰ۔ۖ-ۤۧ-ۭ۰-۹۽۾܀-܏ܑܰ-݌ަ-ް޲-߉߫-߳߶-߹߻-߿ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࠿࡙-࢟ࢡࢭ-ःऺ-़ा-ॏ॑-ॗॢ-॰ॸঀ-঄঍঎঑঒঩঱঳-঵঺-়া-্৏-৛৞ৢ-৯৲-਄਋-਎਑਒਩਱਴਷਺-੘੝੟-ੱੵ-઄઎઒઩઱઴઺-઼ા-૏૑-૟ૢ-଄଍଎଑଒଩଱଴଺-଼ା-୛୞ୢ-୰୲-ஂ஄஋-஍஑஖-஘஛஝஠-஢஥-஧஫-஭஺-௏௑-ఄ఍఑఩ఴ఺-఼ా-౗ౚ-౟ౢ-಄಍಑಩಴಺-಼ಾ-ೝ೟ೢ-೰ೳ-ഄ഍഑഻഼ാ-്൏-ൟൢ-൹඀-඄඗-඙඲඼඾඿෇-฀ัิ-฿็-຀຃຅ຆຉ຋ຌຎ-ຓຘຠ຤຦ຨຩຬັິ-ຼ຾຿໅໇-໛໠-໿༁-༿཈཭-྇ྍ-࿿ါ-ှ၀-၏ၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏ-႟჆჈-჌჎჏჻቉቎቏቗቙቞቟኉኎኏኱኶኷኿዁዆዇዗጑጖጗፛-፿᎐-᎟Ᏽ-᐀᙭᙮ ᚛-᚟᛫-᛭ᛱ-᛿ᜍᜒ-ᜟᜲ-᜿ᝒ-᝟᝭᝱-᝿឴-៖៘-៛៝-᠟ᡸ-᡿ᢩ᢫-᢯᣶-᣿ᤝ-᥏᥮᥯᥵-᥿᦬-ᧀᧈ-᧿ᨗ-᨟ᩕ-᪦᪨-ᬄ᬴-᭄ᭌ-ᮂᮡ-ᮭ᮰-᮹᯦-᯿ᰤ-᱌᱐-᱙᱾-᳨᳭ᳲ-᳴᳷-᳿᷀-᷿἖἗἞἟὆὇὎὏὘὚὜὞὾὿᾵᾽᾿-῁῅῍-῏῔῕῜-῟῭-῱῵´-⁰⁲-⁾₀-₏₝-℁℃-℆℈℉℔№-℘℞-℣℥℧℩℮℺℻⅀-⅄⅊-⅍⅏-⅟↉-⯿Ⱟⱟ⳥-⳪⳯-⳱⳴-⳿⴦⴨-⴬⴮⴯⵨-⵮⵰-⵿⶗-⶟⶧⶯⶷⶿⷇⷏⷗⷟-⸮⸰-〄〈-〠〪-〰〶〷〽-぀゗-゜゠・㄀-㄄ㄮ-㄰㆏-㆟ㆻ-㇯㈀-㏿䶶-䷿鿍-鿿꒍-꓏꓾꓿꘍-꘏꘠-꘩꘬-꘿꙯-꙾Ꚙ-ꚟ꛰-꜖꜠꜡꞉꞊ꞏꞔ-ꞟꞫ-ꟷꠂ꠆ꠋꠣ-꠿꡴-ꢁꢴ-꣱꣸-꣺꣼-꤉ꤦ-꤯ꥇ-꥟꥽-ꦃ꦳-꧎꧐-꧿ꨩ-꨿ꩃꩌ-꩟꩷-꩹ꩻ-ꩿꪰꪲ-ꪴꪷꪸꪾ꪿꫁꫃-꫚꫞꫟ꫫ-꫱ꫵ-꬀꬇꬈꬏꬐꬗-꬟꬧꬯-ꮿꯣ-꯿힤-힯퟇-퟊퟼-﩮﩯﫚-﫿﬇-﬒﬘-﬜ﬞ﬩﬷﬽﬿﭂﭅﮲-﯒﴾-﵏﶐﶑﷈-﷯﷼-﹯﹵﻽-＠［-｀｛-･﾿-￁￈￉￐￑￘￙￝-\uffff])|[$A-Z_a-z]|(\\[u](?:[\dA-Fa-f]){4}))(?:(?:(?:[^\u0000-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-ͯ͵͸͹;-΅·΋΍΢϶҂-҉Ԩ-԰՗՘՚-ՠֈ-׏׫-ׯ׳-؟ً-٭ٰ۔ۖ-ۤۧ-ۭ۰-۹۽۾܀-܏ܑܰ-݌ަ-ް޲-߉߫-߳߶-߹߻-߿ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࠿࡙-࢟ࢡࢭ-ःऺ-़ा-ॏ॑-ॗॢ-॰ॸঀ-঄঍঎঑঒঩঱঳-঵঺-়া-্৏-৛৞ৢ-৯৲-਄਋-਎਑਒਩਱਴਷਺-੘੝੟-ੱੵ-઄઎઒઩઱઴઺-઼ા-૏૑-૟ૢ-଄଍଎଑଒଩଱଴଺-଼ା-୛୞ୢ-୰୲-ஂ஄஋-஍஑஖-஘஛஝஠-஢஥-஧஫-஭஺-௏௑-ఄ఍఑఩ఴ఺-఼ా-౗ౚ-౟ౢ-಄಍಑಩಴಺-಼ಾ-ೝ೟ೢ-೰ೳ-ഄ഍഑഻഼ാ-്൏-ൟൢ-൹඀-඄඗-඙඲඼඾඿෇-฀ัิ-฿็-຀຃຅ຆຉ຋ຌຎ-ຓຘຠ຤຦ຨຩຬັິ-ຼ຾຿໅໇-໛໠-໿༁-༿཈཭-྇ྍ-࿿ါ-ှ၀-၏ၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏ-႟჆჈-჌჎჏჻቉቎቏቗቙቞቟኉኎኏኱኶኷኿዁዆዇዗጑጖጗፛-፿᎐-᎟Ᏽ-᐀᙭᙮ ᚛-᚟᛫-᛭ᛱ-᛿ᜍᜒ-ᜟᜲ-᜿ᝒ-᝟᝭᝱-᝿឴-៖៘-៛៝-᠟ᡸ-᡿ᢩ᢫-᢯᣶-᣿ᤝ-᥏᥮᥯᥵-᥿᦬-ᧀᧈ-᧿ᨗ-᨟ᩕ-᪦᪨-ᬄ᬴-᭄ᭌ-ᮂᮡ-ᮭ᮰-᮹᯦-᯿ᰤ-᱌᱐-᱙᱾-᳨᳭ᳲ-᳴᳷-᳿᷀-᷿἖἗἞἟὆὇὎὏὘὚὜὞὾὿᾵᾽᾿-῁῅῍-῏῔῕῜-῟῭-῱῵´-⁰⁲-⁾₀-₏₝-℁℃-℆℈℉℔№-℘℞-℣℥℧℩℮℺℻⅀-⅄⅊-⅍⅏-⅟↉-⯿Ⱟⱟ⳥-⳪⳯-⳱⳴-⳿⴦⴨-⴬⴮⴯⵨-⵮⵰-⵿⶗-⶟⶧⶯⶷⶿⷇⷏⷗⷟-⸮⸰-〄〈-〠〪-〰〶〷〽-぀゗-゜゠・㄀-㄄ㄮ-㄰㆏-㆟ㆻ-㇯㈀-㏿䶶-䷿鿍-鿿꒍-꓏꓾꓿꘍-꘏꘠-꘩꘬-꘿꙯-꙾Ꚙ-ꚟ꛰-꜖꜠꜡꞉꞊ꞏꞔ-ꞟꞫ-ꟷꠂ꠆ꠋꠣ-꠿꡴-ꢁꢴ-꣱꣸-꣺꣼-꤉ꤦ-꤯ꥇ-꥟꥽-ꦃ꦳-꧎꧐-꧿ꨩ-꨿ꩃꩌ-꩟꩷-꩹ꩻ-ꩿꪰꪲ-ꪴꪷꪸꪾ꪿꫁꫃-꫚꫞꫟ꫫ-꫱ꫵ-꬀꬇꬈꬏꬐꬗-꬟꬧꬯-ꮿꯣ-꯿힤-힯퟇-퟊퟼-﩮﩯﫚-﫿﬇-﬒﬘-﬜ﬞ﬩﬷﬽﬿﭂﭅﮲-﯒﴾-﵏﶐﶑﷈-﷯﷼-﹯﹵﻽-＠［-｀｛-･﾿-￁￈￉￐￑￘￙￝-\uffff])|[$A-Z_a-z]|(\\[u](?:[\dA-Fa-f]){4}))|(?:[^\u0000-\/:-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵͸͹;-΅·΋΍΢϶҂҈҉Ԩ-԰՗՘՚-ՠֈ-֐־׀׃׆׈-׏׫-ׯ׳-؏؛-؟٪-٭۔۝۞۩۽۾܀-܏݋݌޲-޿߶-߹߻-߿࠮-࠿࡜-࢟ࢡࢭ-ࣣࣿ।॥॰ॸঀ঄঍঎঑঒঩঱঳-঵঺঻৅৆৉৊৏-৖৘-৛৞৤৥৲-਀਄਋-਎਑਒਩਱਴਷਺਻਽੃-੆੉੊੎-੐੒-੘੝੟-੥੶-઀઄઎઒઩઱઴઺઻૆૊૎૏૑-૟૤૥૰-଀଄଍଎଑଒଩଱଴଺଻୅୆୉୊୎-୕୘-୛୞୤୥୰୲-஁஄஋-஍஑஖-஘஛஝஠-஢஥-஧஫-஭஺-஽௃-௅௉௎௏௑-௖௘-௥௰-ఀఄ఍఑఩ఴ఺-఼౅౉౎-౔౗ౚ-౟౤౥౰-ಁ಄಍಑಩಴಺಻೅೉೎-೔೗-ೝ೟೤೥೰ೳ-ഁഄ഍഑഻഼൅൉൏-ൖ൘-ൟ൤൥൰-൹඀ඁ඄඗-඙඲඼඾඿෇-෉෋-෎෕෗෠-෱෴-฀฻-฿๏๚-຀຃຅ຆຉ຋ຌຎ-ຓຘຠ຤຦ຨຩຬ຺຾຿໅໇໎໏໚໛໠-໿༁-༗༚-༟༪-༴༶༸༺-༽཈཭-཰྅྘྽-࿅࿇-࿿၊-၏႞႟჆჈-჌჎჏჻቉቎቏቗቙቞቟኉኎኏኱኶኷኿዁዆዇዗጑጖጗፛፜፠-፿᎐-᎟Ᏽ-᐀᙭᙮ ᚛-᚟᛫-᛭ᛱ-᛿ᜍ᜕-ᜟ᜵-᜿᝔-᝟᝭᝱᝴-᝿។-៖៘-៛៞៟៪-᠊᠎᠏᠚-᠟ᡸ-᡿᢫-᢯᣶-᣿ᤝ-᤟᤬-᤯᤼-᥅᥮᥯᥵-᥿᦬-᦯᧊-᧏᧚-᧿᨜-᨟᩟᩽᩾᪊-᪏᪚-᪦᪨-᫿ᭌ-᭏᭚-᭪᭴-᭿᯴-᯿᰸-᰿᱊-᱌᱾-᳏᳓᳷-᳿ᷧ-᷻἖἗἞἟὆὇὎὏὘὚὜὞὾὿᾵᾽᾿-῁῅῍-῏῔῕῜-῟῭-῱῵´-​‎-‾⁁-⁓⁕-⁰⁲-⁾₀-₏₝-⃏⃝-⃠⃢-⃤⃱-℁℃-℆℈℉℔№-℘℞-℣℥℧℩℮℺℻⅀-⅄⅊-⅍⅏-⅟↉-⯿Ⱟⱟ⳥-⳪⳴-⳿⴦⴨-⴬⴮⴯⵨-⵮⵰-⵾⶗-⶟⶧⶯⶷⶿⷇⷏⷗⷟⸀-⸮⸰-〄〈-〠〰〶〷〽-぀゗゘゛゜゠・㄀-㄄ㄮ-㄰㆏-㆟ㆻ-㇯㈀-㏿䶶-䷿鿍-鿿꒍-꓏꓾꓿꘍-꘏꘬-꘿꙰-꙳꙾Ꚙ-ꚞ꛲-꜖꜠꜡꞉꞊ꞏꞔ-ꞟꞫ-ꟷ꠨-꠿꡴-꡿ꣅ-꣏꣚-꣟꣸-꣺꣼-ꣿ꤮꤯꥔-꥟꥽-꥿꧁-꧎꧚-꧿꨷-꨿꩎꩏꩚-꩟꩷-꩹ꩼ-ꩿ꫃-꫚꫞꫟꫰꫱꫷-꬀꬇꬈꬏꬐꬗-꬟꬧꬯-ꮿ꯫꯮꯯꯺-꯿힤-힯퟇-퟊퟼-﩮﩯﫚-﫿﬇-﬒﬘-﬜﬩﬷﬽﬿﭂﭅﮲-﯒﴾-﵏﶐﶑﷈-﷯﷼-﷿︐-︟︧-︲︵-﹌﹐-﹯﹵﻽-／：-＠［-＾｀｛-･﾿-￁￈￉￐￑￘￙￝-\uffff])|\d)*))/,
 /^(?:([^\n{]+))/,
 /^(?:([^"]+))/,
 /^(?:(["]))/,
@@ -3104,27 +3132,36 @@ default:
       5,
       6,
       7,
-      8,
-      9,
-      10,
-      11,
-      12
+      8
     ],
     inclusive: true
   },
-  "ATTR": {
+  "LINE": {
     rules: [
       0,
+      9,
+      10,
+      11,
+      12,
       13,
-      14
+      14,
+      15
+    ],
+    inclusive: true
+  },
+  "VALUE": {
+    rules: [
+      0,
+      16,
+      17
     ],
     inclusive: true
   },
   "TEXT": {
     rules: [
       0,
-      15,
-      16
+      18,
+      19
     ],
     inclusive: true
   }

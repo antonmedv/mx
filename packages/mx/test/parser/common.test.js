@@ -74,3 +74,18 @@ test('parse tag with block of text', t => {
   `
   t.snapshot(parse(code))
 })
+
+test('parse complex selector', t => {
+  const code = `
+  #id.class-name
+  `
+  t.snapshot(parse(code))
+})
+
+test('parse complex selector with dot on end', t => {
+  const code = `
+  .intro.
+    Please don't use this king of syntax 😉
+  `
+  t.snapshot(parse(code))
+})

@@ -1,7 +1,2 @@
-body
-  if
-    div
-  else
-    div
-  else if
-    p
+.intro.
+  Please don't use this king of syntax 😉

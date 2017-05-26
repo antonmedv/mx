@@ -39,11 +39,13 @@ RegularExpressionBody {RegularExpressionFirstChar}{RegularExpressionChar}*
 RegularExpressionLiteral {RegularExpressionBody}\/{RegularExpressionFlags}
 
 Space [\t \u00a0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000]
+Selector [#\.\w][\.\-\w]*
+Attribute [\w]+
 Text [^{\n]+
-AttributeText [^\"]+
+ValueText [^\"]+
 Quote [\"]
 
-%s INITIAL TAG ATTR TEXT
+%s INITIAL TAG LINE VALUE TEXT
 
 %%
 <<EOF>>                            %{
@@ -79,17 +81,27 @@ Quote [\"]
 
 <TAG>\n+                           this.begin("INITIAL"); return "NEWLINE";
 <TAG>{Space}+                      /* skip whitespace, separate tokens */
-<TAG>"="                           return "=";
 <TAG>"|"                           return "|";
-<TAG>"."                           this.begin("TEXT"); return ".";
 <TAG>"if"                          return "IF";
 <TAG>"else"                        return "ELSE";
-<TAG>{Quote}                       this.begin("ATTR"); return "QUOTE";
-<TAG>{Identifier}                  return "IDENTIFIER";
-<TAG>{Text}                        return "TEXT";
+<TAG>{Selector}                    %{
+                                     this.begin("LINE");
+                                     if (/\.$/.test(yytext)) {
+                                       this.unput('.');
+                                     }
+                                     return "SELECTOR";
+                                   %}
 
-<ATTR>{AttributeText}              return "TEXT";
-<ATTR>{Quote}                      this.popState(); return "QUOTE";
+<LINE>\n+                          this.begin("INITIAL"); return "NEWLINE";
+<LINE>{Space}+                     /* skip whitespace, separate tokens */
+<LINE>"."                          this.begin("TEXT"); return ".";
+<LINE>"="                          return "=";
+<LINE>{Attribute}                  return "ATTRIBUTE";
+<LINE>{Quote}                      this.begin("VALUE"); return "QUOTE";
+<LINE>{Text}                       return "TEXT";
+
+<VALUE>{ValueText}                 return "TEXT";
+<VALUE>{Quote}                     this.popState(); return "QUOTE";
 
 <TEXT>\n+                          return "NEWLINE";
 <TEXT>.*                           %{
@@ -158,31 +170,31 @@ Text
     ;
 
 Tag
-    : IDENTIFIER NEWLINE
+    : SELECTOR NEWLINE
         {
             $$ = new ElementNode($1, [], [], createSourceLocation(@1, @2));
         }
-    | IDENTIFIER ContentList NEWLINE
+    | SELECTOR ContentList NEWLINE
         {
             $$ = new ElementNode($1, [], $2, createSourceLocation(@1, @3));
         }
-    | IDENTIFIER "." NEWLINE Block
+    | SELECTOR "." NEWLINE Block
         {
             $$ = new ElementNode($1, [], [$4], createSourceLocation(@1, @4));
         }
-    | IDENTIFIER AttributeList NEWLINE
+    | SELECTOR AttributeList NEWLINE
         {
             $$ = new ElementNode($1, $2, [], createSourceLocation(@1, @3));
         }
-    | IDENTIFIER AttributeList ContentList NEWLINE
+    | SELECTOR AttributeList ContentList NEWLINE
         {
             $$ = new ElementNode($1, $2, $3, createSourceLocation(@1, @4));
         }
-    | IDENTIFIER NEWLINE ElementBlock
+    | SELECTOR NEWLINE ElementBlock
         {
             $$ = new ElementNode($1, [], $3, createSourceLocation(@1, @3));
         }
-    | IDENTIFIER AttributeList NEWLINE ElementBlock
+    | SELECTOR AttributeList NEWLINE ElementBlock
         {
             $$ = new ElementNode($1, $2, $4, createSourceLocation(@1, @4));
         }
@@ -200,7 +212,7 @@ ContentList
     ;
 
 Content
-    : IDENTIFIER
+    : ATTRIBUTE
         {
             $$ = new TextNode($1, createSourceLocation(@1, @1));
         }
@@ -249,7 +261,7 @@ Attribute
     ;
 
 PlainAttribute
-    : IDENTIFIER "=" QUOTE AttributeValue QUOTE
+    : ATTRIBUTE "=" QUOTE AttributeValue QUOTE
         {
             $$ = new AttributeNode($1, $4, createSourceLocation(@1, @5));
         }

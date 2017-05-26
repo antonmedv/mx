@@ -392,6 +392,95 @@ DocumentNode {
 }
 `;
 
+exports[`parse complex selector 1`] = `
+DocumentNode {
+  "body": Array [
+    ElementNode {
+      "attributes": Array [],
+      "body": Array [],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 2,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "#id.class-name",
+      "type": "Element",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 2,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse complex selector with dot on end 1`] = `
+DocumentNode {
+  "body": Array [
+    ElementNode {
+      "attributes": Array [],
+      "body": Array [
+        TextNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 3,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 0,
+              "line": 2,
+            },
+          },
+          "text": "  Please don't use this king of syntax 😉
+",
+          "type": "Text",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 3,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": ".intro",
+      "type": "Element",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 3,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
 exports[`parse indent and dedent 1`] = `
 DocumentNode {
   "body": Array [
