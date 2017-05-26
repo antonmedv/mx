@@ -1570,7 +1570,7 @@ case 147:
     /*! Production::    RegularExpressionLiteralBegin : "/" */
 case 148:
     /*! Production::    RegularExpressionLiteralBegin : "/=" */
-    yy.lexer.begin("regexp");
+    yy.lexer.begin("REGEXP");
     break;
 
 }

@@ -865,11 +865,11 @@ RegularExpressionLiteral
 RegularExpressionLiteralBegin
     : "/"
         {
-            yy.lexer.begin("regexp");
+            yy.lexer.begin("REGEXP");
         }
     | "/="
         {
-            yy.lexer.begin("regexp");
+            yy.lexer.begin("REGEXP");
         }
     ;
 
