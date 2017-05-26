@@ -15,5 +15,5 @@ for(;;) {
 }
 
 const ast = parser.parse(file, code)
-//console.log(JSON.stringify(ast, null, 4))
+console.log(JSON.stringify(ast, null, 4))
 console.log(drawGraph(ast))

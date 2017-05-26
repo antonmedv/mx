@@ -1,6 +1,3 @@
-body.nice
-  if value && 'hello world'
-    p This is awesome
-  else if props.value('test', cool)
-    | ok
+body
+  .ok style={styles({color: red}, "awesome")} onClick={handleClick} style={styles({color: red}, "awesome")}
 

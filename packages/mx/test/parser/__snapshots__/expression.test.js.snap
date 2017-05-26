@@ -1,0 +1,296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parse attribute with expressions 1`] = `
+DocumentNode {
+  "body": Array [
+    ElementNode {
+      "attributes": Array [
+        AttributeNode {
+          "body": ExpressionNode {
+            "expression": IdentifierNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 27,
+                  "line": 1,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 16,
+                  "line": 1,
+                },
+              },
+              "name": "handleClick",
+              "type": "Identifier",
+            },
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 28,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 15,
+                "line": 1,
+              },
+            },
+            "type": "Expression",
+          },
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 28,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 7,
+              "line": 1,
+            },
+          },
+          "name": "onClick",
+          "type": "Attribute",
+        },
+      ],
+      "body": Array [],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 2,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "button",
+      "type": "Element",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 2,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse objects in attributes 1`] = `
+DocumentNode {
+  "body": Array [
+    ElementNode {
+      "attributes": Array [
+        AttributeNode {
+          "body": ExpressionNode {
+            "expression": ObjectExpressionNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 48,
+                  "line": 1,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 11,
+                  "line": 1,
+                },
+              },
+              "properties": Array [
+                Object {
+                  "key": IdentifierNode {
+                    "loc": SourceLocation {
+                      "end": Position {
+                        "column": 16,
+                        "line": 1,
+                      },
+                      "source": "file.mx",
+                      "start": Position {
+                        "column": 12,
+                        "line": 1,
+                      },
+                    },
+                    "name": "root",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "value": ObjectExpressionNode {
+                    "loc": SourceLocation {
+                      "end": Position {
+                        "column": 47,
+                        "line": 1,
+                      },
+                      "source": "file.mx",
+                      "start": Position {
+                        "column": 18,
+                        "line": 1,
+                      },
+                    },
+                    "properties": Array [
+                      Object {
+                        "key": LiteralNode {
+                          "loc": SourceLocation {
+                            "end": Position {
+                              "column": 24,
+                              "line": 1,
+                            },
+                            "source": "file.mx",
+                            "start": Position {
+                              "column": 19,
+                              "line": 1,
+                            },
+                          },
+                          "type": "Literal",
+                          "value": "\\"key\\"",
+                        },
+                        "kind": "init",
+                        "value": LiteralNode {
+                          "loc": SourceLocation {
+                            "end": Position {
+                              "column": 33,
+                              "line": 1,
+                            },
+                            "source": "file.mx",
+                            "start": Position {
+                              "column": 26,
+                              "line": 1,
+                            },
+                          },
+                          "type": "Literal",
+                          "value": "\\"value\\"",
+                        },
+                      },
+                      Object {
+                        "key": LiteralNode {
+                          "loc": SourceLocation {
+                            "end": Position {
+                              "column": 42,
+                              "line": 1,
+                            },
+                            "source": "file.mx",
+                            "start": Position {
+                              "column": 35,
+                              "line": 1,
+                            },
+                          },
+                          "type": "Literal",
+                          "value": "'empty'",
+                        },
+                        "kind": "init",
+                        "value": ObjectExpressionNode {
+                          "loc": SourceLocation {
+                            "end": Position {
+                              "column": 46,
+                              "line": 1,
+                            },
+                            "source": "file.mx",
+                            "start": Position {
+                              "column": 44,
+                              "line": 1,
+                            },
+                          },
+                          "properties": Array [],
+                          "type": "ObjectExpression",
+                        },
+                      },
+                    ],
+                    "type": "ObjectExpression",
+                  },
+                },
+              ],
+              "type": "ObjectExpression",
+            },
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 49,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 10,
+                "line": 1,
+              },
+            },
+            "type": "Expression",
+          },
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 49,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 5,
+              "line": 1,
+            },
+          },
+          "name": "json",
+          "type": "Attribute",
+        },
+        AttributeNode {
+          "body": Array [
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 65,
+                  "line": 1,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 61,
+                  "line": 1,
+                },
+              },
+              "type": "Literal",
+              "value": "\\"text\\"",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 66,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 50,
+              "line": 1,
+            },
+          },
+          "name": "className",
+          "type": "Attribute",
+        },
+      ],
+      "body": Array [],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 2,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "body",
+      "type": "Element",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 2,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;

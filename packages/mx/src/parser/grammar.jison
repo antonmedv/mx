@@ -96,6 +96,8 @@ Quote [\"]
 <LINE>{Space}+                     /* skip whitespace, separate tokens */
 <LINE>"."                          this.begin("BLOCK"); return ".";
 <LINE>"="                          return "=";
+<LINE>"{"                          this.begin("EXPR"); return "{";
+<LINE>"}"                          return "}";
 <LINE>{Attribute}                  return "ATTRIBUTE";
 <LINE>{Quote}                      this.begin("VALUE"); return "QUOTE";
 <LINE>{Text}                       return "TEXT";
@@ -139,8 +141,15 @@ Quote [\"]
 <EXPR>{DecimalLiteral}             return "NUMERIC_LITERAL";
 <EXPR>{HexIntegerLiteral}          return "NUMERIC_LITERAL";
 <EXPR>{OctalIntegerLiteral}        return "NUMERIC_LITERAL";
-<EXPR>"{"                          return "{";
-<EXPR>"}"                          return "}";
+<EXPR>"{"                          brackets.push("{"); return "{";
+<EXPR>"}"                          %{
+                                     if (brackets.length > 0) {
+                                       brackets.pop();
+                                     } else {
+                                       this.popState();
+                                     }
+                                     return "}";
+                                   %}
 <EXPR>"("                          return "(";
 <EXPR>")"                          return ")";
 <EXPR>"["                          return "[";
@@ -195,6 +204,7 @@ Quote [\"]
 
 const indents = [0];
 const current = () => indents[indents.length - 1];
+const brackets = [];
 
 /lex
 
@@ -335,6 +345,7 @@ AttributeList
 
 Attribute
     : PlainAttribute
+    | ExpressionAttribute
     ;
 
 PlainAttribute
@@ -349,6 +360,24 @@ AttributeValue
     | TEXT
         {
             $$ = [new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1))];
+        }
+    ;
+
+ExpressionAttribute
+    : ATTRIBUTE "=" Interpolation
+        {
+            $$ = new AttributeNode($1, $Interpolation, createSourceLocation(@1, @3));
+        }
+    ;
+
+Interpolation
+    : "{" "}"
+        {
+            $$ = null
+        }
+    | "{" Expression "}"
+        {
+            $$ = new ExpressionNode($Expression, createSourceLocation(@1, @3))
         }
     ;
 

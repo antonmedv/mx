@@ -37,8 +37,8 @@ function SpreadAttributeNode(identifier, loc) {
   this.loc = loc;
 }
 
-function ExpressionStatementNode(expression, loc) {
-  this.type = 'ExpressionStatement';
+function ExpressionNode(expression, loc) {
+  this.type = 'Expression';
   this.expression = expression;
   this.loc = loc;
 }
@@ -185,7 +185,7 @@ ast.CommentNode = CommentNode;
 ast.ElementNode = ElementNode;
 ast.AttributeNode = AttributeNode;
 ast.SpreadAttributeNode = SpreadAttributeNode;
-ast.ExpressionStatementNode = ExpressionStatementNode;
+ast.ExpressionNode = ExpressionNode;
 ast.ImportStatementNode = ImportStatementNode;
 ast.IfStatementNode = IfStatementNode;
 ast.ForStatementNode = ForStatementNode;
