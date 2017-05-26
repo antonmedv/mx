@@ -45,7 +45,7 @@ Text [^{\n]+
 ValueText [^\"]+
 Quote [\"]
 
-%s INITIAL TAG LINE VALUE TEXT BLOCK EXPR REGEXP
+%s INITIAL TAG LINE VALUE TEXT BLOCK EXPR REGEXP IMPORT
 
 %%
 <<EOF>>                            %{
@@ -84,6 +84,7 @@ Quote [\"]
 <TAG>"|"                           this.begin("TEXT"); return "|";
 <TAG>"if"                          this.begin("EXPR"); return "IF";
 <TAG>"else"                        return "ELSE";
+<TAG>"import"                      this.begin("IMPORT"); return "IMPORT";
 <TAG>{Selector}                    %{
                                      this.begin("LINE");
                                      if (/\.$/.test(yytext)) {
@@ -101,6 +102,17 @@ Quote [\"]
 <LINE>{Attribute}                  return "ATTRIBUTE";
 <LINE>{Quote}                      this.begin("VALUE"); return "QUOTE";
 <LINE>{Text}                       return "TEXT";
+
+<IMPORT>\n+                        this.begin("INITIAL"); return "NEWLINE";
+<IMPORT>{Space}+                   /* Skip spaces */
+<IMPORT>"from"                     return "FROM";
+<IMPORT>"{"                        return "{";
+<IMPORT>","                        return ",";
+<IMPORT>"}"                        return "}";
+<IMPORT>"*"                        return "*";
+<IMPORT>"as"                       return "AS";
+<IMPORT>{Quote}                    this.begin("VALUE"); return "QUOTE";
+<IMPORT>{Identifier}               return "IDENTIFIER";
 
 <VALUE>{ValueText}                 return "TEXT";
 <VALUE>{Quote}                     this.popState(); return "QUOTE";
@@ -243,6 +255,7 @@ Element
     : Text
     | Tag
     | If
+    | Import
     ;
 
 Text
@@ -393,6 +406,34 @@ If
     | IF Expression NEWLINE ElementBlock ELSE If
         {
             $$ = new IfStatementNode($Expression, $ElementBlock, $If, createSourceLocation(@1, @6));
+        }
+    ;
+
+
+Import
+    : IMPORT IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE
+        {
+            $$ = new ImportStatementNode($2, $TEXT, createSourceLocation(@1, @7));
+        }
+    | IMPORT "{" ImportsList "}" FROM QUOTE TEXT QUOTE NEWLINE
+        {
+            console.error($3);
+            $$ = new ImportStatementNode($3, $TEXT, createSourceLocation(@1, @9));
+        }
+    | IMPORT "*" AS IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE
+        {
+            $$ = new ImportStatementNode($4, $TEXT, createSourceLocation(@1, @9));
+        }
+    ;
+
+ImportsList
+    : IDENTIFIER
+        {
+            $$ = [$1];
+        }
+    | ImportsList "," IDENTIFIER
+        {
+            $$ = $1.concat($3);
         }
     ;
 

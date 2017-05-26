@@ -553,148 +553,152 @@ options: {
 },
 symbols_: {
   "!": 19,
-  "!=": 38,
-  "!==": 40,
+  "!=": 42,
+  "!==": 44,
   "$accept": 0,
   "$end": 1,
   "%": 17,
-  "&&": 36,
+  "&&": 40,
   "(": 20,
   ")": 21,
-  "*": 15,
-  "+": 13,
-  "++": 49,
+  "*": 9,
+  "+": 14,
+  "++": 53,
   ",": 3,
-  "-": 14,
-  "--": 50,
+  "-": 15,
+  "--": 54,
   ".": 5,
   "/": 16,
-  "/=": 62,
-  ":": 10,
-  "<": 11,
-  "<<": 45,
-  "<=": 41,
+  "/=": 65,
+  ":": 11,
+  "<": 12,
+  "<<": 49,
+  "<=": 45,
   "=": 6,
-  "==": 37,
-  "===": 39,
-  ">": 12,
-  ">=": 42,
-  ">>": 46,
-  ">>>": 47,
-  "?": 9,
+  "==": 41,
+  "===": 43,
+  ">": 13,
+  ">=": 46,
+  ">>": 50,
+  ">>>": 51,
+  "?": 10,
+  "AS": 36,
   "ATTRIBUTE": 28,
-  "AccessorName": 122,
-  "AdditiveExpression": 115,
-  "ArgumentList": 124,
-  "Arguments": 123,
-  "ArrayLiteral": 131,
-  "AssignmentExpression": 108,
-  "AssignmentOperator": 34,
-  "Attribute": 101,
-  "AttributeList": 100,
-  "AttributeValue": 103,
-  "BREAK": 63,
-  "Block": 97,
-  "BlockLines": 98,
-  "BlockParts": 99,
-  "BooleanLiteral": 138,
-  "CASE": 64,
-  "CATCH": 65,
-  "CLASS": 82,
-  "CONST": 83,
-  "CONTINUE": 66,
-  "CallExpression": 126,
-  "ConditionalExpression": 109,
-  "Content": 96,
-  "ContentList": 95,
-  "DEBUGGER": 67,
+  "AccessorName": 126,
+  "AdditiveExpression": 119,
+  "ArgumentList": 128,
+  "Arguments": 127,
+  "ArrayLiteral": 135,
+  "AssignmentExpression": 112,
+  "AssignmentOperator": 38,
+  "Attribute": 103,
+  "AttributeList": 102,
+  "AttributeValue": 105,
+  "BREAK": 66,
+  "Block": 99,
+  "BlockLines": 100,
+  "BlockParts": 101,
+  "BooleanLiteral": 142,
+  "CASE": 67,
+  "CATCH": 68,
+  "CLASS": 85,
+  "CONST": 86,
+  "CONTINUE": 69,
+  "CallExpression": 130,
+  "ConditionalExpression": 113,
+  "Content": 98,
+  "ContentList": 97,
+  "DEBUGGER": 70,
   "DEDENT": 25,
-  "DEFAULT": 68,
-  "DELETE": 69,
-  "DO": 70,
-  "Document": 89,
+  "DEFAULT": 71,
+  "DELETE": 72,
+  "DO": 73,
+  "Document": 91,
   "ELSE": 32,
-  "ENUM": 84,
+  "ENUM": 87,
   "EOF": 1,
-  "EXPORT": 85,
-  "EXTENDS": 86,
-  "Element": 92,
-  "ElementBlock": 91,
-  "ElementList": 90,
-  "Elision": 132,
-  "EqualityExpression": 112,
-  "Expression": 107,
-  "ExpressionAttribute": 104,
-  "FALSE": 58,
-  "FINALLY": 71,
-  "FOR": 72,
-  "FUNCTION": 73,
-  "FilterExpression": 33,
-  "FunctionBody": 55,
-  "FunctionExpression": 53,
-  "IDENTIFIER": 51,
+  "EXPORT": 88,
+  "EXTENDS": 89,
+  "Element": 94,
+  "ElementBlock": 93,
+  "ElementList": 92,
+  "Elision": 136,
+  "EqualityExpression": 116,
+  "Expression": 111,
+  "ExpressionAttribute": 106,
+  "FALSE": 61,
+  "FINALLY": 74,
+  "FOR": 75,
+  "FROM": 35,
+  "FUNCTION": 76,
+  "FilterExpression": 37,
+  "FunctionBody": 58,
+  "FunctionExpression": 56,
+  "IDENTIFIER": 34,
   "IF": 31,
-  "IMPORT": 87,
-  "IN": 44,
+  "IMPORT": 33,
+  "IN": 48,
   "INDENT": 24,
-  "INSTANCEOF": 43,
-  "IdentifierName": 121,
-  "If": 106,
-  "Interpolation": 105,
-  "LeftHandSideExpression": 120,
-  "Literal": 136,
-  "LogicalANDExpression": 111,
-  "LogicalORExpression": 110,
-  "MemberExpression": 128,
-  "MultiplicativeExpression": 116,
-  "NEW": 52,
+  "INSTANCEOF": 47,
+  "IdentifierName": 125,
+  "If": 108,
+  "Import": 109,
+  "ImportsList": 110,
+  "Interpolation": 107,
+  "LeftHandSideExpression": 124,
+  "Literal": 140,
+  "LogicalANDExpression": 115,
+  "LogicalORExpression": 114,
+  "MemberExpression": 132,
+  "MultiplicativeExpression": 120,
+  "NEW": 55,
   "NEWLINE": 26,
-  "NULL": 56,
-  "NUMERIC_LITERAL": 59,
-  "NewExpression": 125,
-  "NullLiteral": 137,
-  "NumericLiteral": 139,
-  "ObjectLiteral": 133,
-  "PlainAttribute": 102,
-  "PostfixExpression": 119,
-  "PrimaryExpression": 130,
-  "PropertyAssignment": 135,
-  "PropertyName": 129,
-  "PropertyNameAndValueList": 134,
-  "PropertySetParameterList": 127,
+  "NULL": 59,
+  "NUMERIC_LITERAL": 62,
+  "NewExpression": 129,
+  "NullLiteral": 141,
+  "NumericLiteral": 143,
+  "ObjectLiteral": 137,
+  "PlainAttribute": 104,
+  "PostfixExpression": 123,
+  "PrimaryExpression": 134,
+  "PropertyAssignment": 139,
+  "PropertyName": 133,
+  "PropertyNameAndValueList": 138,
+  "PropertySetParameterList": 131,
   "QUOTE": 30,
-  "REGEXP_LITERAL": 61,
-  "RETURN": 74,
-  "RegularExpressionLiteral": 141,
-  "RegularExpressionLiteralBegin": 142,
-  "RelationalExpression": 113,
-  "ReservedWord": 143,
+  "REGEXP_LITERAL": 64,
+  "RETURN": 77,
+  "RegularExpressionLiteral": 145,
+  "RegularExpressionLiteralBegin": 146,
+  "RelationalExpression": 117,
+  "ReservedWord": 147,
   "SELECTOR": 27,
-  "STRING_LITERAL": 60,
-  "SUPER": 88,
-  "SWITCH": 75,
-  "ShiftExpression": 114,
-  "StringLiteral": 140,
+  "STRING_LITERAL": 63,
+  "SUPER": 90,
+  "SWITCH": 78,
+  "ShiftExpression": 118,
+  "StringLiteral": 144,
   "TEXT": 29,
-  "THIS": 54,
-  "THROW": 76,
-  "TRUE": 57,
-  "TRY": 77,
-  "TYPEOF": 48,
-  "Tag": 94,
-  "Text": 93,
-  "UnaryExpr": 118,
-  "UnaryExpression": 117,
-  "VAR": 78,
-  "VOID": 79,
-  "WHILE": 80,
-  "WITH": 81,
+  "THIS": 57,
+  "THROW": 79,
+  "TRUE": 60,
+  "TRY": 80,
+  "TYPEOF": 52,
+  "Tag": 96,
+  "Text": 95,
+  "UnaryExpr": 122,
+  "UnaryExpression": 121,
+  "VAR": 81,
+  "VOID": 82,
+  "WHILE": 83,
+  "WITH": 84,
   "[": 22,
   "]": 23,
   "error": 2,
   "{": 7,
   "|": 4,
-  "||": 35,
+  "||": 39,
   "}": 8,
   "~": 18
 },
@@ -707,13 +711,13 @@ terminals_: {
   6: "=",
   7: "{",
   8: "}",
-  9: "?",
-  10: ":",
-  11: "<",
-  12: ">",
-  13: "+",
-  14: "-",
-  15: "*",
+  9: "*",
+  10: "?",
+  11: ":",
+  12: "<",
+  13: ">",
+  14: "+",
+  15: "-",
   16: "/",
   17: "%",
   18: "~",
@@ -731,62 +735,64 @@ terminals_: {
   30: "QUOTE",
   31: "IF",
   32: "ELSE",
-  33: "FilterExpression",
-  34: "AssignmentOperator",
-  35: "||",
-  36: "&&",
-  37: "==",
-  38: "!=",
-  39: "===",
-  40: "!==",
-  41: "<=",
-  42: ">=",
-  43: "INSTANCEOF",
-  44: "IN",
-  45: "<<",
-  46: ">>",
-  47: ">>>",
-  48: "TYPEOF",
-  49: "++",
-  50: "--",
-  51: "IDENTIFIER",
-  52: "NEW",
-  53: "FunctionExpression",
-  54: "THIS",
-  55: "FunctionBody",
-  56: "NULL",
-  57: "TRUE",
-  58: "FALSE",
-  59: "NUMERIC_LITERAL",
-  60: "STRING_LITERAL",
-  61: "REGEXP_LITERAL",
-  62: "/=",
-  63: "BREAK",
-  64: "CASE",
-  65: "CATCH",
-  66: "CONTINUE",
-  67: "DEBUGGER",
-  68: "DEFAULT",
-  69: "DELETE",
-  70: "DO",
-  71: "FINALLY",
-  72: "FOR",
-  73: "FUNCTION",
-  74: "RETURN",
-  75: "SWITCH",
-  76: "THROW",
-  77: "TRY",
-  78: "VAR",
-  79: "VOID",
-  80: "WHILE",
-  81: "WITH",
-  82: "CLASS",
-  83: "CONST",
-  84: "ENUM",
-  85: "EXPORT",
-  86: "EXTENDS",
-  87: "IMPORT",
-  88: "SUPER"
+  33: "IMPORT",
+  34: "IDENTIFIER",
+  35: "FROM",
+  36: "AS",
+  37: "FilterExpression",
+  38: "AssignmentOperator",
+  39: "||",
+  40: "&&",
+  41: "==",
+  42: "!=",
+  43: "===",
+  44: "!==",
+  45: "<=",
+  46: ">=",
+  47: "INSTANCEOF",
+  48: "IN",
+  49: "<<",
+  50: ">>",
+  51: ">>>",
+  52: "TYPEOF",
+  53: "++",
+  54: "--",
+  55: "NEW",
+  56: "FunctionExpression",
+  57: "THIS",
+  58: "FunctionBody",
+  59: "NULL",
+  60: "TRUE",
+  61: "FALSE",
+  62: "NUMERIC_LITERAL",
+  63: "STRING_LITERAL",
+  64: "REGEXP_LITERAL",
+  65: "/=",
+  66: "BREAK",
+  67: "CASE",
+  68: "CATCH",
+  69: "CONTINUE",
+  70: "DEBUGGER",
+  71: "DEFAULT",
+  72: "DELETE",
+  73: "DO",
+  74: "FINALLY",
+  75: "FOR",
+  76: "FUNCTION",
+  77: "RETURN",
+  78: "SWITCH",
+  79: "THROW",
+  80: "TRY",
+  81: "VAR",
+  82: "VOID",
+  83: "WHILE",
+  84: "WITH",
+  85: "CLASS",
+  86: "CONST",
+  87: "ENUM",
+  88: "EXPORT",
+  89: "EXTENDS",
+  90: "SUPER"
 },
 TERROR: 2,
 EOF: 1,
@@ -879,103 +885,107 @@ collect_expected_token_set: function parser_collect_expected_token_set(state, do
 },
 productions_: bp({
   pop: u([
-  89,
-  s,
-  [90, 6],
   91,
   s,
-  [92, 3],
-  93,
+  [92, 6],
   93,
   s,
-  [94, 7],
+  [94, 4],
   95,
   95,
-  96,
-  96,
+  s,
+  [96, 7],
+  97,
   97,
   98,
   98,
-  99,
   99,
   100,
   100,
   101,
   101,
   102,
+  102,
   103,
   103,
   104,
   105,
   105,
-  s,
-  [106, 3],
+  106,
   107,
   107,
   s,
-  [108, 4],
-  109,
-  109,
+  [108, 3],
+  s,
+  [109, 3],
   110,
   110,
   111,
   111,
   s,
-  [112, 5],
+  [112, 4],
+  113,
+  113,
+  114,
+  114,
+  115,
+  115,
   s,
-  [113, 7],
+  [116, 5],
   s,
-  [114, 4],
+  [117, 7],
   s,
-  [115, 3],
-  s,
-  [116, 4],
-  117,
-  117,
-  s,
-  [118, 7],
+  [118, 4],
   s,
   [119, 3],
-  120,
-  120,
-  121,
-  121,
-  122,
-  122,
-  123,
-  123,
-  124,
-  124,
-  125,
-  125,
   s,
-  [126, 4],
+  [120, 4],
+  121,
+  121,
+  s,
+  [122, 7],
+  s,
+  [123, 3],
+  124,
+  124,
+  125,
+  125,
+  126,
+  126,
   127,
+  127,
+  128,
+  128,
+  129,
+  129,
   s,
-  [128, 5],
+  [130, 4],
+  131,
   s,
-  [129, 3],
-  s,
-  [130, 6],
-  s,
-  [131, 5],
-  132,
-  132,
+  [132, 5],
   s,
   [133, 3],
-  134,
-  134,
   s,
-  [135, 3],
+  [134, 6],
   s,
-  [136, 5],
-  137,
+  [135, 5],
+  136,
+  136,
+  s,
+  [137, 3],
+  138,
   138,
   s,
-  [138, 5, 1],
+  [139, 3],
+  s,
+  [140, 5],
+  141,
   142,
   s,
-  [143, 36]
+  [142, 5, 1],
+  146,
+  s,
+  [147, 36]
 ]),
   rule: u([
   2,
@@ -985,16 +995,16 @@ productions_: bp({
   [1, 4, 1],
   3,
   s,
-  [1, 3],
+  [1, 4],
   2,
   3,
   c,
-  [9, 4],
+  [10, 4],
   4,
   3,
   4,
   c,
-  [19, 3],
+  [20, 3],
   c,
   [15, 4],
   c,
@@ -1006,24 +1016,26 @@ productions_: bp({
   [24, 4],
   7,
   6,
+  7,
+  9,
+  9,
+  1,
+  3,
   1,
   c,
-  [36, 3],
+  [42, 3],
   3,
   3,
   1,
   5,
   c,
-  [8, 3],
-  3,
-  c,
-  [9, 3],
-  c,
-  [11, 3],
+  [10, 5],
   s,
-  [3, 6],
+  [3, 4],
   c,
-  [7, 4],
+  [5, 5],
+  c,
+  [7, 6],
   c,
   [25, 4],
   c,
@@ -1041,7 +1053,7 @@ productions_: bp({
   s,
   [2, 3],
   c,
-  [97, 5],
+  [103, 5],
   4,
   c,
   [34, 4],
@@ -1056,7 +1068,7 @@ productions_: bp({
   c,
   [26, 3],
   c,
-  [110, 3],
+  [115, 3],
   3,
   3,
   7,
@@ -1084,13 +1096,15 @@ case 2:
     /*! Production::    ElementList : Element */
 case 4:
     /*! Production::    ElementList : AssignmentExpression */
-case 21:
+case 22:
     /*! Production::    ContentList : Content */
-case 30:
+case 31:
     /*! Production::    AttributeList : Attribute */
-case 98:
+case 47:
+    /*! Production::    ImportsList : IDENTIFIER */
+case 104:
     /*! Production::    ArgumentList : AssignmentExpression */
-case 131:
+case 137:
     /*! Production::    PropertyNameAndValueList : PropertyAssignment */
     this.$ = [yyvstack[yysp]];
     break;
@@ -1099,18 +1113,20 @@ case 3:
     /*! Production::    ElementList : ElementList Element */
 case 5:
     /*! Production::    ElementList : Elision AssignmentExpression */
-case 22:
+case 23:
     /*! Production::    ContentList : ContentList Content */
-case 31:
+case 32:
     /*! Production::    AttributeList : AttributeList Attribute */
     this.$ = yyvstack[yysp - 1].concat(yyvstack[yysp]);
     break;
 
 case 6:
     /*! Production::    ElementList : ElementList "," AssignmentExpression */
-case 99:
+case 48:
+    /*! Production::    ImportsList : ImportsList "," IDENTIFIER */
+case 105:
     /*! Production::    ArgumentList : ArgumentList "," AssignmentExpression */
-case 132:
+case 138:
     /*! Production::    PropertyNameAndValueList : PropertyNameAndValueList "," PropertyAssignment */
     this.$ = yyvstack[yysp - 2].concat(yyvstack[yysp]);
     break;
@@ -1122,118 +1138,134 @@ case 7:
 
 case 8:
     /*! Production::    ElementBlock : INDENT ElementList DEDENT */
-case 97:
+case 103:
     /*! Production::    Arguments : "(" ArgumentList ")" */
-case 119:
+case 125:
     /*! Production::    PrimaryExpression : "(" Expression ")" */
     this.$ = yyvstack[yysp - 1];
     break;
 
-case 12:
+case 13:
     /*! Production::    Text : "|" NEWLINE */
     this.$ = new ElementNode(" ", createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 13:
+case 14:
     /*! Production::    Text : "|" ContentList NEWLINE */
     this.$ = new ElementNode("text", [], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 14:
+case 15:
     /*! Production::    Tag : SELECTOR NEWLINE */
     this.$ = new ElementNode(yyvstack[yysp - 1], [], [], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 15:
+case 16:
     /*! Production::    Tag : SELECTOR ContentList NEWLINE */
     this.$ = new ElementNode(yyvstack[yysp - 2], [], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 16:
+case 17:
     /*! Production::    Tag : SELECTOR "." NEWLINE Block */
     this.$ = new ElementNode(yyvstack[yysp - 3], [], [yyvstack[yysp]], createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 17:
+case 18:
     /*! Production::    Tag : SELECTOR AttributeList NEWLINE */
     this.$ = new ElementNode(yyvstack[yysp - 2], yyvstack[yysp - 1], [], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 18:
+case 19:
     /*! Production::    Tag : SELECTOR AttributeList ContentList NEWLINE */
     this.$ = new ElementNode(yyvstack[yysp - 3], yyvstack[yysp - 2], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 19:
+case 20:
     /*! Production::    Tag : SELECTOR NEWLINE ElementBlock */
     this.$ = new ElementNode(yyvstack[yysp - 2], [], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 20:
+case 21:
     /*! Production::    Tag : SELECTOR AttributeList NEWLINE ElementBlock */
     this.$ = new ElementNode(yyvstack[yysp - 3], yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 23:
-    /*! Production::    Content : ATTRIBUTE */
 case 24:
-    /*! Production::    Content : TEXT */
+    /*! Production::    Content : ATTRIBUTE */
 case 25:
+    /*! Production::    Content : TEXT */
+case 26:
     /*! Production::    Block : BlockLines */
     this.$ = new TextNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 26:
+case 27:
     /*! Production::    BlockLines : BlockParts */
     this.$ = yyvstack[yysp];
     break;
 
-case 27:
+case 28:
     /*! Production::    BlockLines : BlockLines BlockParts */
     this.$ = yyvstack[yysp - 1] + yyvstack[yysp];
     break;
 
-case 34:
+case 35:
     /*! Production::    PlainAttribute : ATTRIBUTE "=" QUOTE AttributeValue QUOTE */
     this.$ = new AttributeNode(yyvstack[yysp - 4], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 4], yylstack[yysp]));
     break;
 
-case 36:
+case 37:
     /*! Production::    AttributeValue : TEXT */
     this.$ = [new LiteralNode(JSON.stringify(yyvstack[yysp]), createSourceLocation(yylstack[yysp], yylstack[yysp]))];
     break;
 
-case 37:
+case 38:
     /*! Production::    ExpressionAttribute : ATTRIBUTE "=" Interpolation */
     this.$ = new AttributeNode(yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 38:
+case 39:
     /*! Production::    Interpolation : "{" "}" */
     this.$ = null
     break;
 
-case 39:
+case 40:
     /*! Production::    Interpolation : "{" Expression "}" */
     this.$ = new ExpressionNode(yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]))
     break;
 
-case 40:
+case 41:
     /*! Production::    If : IF Expression NEWLINE ElementBlock */
     this.$ = new IfStatementNode(yyvstack[yysp - 2], yyvstack[yysp], null, createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 41:
+case 42:
     /*! Production::    If : IF Expression NEWLINE ElementBlock ELSE NEWLINE ElementBlock */
     this.$ = new IfStatementNode(yyvstack[yysp - 5], yyvstack[yysp - 3], yyvstack[yysp], createSourceLocation(yylstack[yysp - 6], yylstack[yysp]));
     break;
 
-case 42:
+case 43:
     /*! Production::    If : IF Expression NEWLINE ElementBlock ELSE If */
     this.$ = new IfStatementNode(yyvstack[yysp - 4], yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 5], yylstack[yysp]));
     break;
 
 case 44:
+    /*! Production::    Import : IMPORT IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE */
+    this.$ = new ImportStatementNode(yyvstack[yysp - 5], yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 6], yylstack[yysp]));
+    break;
+
+case 45:
+    /*! Production::    Import : IMPORT "{" ImportsList "}" FROM QUOTE TEXT QUOTE NEWLINE */
+    console.error(yyvstack[yysp - 6]);
+    this.$ = new ImportStatementNode(yyvstack[yysp - 6], yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 8], yylstack[yysp]));
+    break;
+
+case 46:
+    /*! Production::    Import : IMPORT "*" AS IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE */
+    this.$ = new ImportStatementNode(yyvstack[yysp - 5], yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 8], yylstack[yysp]));
+    break;
+
+case 50:
     /*! Production::    Expression : Expression "," AssignmentExpression */
     if (yyvstack[yysp - 2].type === "SequenceExpression") {
         yyvstack[yysp - 2].expressions.concat(yyvstack[yysp]);
@@ -1244,281 +1276,281 @@ case 44:
     }
     break;
 
-case 47:
+case 53:
     /*! Production::    AssignmentExpression : LeftHandSideExpression "=" AssignmentExpression */
     this.$ = new AssignmentExpressionNode("=", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 48:
+case 54:
     /*! Production::    AssignmentExpression : LeftHandSideExpression AssignmentOperator AssignmentExpression */
     this.$ = new AssignmentExpressionNode(yyvstack[yysp - 1], yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 50:
+case 56:
     /*! Production::    ConditionalExpression : LogicalORExpression "?" AssignmentExpression ":" AssignmentExpression */
     this.$ = new ConditionalExpressionNode(yyvstack[yysp - 4], yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 4], yylstack[yysp]));
     break;
 
-case 52:
+case 58:
     /*! Production::    LogicalORExpression : LogicalORExpression "||" LogicalANDExpression */
     this.$ = new LogicalExpressionNode("||", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 54:
+case 60:
     /*! Production::    LogicalANDExpression : LogicalANDExpression "&&" EqualityExpression */
     this.$ = new LogicalExpressionNode("&&", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 56:
+case 62:
     /*! Production::    EqualityExpression : EqualityExpression "==" RelationalExpression */
     this.$ = new BinaryExpressionNode("==", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 57:
+case 63:
     /*! Production::    EqualityExpression : EqualityExpression "!=" RelationalExpression */
     this.$ = new BinaryExpressionNode("!=", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 58:
+case 64:
     /*! Production::    EqualityExpression : EqualityExpression "===" RelationalExpression */
     this.$ = new BinaryExpressionNode("===", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 59:
+case 65:
     /*! Production::    EqualityExpression : EqualityExpression "!==" RelationalExpression */
     this.$ = new BinaryExpressionNode("!==", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 61:
+case 67:
     /*! Production::    RelationalExpression : RelationalExpression "<" ShiftExpression */
     this.$ = new BinaryExpressionNode("<", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 62:
+case 68:
     /*! Production::    RelationalExpression : RelationalExpression ">" ShiftExpression */
     this.$ = new BinaryExpressionNode(">", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 63:
+case 69:
     /*! Production::    RelationalExpression : RelationalExpression "<=" ShiftExpression */
     this.$ = new BinaryExpressionNode("<=", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 64:
+case 70:
     /*! Production::    RelationalExpression : RelationalExpression ">=" ShiftExpression */
     this.$ = new BinaryExpressionNode(">=", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 65:
+case 71:
     /*! Production::    RelationalExpression : RelationalExpression INSTANCEOF ShiftExpression */
     this.$ = new BinaryExpressionNode("instanceof", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 66:
+case 72:
     /*! Production::    RelationalExpression : RelationalExpression IN ShiftExpression */
     this.$ = new BinaryExpressionNode("in", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 68:
+case 74:
     /*! Production::    ShiftExpression : ShiftExpression "<<" AdditiveExpression */
     this.$ = new BinaryExpressionNode("<<", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 69:
+case 75:
     /*! Production::    ShiftExpression : ShiftExpression ">>" AdditiveExpression */
     this.$ = new BinaryExpressionNode(">>", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 70:
+case 76:
     /*! Production::    ShiftExpression : ShiftExpression ">>>" AdditiveExpression */
     this.$ = new BinaryExpressionNode(">>>", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 72:
+case 78:
     /*! Production::    AdditiveExpression : AdditiveExpression "+" MultiplicativeExpression */
     this.$ = new BinaryExpressionNode("+", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 73:
+case 79:
     /*! Production::    AdditiveExpression : AdditiveExpression "-" MultiplicativeExpression */
     this.$ = new BinaryExpressionNode("-", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 75:
+case 81:
     /*! Production::    MultiplicativeExpression : MultiplicativeExpression "*" UnaryExpression */
     this.$ = new BinaryExpressionNode("*", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 76:
+case 82:
     /*! Production::    MultiplicativeExpression : MultiplicativeExpression "/" UnaryExpression */
     this.$ = new BinaryExpressionNode("/", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 77:
+case 83:
     /*! Production::    MultiplicativeExpression : MultiplicativeExpression "%" UnaryExpression */
     this.$ = new BinaryExpressionNode("%", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 80:
+case 86:
     /*! Production::    UnaryExpr : TYPEOF UnaryExpression */
     this.$ = new UnaryExpressionNode("typeof", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 81:
+case 87:
     /*! Production::    UnaryExpr : "++" UnaryExpression */
     this.$ = new UpdateExpressionNode("++", yyvstack[yysp], true, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 82:
+case 88:
     /*! Production::    UnaryExpr : "--" UnaryExpression */
     this.$ = new UpdateExpressionNode("--", yyvstack[yysp], true, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 83:
+case 89:
     /*! Production::    UnaryExpr : "+" UnaryExpression */
     this.$ = new UnaryExpressionNode("+", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 84:
+case 90:
     /*! Production::    UnaryExpr : "-" UnaryExpression */
     this.$ = new UnaryExpressionNode("-", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 85:
+case 91:
     /*! Production::    UnaryExpr : "~" UnaryExpression */
     this.$ = new UnaryExpressionNode("~", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 86:
+case 92:
     /*! Production::    UnaryExpr : "!" UnaryExpression */
     this.$ = new UnaryExpressionNode("!", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 88:
+case 94:
     /*! Production::    PostfixExpression : LeftHandSideExpression "++" */
     this.$ = new UpdateExpressionNode("++", yyvstack[yysp - 1], false, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 89:
+case 95:
     /*! Production::    PostfixExpression : LeftHandSideExpression "--" */
     this.$ = new UpdateExpressionNode("--", yyvstack[yysp - 1], false, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 92:
+case 98:
     /*! Production::    IdentifierName : IDENTIFIER */
-case 93:
+case 99:
     /*! Production::    IdentifierName : ReservedWord */
-case 116:
+case 122:
     /*! Production::    PrimaryExpression : IDENTIFIER */
     this.$ = new IdentifierNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 94:
+case 100:
     /*! Production::    AccessorName : IDENTIFIER */
-case 95:
+case 101:
     /*! Production::    AccessorName : ReservedWord */
     this.$ = new AccessorNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 96:
+case 102:
     /*! Production::    Arguments : "(" ")" */
     this.$ = [];
     break;
 
-case 101:
+case 107:
     /*! Production::    NewExpression : NEW NewExpression */
     this.$ = new NewExpressionNode(yyvstack[yysp], null, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 102:
+case 108:
     /*! Production::    CallExpression : MemberExpression Arguments */
-case 103:
+case 109:
     /*! Production::    CallExpression : CallExpression Arguments */
     this.$ = new CallExpressionNode(yyvstack[yysp - 1], yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 104:
+case 110:
     /*! Production::    CallExpression : CallExpression "[" Expression "]" */
-case 109:
+case 115:
     /*! Production::    MemberExpression : MemberExpression "[" Expression "]" */
     this.$ = new MemberExpressionNode(yyvstack[yysp - 3], yyvstack[yysp - 1], true, createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 105:
+case 111:
     /*! Production::    CallExpression : CallExpression "." AccessorName */
-case 110:
+case 116:
     /*! Production::    MemberExpression : MemberExpression "." AccessorName */
     this.$ = new MemberExpressionNode(yyvstack[yysp - 2], yyvstack[yysp], false, createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 106:
+case 112:
     /*! Production::    PropertySetParameterList : IDENTIFIER */
     this.$ = [new IdentifierNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]))];
     break;
 
-case 111:
+case 117:
     /*! Production::    MemberExpression : NEW MemberExpression Arguments */
     this.$ = new NewExpressionNode(yyvstack[yysp - 1], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 115:
+case 121:
     /*! Production::    PrimaryExpression : THIS */
     this.$ = new ThisExpressionNode(createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 121:
+case 127:
     /*! Production::    ArrayLiteral : "[" "]" */
     this.$ = new ArrayExpressionNode([], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 122:
+case 128:
     /*! Production::    ArrayLiteral : "[" Elision "]" */
-case 123:
+case 129:
     /*! Production::    ArrayLiteral : "[" ElementList "]" */
     this.$ = new ArrayExpressionNode(yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 124:
+case 130:
     /*! Production::    ArrayLiteral : "[" ElementList "," "]" */
     this.$ = new ArrayExpressionNode(yyvstack[yysp - 2].concat(null), createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 125:
+case 131:
     /*! Production::    ArrayLiteral : "[" ElementList "," Elision "]" */
     this.$ = new ArrayExpressionNode(yyvstack[yysp - 3].concat(yyvstack[yysp - 1]), createSourceLocation(yylstack[yysp - 4], yylstack[yysp]));
     break;
 
-case 126:
+case 132:
     /*! Production::    Elision : "," */
     this.$ = [null, null];
     break;
 
-case 127:
+case 133:
     /*! Production::    Elision : Elision "," */
     this.$ = yyvstack[yysp - 1].concat(null);
     break;
 
-case 128:
+case 134:
     /*! Production::    ObjectLiteral : "{" "}" */
     this.$ = new ObjectExpressionNode([], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 129:
+case 135:
     /*! Production::    ObjectLiteral : "{" PropertyNameAndValueList "}" */
     this.$ = new ObjectExpressionNode(yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 130:
+case 136:
     /*! Production::    ObjectLiteral : "{" PropertyNameAndValueList "," "}" */
     this.$ = new ObjectExpressionNode(yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 133:
+case 139:
     /*! Production::    PropertyAssignment : PropertyName ":" AssignmentExpression */
     this.$ = {key: yyvstack[yysp - 2], value: yyvstack[yysp], kind: "init"};
     break;
 
-case 134:
+case 140:
     /*! Production::    PropertyAssignment : IDENTIFIER PropertyName "(" ")" "{" FunctionBody "}" */
     if (yyvstack[yysp - 6] === "get") {
         this.$ = {key: yyvstack[yysp - 5], value: (new FunctionExpressionNode(null, [], yyvstack[yysp - 1], false, false, createSourceLocation(yylstack[yysp - 5], yylstack[yysp]))), kind: "get"};
@@ -1527,7 +1559,7 @@ case 134:
     }
     break;
 
-case 135:
+case 141:
     /*! Production::    PropertyAssignment : IDENTIFIER PropertyName "(" PropertySetParameterList ")" "{" FunctionBody "}" */
     if (yyvstack[yysp - 7] === "set") {
         this.$ = {key: yyvstack[yysp - 6], value: (new FunctionExpressionNode(null, yyvstack[yysp - 4], yyvstack[yysp - 1], false, false, createSourceLocation(yylstack[yysp - 6], yylstack[yysp]))), kind: "set"};
@@ -1536,39 +1568,39 @@ case 135:
     }
     break;
 
-case 141:
+case 147:
     /*! Production::    NullLiteral : NULL */
     this.$ = new LiteralNode(null, createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 142:
+case 148:
     /*! Production::    BooleanLiteral : TRUE */
     this.$ = new LiteralNode(true, createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 143:
+case 149:
     /*! Production::    BooleanLiteral : FALSE */
     this.$ = new LiteralNode(false, createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 144:
+case 150:
     /*! Production::    NumericLiteral : NUMERIC_LITERAL */
     this.$ = new LiteralNode(parseNumericLiteral(yyvstack[yysp]), createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 145:
+case 151:
     /*! Production::    StringLiteral : STRING_LITERAL */
     this.$ = new LiteralNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 146:
+case 152:
     /*! Production::    RegularExpressionLiteral : RegularExpressionLiteralBegin REGEXP_LITERAL */
     this.$ = new LiteralNode(parseRegularExpressionLiteral(yyvstack[yysp - 1] + yyvstack[yysp]), createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 147:
+case 153:
     /*! Production::    RegularExpressionLiteralBegin : "/" */
-case 148:
+case 154:
     /*! Production::    RegularExpressionLiteralBegin : "/=" */
     yy.lexer.begin("REGEXP");
     break;
@@ -1577,43 +1609,44 @@ case 148:
 },
 table: bt({
   len: u([
-  59,
+  61,
   1,
-  9,
+  11,
   0,
   0,
   49,
   s,
-  [0, 5],
-  36,
+  [0, 6],
+  37,
   0,
   5,
   10,
   49,
-  13,
-  0,
-  40,
+  3,
   14,
-  40,
+  0,
+  41,
+  15,
+  41,
   26,
-  18,
+  19,
   0,
   0,
-  24,
+  25,
   s,
   [0, 4],
   49,
   0,
-  27,
+  28,
   s,
   [0, 5],
-  59,
+  61,
   47,
-  29,
+  30,
   s,
   [0, 5],
   1,
-  32,
+  33,
   s,
   [0, 5],
   s,
@@ -1630,7 +1663,7 @@ table: bt({
   4,
   s,
   [0, 3],
-  9,
+  10,
   4,
   1,
   8,
@@ -1638,6 +1671,9 @@ table: bt({
   [9, 4],
   2,
   0,
+  1,
+  2,
+  1,
   48,
   44,
   0,
@@ -1648,7 +1684,7 @@ table: bt({
   c,
   [5, 3],
   0,
-  40,
+  41,
   s,
   [42, 4],
   s,
@@ -1658,49 +1694,50 @@ table: bt({
   [40, 3],
   0,
   50,
-  9,
+  11,
   c,
-  [32, 3],
-  1,
+  [35, 4],
   45,
   s,
   [0, 40],
   39,
   39,
   c,
-  [108, 4],
+  [111, 4],
   0,
-  34,
+  35,
   s,
   [0, 7],
   c,
-  [168, 6],
-  58,
-  0,
-  5,
-  9,
+  [173, 6],
+  60,
+  c,
+  [172, 3],
   4,
   0,
   3,
   2,
   48,
   1,
-  14,
+  c,
+  [75, 3],
+  1,
+  15,
   2,
   s,
   [0, 4],
   2,
   0,
-  18,
+  19,
   c,
   [8, 3],
   s,
-  [24, 4],
+  [25, 4],
   s,
-  [27, 6],
+  [28, 6],
   0,
   s,
-  [29, 3],
+  [30, 3],
   0,
   0,
   51,
@@ -1709,50 +1746,59 @@ table: bt({
   48,
   1,
   0,
-  32,
+  33,
   c,
-  [177, 5],
-  9,
+  [184, 5],
+  11,
   0,
-  10,
+  c,
+  [238, 3],
   s,
-  [0, 5],
+  [0, 3],
   3,
   0,
   50,
-  8,
-  0,
+  9,
   c,
-  [176, 3],
+  [55, 3],
+  1,
+  1,
+  c,
+  [187, 3],
   c,
   [3, 3],
   c,
-  [186, 3],
+  [197, 3],
   c,
-  [15, 3],
+  [19, 3],
   0,
   1,
   c,
-  [63, 3],
-  c,
-  [7, 3],
-  0,
+  [67, 3],
+  3,
+  1,
   1,
   c,
-  [9, 3],
+  [8, 4],
   c,
-  [154, 4],
-  1,
+  [29, 3],
   c,
-  [3, 5],
-  0
+  [81, 5],
+  s,
+  [1, 5],
+  c,
+  [14, 4],
+  c,
+  [8, 5],
+  c,
+  [20, 4]
 ]),
   symbol: u([
   3,
   4,
   7,
-  13,
   14,
+  15,
   16,
   18,
   19,
@@ -1761,43 +1807,46 @@ table: bt({
   27,
   31,
   33,
+  34,
+  37,
   s,
-  [48, 7, 1],
+  [52, 6, 1],
   s,
-  [56, 5, 1],
-  62,
-  89,
-  90,
+  [59, 5, 1],
+  65,
+  91,
   92,
-  93,
   94,
-  106,
+  95,
+  96,
+  108,
+  109,
   s,
-  [108, 13, 1],
-  125,
-  126,
-  128,
+  [112, 13, 1],
+  129,
+  130,
+  132,
   s,
-  [130, 4, 1],
+  [134, 4, 1],
   s,
-  [136, 7, 1],
+  [140, 7, 1],
   1,
   1,
   3,
   4,
-  27,
-  31,
   c,
-  [37, 4],
+  [55, 3],
+  c,
+  [39, 5],
   3,
   c,
-  [68, 8],
+  [72, 8],
   c,
-  [66, 14],
+  [69, 14],
   c,
-  [60, 18],
+  [62, 18],
   c,
-  [59, 9],
+  [61, 9],
   3,
   4,
   6,
@@ -1807,183 +1856,194 @@ table: bt({
   23,
   25,
   26,
-  27,
-  31,
+  c,
+  [75, 3],
   s,
-  [34, 14, 1],
-  49,
-  50,
+  [38, 14, 1],
+  53,
+  54,
   26,
   28,
   29,
-  95,
-  96,
+  97,
+  98,
   5,
   c,
   [6, 5],
-  100,
-  101,
   102,
+  103,
   104,
+  106,
   c,
-  [99, 22],
+  [100, 22],
   s,
-  [107, 14, 1],
+  [111, 14, 1],
   c,
-  [100, 16],
+  [101, 13],
+  7,
+  9,
+  34,
   c,
-  [99, 3],
+  [104, 3],
+  8,
+  10,
+  11,
   c,
-  [92, 6],
-  35,
+  [96, 7],
+  39,
   c,
-  [13, 3],
+  [14, 3],
   5,
   c,
-  [114, 11],
+  [119, 11],
   s,
   [20, 4, 1],
   c,
-  [116, 20],
-  123,
+  [121, 21],
+  127,
   c,
-  [53, 13],
-  36,
+  [55, 14],
+  40,
   c,
-  [54, 40],
+  [56, 41],
   7,
   16,
-  20,
-  22,
   c,
-  [148, 10],
-  125,
+  [159, 3],
   c,
-  [133, 24],
+  [155, 9],
+  129,
   c,
-  [54, 5],
+  [241, 14],
   c,
-  [18, 6],
-  11,
+  [82, 12],
+  c,
+  [55, 4],
+  c,
+  [19, 6],
   12,
+  13,
   c,
-  [20, 12],
+  [21, 13],
   c,
-  [74, 4],
+  [76, 4],
   c,
-  [224, 55],
+  [233, 49],
   c,
-  [73, 18],
+  [74, 25],
   c,
-  [147, 3],
+  [150, 3],
   c,
-  [469, 10],
+  [484, 10],
   23,
   c,
-  [470, 16],
+  [485, 17],
   c,
-  [469, 32],
+  [484, 33],
   8,
-  31,
-  32,
-  43,
-  44,
-  48,
-  51,
-  52,
-  c,
-  [47, 6],
   s,
-  [63, 26, 1],
-  121,
-  129,
-  134,
-  135,
+  [31, 4, 1],
+  47,
+  48,
+  52,
+  55,
+  c,
+  [49, 6],
+  s,
+  [66, 25, 1],
+  125,
+  133,
+  138,
   139,
-  140,
   143,
+  144,
+  147,
   c,
-  [133, 8],
-  13,
+  [136, 8],
   14,
+  15,
   c,
-  [135, 19],
-  61,
+  [138, 20],
+  64,
   c,
-  [30, 10],
+  [31, 4],
   c,
-  [486, 9],
+  [500, 16],
   c,
-  [33, 13],
+  [34, 13],
   c,
-  [166, 8],
+  [249, 9],
   c,
-  [162, 13],
+  [165, 12],
   c,
-  [233, 17],
+  [471, 18],
   c,
-  [38, 228],
+  [38, 227],
   c,
-  [834, 41],
+  [849, 41],
   c,
-  [425, 9],
+  [427, 9],
   c,
-  [883, 48],
+  [898, 48],
   c,
   [48, 48],
   c,
-  [889, 3],
-  96,
+  [903, 3],
+  98,
   c,
-  [448, 3],
+  [449, 3],
   23,
   24,
   25,
-  27,
-  31,
-  91,
   c,
-  [13, 4],
+  [438, 3],
+  93,
+  c,
+  [14, 4],
   26,
   c,
-  [907, 5],
+  [922, 5],
   c,
-  [906, 3],
+  [921, 3],
   6,
   c,
   [9, 3],
   3,
   26,
+  35,
+  34,
+  110,
+  36,
   c,
-  [128, 56],
+  [133, 57],
   c,
-  [47, 13],
+  [47, 12],
   c,
-  [172, 45],
+  [177, 45],
   c,
-  [780, 27],
+  [790, 27],
   c,
-  [693, 11],
+  [700, 12],
   c,
-  [691, 26],
-  122,
-  143,
+  [698, 25],
+  126,
+  147,
   c,
   [88, 7],
   21,
   c,
   [181, 28],
-  124,
+  128,
   c,
   [182, 34],
   c,
   [181, 110],
   c,
-  [1157, 41],
+  [1170, 42],
   c,
-  [171, 20],
+  [172, 20],
   c,
-  [395, 42],
+  [396, 42],
   c,
   [42, 126],
   c,
@@ -1997,198 +2057,216 @@ table: bt({
   c,
   [40, 59],
   c,
-  [1115, 9],
+  [1121, 9],
   23,
   c,
-  [939, 40],
+  [940, 40],
   c,
-  [1014, 3],
+  [1020, 3],
   c,
-  [2008, 7],
+  [2031, 9],
   8,
-  10,
-  10,
+  11,
+  11,
   c,
-  [1552, 41],
+  [1562, 41],
   c,
-  [1550, 3],
+  [1560, 3],
   c,
-  [147, 21],
+  [149, 21],
   c,
-  [186, 39],
+  [188, 39],
   c,
   [39, 39],
   c,
   [38, 93],
   c,
-  [1712, 32],
-  49,
-  50,
+  [1721, 33],
+  53,
+  54,
   c,
-  [2282, 49],
+  [2306, 49],
   c,
-  [2400, 26],
+  [2428, 27],
   c,
-  [1930, 32],
+  [1943, 33],
   26,
   29,
-  97,
-  98,
   99,
+  100,
+  101,
   c,
-  [1410, 13],
+  [1421, 14],
   7,
   30,
-  105,
+  107,
   24,
-  91,
+  93,
   c,
-  [129, 48],
-  10,
+  [132, 48],
+  30,
+  3,
+  8,
+  34,
+  11,
   c,
-  [2179, 14],
+  [2202, 15],
   3,
   23,
   3,
   21,
   c,
-  [2197, 18],
+  [2221, 19],
   3,
   23,
   c,
-  [2126, 24],
+  [2149, 25],
   c,
-  [24, 96],
+  [25, 100],
   c,
-  [342, 3],
+  [356, 3],
   c,
-  [27, 143],
+  [28, 148],
   c,
-  [2251, 21],
+  [2281, 22],
   c,
-  [29, 58],
+  [30, 60],
   c,
-  [895, 42],
+  [920, 42],
   c,
-  [2436, 51],
+  [2469, 51],
   c,
-  [2435, 4],
+  [2468, 4],
   c,
-  [529, 48],
+  [548, 48],
   20,
   c,
-  [742, 32],
+  [765, 33],
   c,
-  [32, 32],
+  [33, 33],
   3,
   4,
   c,
-  [657, 3],
+  [679, 4],
   c,
-  [701, 4],
+  [725, 5],
   c,
-  [669, 4],
+  [693, 4],
   c,
-  [30, 3],
+  [33, 3],
   29,
   31,
-  99,
+  33,
+  101,
   29,
   30,
-  103,
+  105,
   7,
   8,
   c,
-  [2753, 51],
+  [2794, 51],
   23,
   c,
-  [74, 3],
+  [77, 3],
   32,
+  33,
+  29,
+  35,
+  34,
+  35,
   c,
-  [2250, 96],
+  [2291, 96],
   c,
-  [1281, 50],
+  [1316, 50],
   21,
-  51,
-  127,
-  30,
-  3,
-  8,
+  34,
+  131,
+  c,
+  [852, 3],
   26,
   31,
-  106,
+  108,
+  s,
+  [30, 3],
   7,
   21,
   24,
-  91,
-  55,
+  93,
+  26,
+  29,
+  29,
+  58,
   7,
+  30,
+  30,
   8,
-  55,
+  58,
+  26,
+  26,
   8
 ]),
   type: u([
   s,
-  [2, 26],
+  [2, 27],
   s,
-  [0, 33],
+  [0, 34],
   1,
   c,
-  [39, 9],
+  [41, 11],
   c,
-  [66, 49],
+  [69, 49],
   s,
-  [2, 39],
+  [2, 40],
   c,
-  [41, 6],
+  [42, 6],
   c,
-  [51, 28],
+  [52, 28],
   s,
   [0, 27],
   s,
-  [2, 52],
+  [2, 57],
   c,
-  [53, 53],
+  [58, 56],
   c,
-  [54, 16],
+  [56, 15],
   c,
-  [133, 64],
+  [140, 69],
   c,
-  [224, 91],
-  c,
-  [470, 34],
-  c,
-  [72, 47],
+  [233, 92],
   s,
-  [2, 83],
+  [0, 33],
   c,
-  [147, 38],
+  [73, 47],
+  s,
+  [2, 85],
+  c,
+  [149, 38],
   c,
   [38, 228],
   c,
-  [511, 51],
+  [516, 51],
   c,
   [48, 77],
   c,
-  [52, 9],
+  [52, 10],
   c,
-  [13, 9],
+  [14, 9],
   c,
-  [500, 33],
+  [75, 13],
   c,
-  [128, 47],
+  [1031, 71],
   c,
-  [172, 71],
+  [177, 71],
   c,
-  [647, 38],
+  [654, 38],
   c,
-  [358, 73],
+  [363, 73],
   c,
   [181, 133],
   c,
-  [1211, 38],
+  [1226, 39],
   c,
-  [213, 63],
+  [214, 63],
   c,
   [42, 125],
   c,
@@ -2198,791 +2276,819 @@ table: bt({
   c,
   [40, 101],
   c,
-  [939, 34],
+  [940, 35],
   c,
-  [1502, 47],
+  [1512, 48],
   c,
-  [147, 44],
+  [149, 44],
   c,
   [39, 77],
   c,
-  [1414, 99],
+  [1422, 99],
   c,
-  [1878, 60],
+  [1890, 61],
   c,
-  [1930, 60],
+  [1943, 62],
   c,
-  [63, 11],
+  [65, 12],
   c,
-  [1410, 7],
+  [1421, 7],
   0,
   c,
-  [2210, 24],
+  [1408, 24],
   c,
-  [2087, 80],
+  [2337, 83],
   s,
-  [2, 354],
+  [2, 370],
   c,
-  [2436, 73],
+  [2469, 73],
   c,
-  [529, 118],
+  [548, 121],
   c,
-  [74, 13],
+  [78, 15],
   c,
-  [666, 5],
+  [690, 5],
   c,
-  [231, 79],
+  [236, 84],
   c,
-  [2298, 96],
+  [2339, 96],
   c,
   [50, 30],
   c,
-  [1284, 7],
+  [53, 6],
   c,
-  [1880, 9]
+  [1325, 8],
+  s,
+  [2, 12]
 ]),
   state: u([
   1,
   2,
   3,
-  6,
-  7,
-  8,
+  s,
+  [6, 4, 1],
   4,
-  9,
+  10,
   s,
-  [16, 4, 3],
-  32,
-  40,
-  47,
-  50,
+  [18, 4, 3],
+  34,
+  42,
+  49,
   52,
-  51,
-  11,
-  17,
-  18,
+  54,
+  53,
+  12,
+  19,
   20,
-  23,
-  29,
-  5,
+  22,
+  25,
   31,
-  28,
+  5,
+  33,
+  30,
   s,
-  [33, 5, 1],
-  46,
-  61,
-  c,
-  [31, 3],
+  [35, 5, 1],
+  48,
   63,
   c,
-  [31, 17],
+  [32, 4],
+  65,
   c,
-  [30, 8],
-  70,
-  71,
-  75,
-  71,
+  [32, 17],
+  c,
+  [31, 8],
+  72,
+  73,
   77,
-  78,
+  73,
+  79,
+  80,
   s,
-  [80, 4, 1],
+  [82, 4, 1],
   c,
   [35, 25],
-  86,
   91,
-  94,
-  95,
+  96,
+  99,
+  100,
   c,
   [14, 10],
-  106,
-  c,
-  [41, 26],
-  112,
-  c,
-  [138, 22],
   111,
   c,
-  [32, 8],
-  118,
+  [41, 26],
+  117,
+  c,
+  [140, 23],
   116,
-  114,
-  115,
-  120,
-  119,
+  c,
+  [33, 8],
+  123,
   121,
-  164,
-  52,
-  51,
-  165,
-  c,
-  [56, 13],
-  166,
-  c,
-  [17, 16],
-  167,
-  c,
-  [17, 16],
-  168,
-  c,
-  [17, 16],
+  119,
+  120,
+  125,
+  124,
+  126,
   169,
-  c,
-  [17, 16],
+  54,
+  53,
   170,
   c,
-  [17, 16],
+  [57, 13],
   171,
   c,
   [17, 16],
   172,
   c,
-  [153, 17],
+  [17, 16],
   173,
   c,
-  [27, 8],
+  [17, 16],
   174,
   c,
-  [211, 25],
+  [17, 16],
   175,
   c,
-  [26, 25],
-  177,
-  178,
-  177,
-  183,
-  71,
-  184,
-  80,
-  81,
-  188,
+  [17, 16],
+  176,
   c,
-  [34, 25],
+  [17, 16],
+  177,
+  c,
+  [153, 17],
+  178,
+  c,
+  [27, 8],
+  179,
+  c,
+  [212, 25],
+  180,
+  c,
+  [26, 25],
+  182,
+  183,
+  182,
+  188,
+  73,
   189,
+  82,
+  83,
+  194,
+  197,
+  c,
+  [35, 25],
+  198,
   c,
   [23, 8],
   c,
-  [136, 14],
-  190,
-  c,
-  [321, 26],
-  191,
-  193,
-  196,
-  c,
-  [28, 12],
-  195,
-  c,
-  [29, 13],
-  197,
-  c,
-  [78, 21],
-  198,
-  c,
-  [78, 26],
+  [137, 14],
   199,
-  193,
+  c,
+  [323, 26],
   200,
-  201,
-  c,
-  [51, 20],
   202,
-  c,
-  [21, 20],
-  203,
-  c,
-  [21, 20],
-  204,
-  c,
-  [21, 20],
   205,
   c,
-  [20, 19],
+  [28, 12],
+  204,
+  c,
+  [29, 13],
   206,
   c,
-  [20, 19],
+  [78, 21],
   207,
   c,
-  [20, 19],
+  [78, 26],
   208,
-  c,
-  [20, 19],
+  202,
   209,
-  c,
-  [20, 19],
   210,
   c,
-  [20, 19],
+  [51, 20],
+  211,
+  c,
+  [21, 20],
   212,
   c,
-  [19, 18],
+  [21, 20],
   213,
   c,
-  [19, 18],
+  [21, 20],
   214,
   c,
-  [19, 18],
+  [20, 19],
+  215,
   c,
-  [765, 26],
+  [20, 19],
+  216,
   c,
-  [795, 4],
-  118,
+  [20, 19],
+  217,
+  c,
+  [20, 19],
+  218,
+  c,
+  [20, 19],
+  219,
+  c,
+  [20, 19],
   221,
   c,
-  [659, 3],
+  [19, 18],
+  222,
+  c,
+  [19, 18],
   223,
   c,
-  [53, 17],
-  224,
+  [19, 18],
+  c,
+  [767, 26],
+  c,
+  [798, 5],
+  123,
+  230,
+  c,
+  [661, 3],
+  232,
+  c,
+  [54, 17],
+  233,
   c,
   [18, 17],
-  225,
+  234,
   c,
   [17, 16],
-  226,
-  c,
-  [17, 16],
-  227,
-  c,
-  [17, 16],
-  228,
-  c,
-  [122, 25],
-  229,
-  c,
-  [949, 31],
-  230,
-  231,
-  232,
   235,
-  177,
+  c,
+  [17, 16],
+  236,
+  c,
+  [17, 16],
+  237,
+  c,
+  [123, 25],
   238,
+  c,
+  [954, 32],
+  239,
   240,
   241,
-  c,
-  [65, 25],
-  c,
-  [718, 18],
-  248,
-  c,
-  [871, 10],
+  244,
+  182,
+  247,
+  249,
   250,
   c,
-  [211, 3],
-  251,
+  [66, 25],
   c,
-  [246, 29],
-  254,
-  255,
-  258,
-  c,
-  [569, 26],
-  260,
-  c,
-  [26, 25],
+  [721, 18],
   261,
   c,
+  [874, 10],
+  263,
+  c,
+  [212, 3],
+  264,
+  c,
+  [248, 30],
+  267,
+  268,
+  271,
+  c,
+  [572, 26],
+  277,
+  c,
+  [26, 25],
+  278,
+  c,
   [26, 25],
   c,
-  [235, 26],
-  264,
-  269,
-  272
+  [237, 26],
+  281,
+  286,
+  292
 ]),
   mode: u([
   s,
-  [1, 54],
+  [1, 56],
   s,
   [2, 3],
   c,
   [4, 4],
   s,
-  [2, 13],
+  [2, 14],
   c,
-  [17, 14],
+  [18, 14],
   c,
-  [65, 34],
+  [69, 37],
   c,
-  [49, 9],
+  [52, 10],
   c,
-  [78, 16],
+  [83, 16],
   1,
   c,
-  [92, 18],
+  [97, 19],
   s,
-  [2, 18],
+  [2, 19],
   c,
-  [53, 40],
+  [55, 41],
   c,
-  [119, 18],
+  [123, 18],
   c,
-  [28, 14],
+  [29, 15],
   c,
   [10, 8],
   c,
-  [188, 38],
+  [197, 39],
   c,
-  [142, 25],
+  [146, 26],
   s,
-  [1, 69],
+  [1, 70],
   c,
-  [78, 10],
+  [79, 10],
   c,
-  [241, 23],
+  [247, 24],
   c,
-  [110, 10],
+  [234, 8],
   c,
-  [132, 89],
+  [34, 23],
   s,
-  [1, 147],
+  [1, 216],
   c,
-  [495, 9],
+  [255, 10],
   c,
-  [637, 11],
+  [652, 11],
   c,
-  [226, 209],
+  [230, 212],
   c,
-  [716, 50],
+  [727, 51],
   s,
-  [1, 293],
+  [1, 294],
   c,
-  [308, 145],
+  [309, 145],
   c,
-  [1240, 33],
+  [1254, 34],
   c,
-  [802, 68],
+  [810, 70],
   c,
-  [122, 34],
+  [129, 39],
   c,
-  [1294, 23],
+  [1314, 24],
   c,
-  [1296, 26],
+  [1316, 27],
   c,
-  [24, 78],
+  [25, 81],
   c,
-  [248, 21],
+  [261, 22],
   c,
-  [27, 143],
+  [28, 148],
   c,
-  [428, 29],
+  [447, 30],
   c,
-  [29, 50],
+  [30, 52],
   c,
-  [592, 97],
+  [1337, 96],
   c,
-  [605, 32],
+  [150, 28],
   c,
-  [1590, 27],
+  [1620, 35],
   c,
-  [1142, 9],
+  [1169, 10],
   c,
-  [816, 25],
+  [842, 25],
   c,
-  [197, 91]
+  [1206, 10],
+  s,
+  [1, 96]
 ]),
   goto: u([
-  12,
   13,
-  39,
-  56,
-  57,
-  48,
+  14,
+  41,
   58,
   59,
-  30,
-  38,
-  14,
-  15,
-  10,
-  53,
-  54,
-  55,
-  27,
-  21,
-  24,
-  26,
-  s,
-  [41, 5, 1],
-  49,
+  50,
   60,
-  62,
-  13,
-  14,
+  61,
+  32,
+  40,
   15,
+  16,
+  17,
+  29,
+  11,
+  55,
+  56,
+  57,
+  23,
+  26,
+  28,
+  s,
+  [43, 5, 1],
+  51,
+  62,
   64,
-  c,
-  [30, 8],
-  c,
-  [28, 14],
   s,
-  [87, 3],
-  65,
-  s,
-  [87, 16],
+  [14, 4, 1],
   66,
-  s,
-  [87, 13],
-  67,
-  68,
-  69,
-  72,
-  73,
-  76,
-  74,
-  79,
-  73,
   c,
-  [65, 22],
+  [32, 8],
+  c,
+  [29, 14],
   s,
-  [49, 4],
-  84,
+  [93, 3],
+  67,
   s,
-  [49, 7],
-  85,
+  [93, 17],
+  68,
   s,
-  [91, 3],
-  88,
-  s,
-  [91, 11],
-  89,
-  91,
+  [93, 13],
+  69,
+  70,
+  71,
+  74,
+  75,
+  78,
+  76,
+  81,
+  75,
+  c,
+  [66, 22],
   87,
+  88,
+  86,
   s,
-  [91, 21],
+  [55, 4],
+  89,
   s,
-  [51, 13],
+  [55, 8],
   90,
   s,
-  [100, 3],
+  [97, 3],
   93,
   s,
-  [100, 11],
-  89,
-  100,
+  [97, 11],
+  94,
+  97,
   92,
   s,
-  [100, 21],
-  39,
-  48,
-  30,
-  38,
+  [97, 22],
+  s,
+  [57, 14],
+  95,
+  s,
+  [106, 3],
+  98,
+  s,
+  [106, 11],
+  94,
+  106,
+  97,
+  s,
+  [106, 22],
+  41,
+  50,
   c,
-  [119, 10],
-  s,
-  [53, 14],
-  s,
-  [96, 4, 1],
-  s,
-  [55, 6],
-  100,
-  101,
-  s,
-  [55, 12],
-  s,
-  [102, 4, 1],
+  [130, 3],
   c,
-  [183, 22],
+  [126, 9],
   s,
-  [60, 24],
-  107,
-  108,
-  109,
+  [59, 15],
+  s,
+  [101, 4, 1],
+  s,
+  [61, 6],
+  105,
+  106,
+  s,
+  [61, 13],
+  s,
+  [107, 4, 1],
   c,
-  [329, 10],
-  110,
-  c,
-  [330, 16],
+  [192, 22],
+  s,
+  [66, 25],
+  112,
   113,
-  134,
-  130,
-  136,
-  135,
-  143,
-  117,
-  137,
-  140,
-  150,
-  148,
-  149,
-  44,
-  45,
-  s,
-  [122, 8, 1],
-  131,
-  132,
-  133,
-  138,
+  114,
+  c,
+  [342, 10],
+  115,
+  c,
+  [343, 17],
+  118,
   139,
-  141,
-  142,
-  s,
-  [144, 4, 1],
-  s,
-  [151, 7, 1],
-  s,
-  [67, 8],
-  158,
-  159,
-  s,
-  [67, 19],
-  160,
-  s,
-  [71, 10],
+  135,
   161,
-  162,
-  163,
+  122,
+  141,
+  140,
+  148,
+  142,
+  145,
+  155,
+  153,
+  154,
+  46,
+  47,
   s,
-  [71, 19],
+  [127, 8, 1],
+  136,
+  137,
+  138,
+  143,
+  144,
+  146,
+  147,
+  s,
+  [149, 4, 1],
+  s,
+  [156, 5, 1],
+  162,
+  s,
+  [73, 8],
+  163,
+  164,
+  s,
+  [73, 20],
+  165,
+  s,
+  [77, 4],
+  166,
+  s,
+  [77, 6],
+  167,
+  168,
+  s,
+  [77, 20],
   c,
-  [127, 8],
+  [182, 9],
   c,
-  [123, 13],
+  [125, 12],
   c,
   [21, 126],
-  12,
+  13,
   c,
-  [326, 22],
+  [330, 22],
   c,
   [22, 44],
-  176,
-  72,
-  73,
-  s,
-  [14, 4],
-  179,
-  s,
-  [14, 3],
-  180,
-  72,
-  73,
   181,
-  182,
-  79,
-  73,
-  185,
+  74,
+  75,
   s,
-  [23, 3],
-  187,
+  [15, 4],
+  184,
+  s,
+  [15, 4],
+  185,
+  74,
+  75,
   186,
-  c,
-  [68, 30],
-  c,
-  [89, 35],
-  c,
-  [404, 5],
+  187,
+  81,
+  75,
+  190,
+  s,
+  [24, 3],
   192,
+  191,
+  193,
+  195,
+  196,
   c,
-  [404, 5],
+  [72, 31],
   c,
-  [402, 26],
+  [93, 34],
+  c,
+  [410, 3],
+  201,
+  c,
+  [410, 8],
+  c,
+  [408, 25],
   c,
   [59, 7],
-  194,
+  203,
   c,
   [103, 95],
   c,
-  [716, 40],
+  [727, 41],
   c,
-  [482, 146],
+  [487, 146],
   c,
   [21, 63],
-  187,
-  211,
+  192,
+  220,
   c,
   [65, 63],
   c,
-  [1184, 9],
-  215,
+  [1203, 9],
+  224,
   c,
-  [375, 14],
-  217,
-  13,
-  216,
+  [376, 14],
+  226,
   14,
-  15,
-  219,
-  218,
-  220,
-  92,
+  225,
   c,
-  [384, 5],
-  222,
+  [910, 3],
+  228,
+  227,
+  229,
+  98,
   c,
-  [891, 33],
+  [386, 3],
+  231,
   c,
-  [242, 105],
+  [899, 35],
+  c,
+  [243, 105],
   s,
-  [87, 32],
-  67,
-  68,
+  [93, 33],
+  69,
+  70,
   c,
-  [1395, 23],
+  [1416, 23],
   c,
-  [1449, 26],
-  233,
-  234,
-  s,
-  [17, 4],
-  179,
-  s,
-  [17, 3],
-  236,
-  72,
-  73,
-  239,
-  237,
-  179,
-  c,
-  [64, 22],
+  [1472, 27],
   242,
-  s,
-  [52, 13],
-  90,
-  187,
   243,
+  s,
+  [18, 4],
+  184,
+  s,
+  [18, 4],
   245,
-  244,
-  s,
-  [54, 14],
-  c,
-  [1294, 4],
-  187,
+  74,
+  75,
+  248,
   246,
-  s,
-  [56, 6],
-  100,
-  101,
-  s,
-  [56, 12],
+  184,
   c,
-  [1296, 4],
-  s,
-  [57, 6],
-  100,
-  101,
-  s,
-  [57, 12],
-  c,
-  [24, 4],
-  s,
-  [58, 6],
-  100,
-  101,
-  s,
-  [58, 12],
-  c,
-  [24, 4],
-  s,
-  [59, 6],
-  100,
-  101,
-  s,
-  [59, 12],
-  c,
-  [24, 4],
-  s,
-  [61, 24],
-  c,
-  [1346, 3],
-  s,
-  [62, 24],
-  c,
-  [27, 3],
-  s,
-  [63, 24],
-  c,
-  [27, 3],
-  s,
-  [64, 24],
-  c,
-  [27, 3],
-  s,
-  [65, 24],
-  c,
-  [27, 3],
-  s,
-  [66, 24],
-  c,
-  [27, 3],
-  s,
-  [68, 8],
-  158,
-  159,
-  s,
-  [68, 19],
-  s,
-  [69, 8],
-  158,
-  159,
-  s,
-  [69, 19],
-  s,
-  [70, 8],
-  158,
-  159,
-  s,
-  [70, 19],
-  c,
-  [1292, 9],
-  247,
-  c,
-  [408, 14],
-  249,
-  c,
-  [1565, 39],
-  c,
-  [470, 22],
-  252,
-  s,
-  [72, 10],
-  c,
-  [1558, 3],
-  s,
-  [72, 19],
-  s,
-  [73, 10],
-  c,
-  [32, 3],
-  s,
-  [73, 19],
-  62,
-  13,
+  [66, 22],
+  251,
   253,
-  14,
-  15,
+  252,
+  254,
+  255,
   s,
-  [25, 5],
-  233,
-  25,
-  234,
-  25,
+  [58, 14],
+  95,
+  192,
   256,
-  35,
-  39,
+  258,
   257,
-  c,
-  [104, 21],
   s,
-  [40, 7],
+  [60, 15],
+  c,
+  [1314, 4],
+  192,
   259,
+  s,
+  [62, 6],
+  105,
+  106,
+  s,
+  [62, 13],
   c,
-  [1467, 44],
+  [1316, 4],
+  s,
+  [63, 6],
+  105,
+  106,
+  s,
+  [63, 13],
   c,
-  [713, 9],
+  [25, 4],
+  s,
+  [64, 6],
+  105,
+  106,
+  s,
+  [64, 13],
+  c,
+  [25, 4],
+  s,
+  [65, 6],
+  105,
+  106,
+  s,
+  [65, 13],
+  c,
+  [25, 4],
+  s,
+  [67, 25],
+  c,
+  [1369, 3],
+  s,
+  [68, 25],
+  c,
+  [28, 3],
+  s,
+  [69, 25],
+  c,
+  [28, 3],
+  s,
+  [70, 25],
+  c,
+  [28, 3],
+  s,
+  [71, 25],
+  c,
+  [28, 3],
+  s,
+  [72, 25],
+  c,
+  [28, 3],
+  s,
+  [74, 8],
+  163,
+  164,
+  s,
+  [74, 20],
+  s,
+  [75, 8],
+  163,
+  164,
+  s,
+  [75, 20],
+  s,
+  [76, 8],
+  163,
+  164,
+  s,
+  [76, 20],
+  c,
+  [1320, 9],
+  260,
+  c,
+  [427, 14],
   262,
   c,
-  [24, 14],
-  263,
+  [1595, 39],
+  c,
+  [489, 22],
   265,
-  266,
-  187,
-  267,
-  268,
-  15,
-  270,
-  271,
-  179,
   s,
-  [273, 5, 1]
+  [78, 4],
+  166,
+  s,
+  [78, 6],
+  167,
+  168,
+  s,
+  [78, 20],
+  s,
+  [79, 4],
+  166,
+  s,
+  [79, 6],
+  167,
+  168,
+  s,
+  [79, 20],
+  64,
+  14,
+  266,
+  c,
+  [615, 3],
+  s,
+  [26, 5],
+  242,
+  26,
+  243,
+  26,
+  26,
+  269,
+  36,
+  41,
+  270,
+  c,
+  [1397, 22],
+  s,
+  [41, 6],
+  272,
+  41,
+  s,
+  [273, 4, 1],
+  c,
+  [1504, 44],
+  c,
+  [743, 9],
+  279,
+  c,
+  [24, 14],
+  280,
+  282,
+  283,
+  192,
+  284,
+  285,
+  16,
+  s,
+  [287, 5, 1],
+  184,
+  s,
+  [293, 12, 1]
 ])
 }),
 defaultActions: bda({
@@ -2990,193 +3096,202 @@ defaultActions: bda({
   3,
   4,
   s,
-  [6, 5, 1],
-  12,
-  17,
-  23,
-  24,
+  [6, 6, 1],
+  13,
+  19,
+  25,
+  26,
   s,
-  [26, 4, 1],
-  31,
+  [28, 4, 1],
+  33,
   s,
-  [33, 5, 1],
+  [35, 5, 1],
   s,
-  [41, 5, 1],
+  [43, 5, 1],
   s,
-  [48, 5, 1],
-  60,
-  61,
+  [50, 5, 1],
+  62,
   63,
-  64,
-  67,
-  68,
+  65,
+  66,
   69,
+  70,
   71,
-  72,
   73,
-  78,
+  74,
+  75,
   80,
-  81,
+  82,
   83,
-  86,
+  85,
   91,
-  94,
-  110,
-  113,
+  96,
+  99,
   115,
+  118,
+  120,
   s,
-  [118, 40, 1],
-  160,
-  164,
+  [123, 40, 1],
+  165,
+  169,
   s,
-  [166, 7, 1],
+  [171, 7, 1],
   s,
-  [174, 5, 1],
-  180,
-  184,
+  [179, 5, 1],
+  185,
+  189,
+  195,
   s,
-  [191, 4, 1],
-  196,
-  199,
-  200,
-  211,
-  215,
-  216,
-  218,
-  222,
+  [200, 4, 1],
+  205,
+  208,
+  209,
+  220,
+  224,
+  225,
+  227,
+  231,
   s,
-  [225, 4, 1],
-  230,
+  [234, 4, 1],
+  239,
   s,
-  [232, 5, 1],
-  238,
-  241,
-  243,
-  244,
-  246,
+  [241, 5, 1],
   247,
-  249,
   250,
-  251,
-  253,
-  254,
   256,
   257,
+  259,
   260,
-  261,
   262,
-  265,
+  263,
+  264,
   266,
   267,
   269,
-  272,
+  270,
   275,
-  277
+  277,
+  278,
+  279,
+  282,
+  283,
+  284,
+  286,
+  292,
+  293,
+  300,
+  302,
+  303,
+  304
 ]),
   goto: u([
   2,
   4,
-  9,
-  10,
-  11,
-  45,
-  46,
+  s,
+  [9, 4, 1],
+  51,
+  52,
+  132,
+  96,
+  113,
+  114,
+  s,
+  [121, 4, 1],
   126,
-  90,
-  107,
-  108,
   s,
-  [115, 4, 1],
-  120,
-  s,
-  [136, 10, 1],
-  147,
-  148,
-  74,
-  78,
-  79,
+  [142, 10, 1],
+  153,
+  154,
+  80,
+  84,
+  85,
   1,
   3,
   5,
-  127,
-  88,
-  89,
-  12,
-  21,
-  23,
-  24,
-  30,
-  32,
-  33,
-  43,
-  103,
-  102,
-  101,
-  121,
-  128,
-  131,
-  112,
-  113,
-  114,
-  93,
-  s,
-  [149, 36, 1],
-  146,
-  s,
-  [80, 7, 1],
-  6,
-  47,
-  48,
-  13,
-  22,
-  19,
-  15,
-  31,
-  105,
+  133,
   94,
   95,
-  96,
-  98,
-  110,
-  111,
-  119,
-  122,
-  123,
-  129,
-  92,
-  75,
-  76,
-  77,
-  7,
-  16,
-  26,
-  28,
-  29,
-  20,
-  18,
-  37,
-  44,
-  104,
-  97,
+  13,
+  22,
+  24,
+  25,
+  31,
+  33,
+  34,
+  49,
   109,
-  124,
-  130,
-  132,
-  133,
-  8,
+  108,
+  107,
+  127,
+  134,
+  137,
+  118,
+  119,
+  120,
+  99,
+  s,
+  [155, 36, 1],
+  152,
+  s,
+  [86, 7, 1],
+  6,
+  53,
+  54,
+  14,
+  23,
+  20,
+  16,
+  32,
+  47,
+  111,
+  100,
+  101,
+  102,
+  104,
+  116,
+  117,
+  125,
+  128,
+  129,
+  135,
+  98,
+  81,
+  82,
+  83,
+  7,
+  17,
   27,
-  36,
+  29,
+  30,
+  21,
+  19,
   38,
   50,
-  99,
-  125,
-  106,
-  34,
+  110,
+  103,
+  115,
+  130,
+  136,
+  138,
+  139,
+  8,
+  28,
+  37,
   39,
+  48,
+  56,
+  105,
+  131,
+  112,
+  35,
+  40,
+  43,
   42,
-  41,
-  134,
-  135
+  44,
+  140,
+  45,
+  46,
+  141
 ])
 }),
 parseError: function parseError(str, hash, ExceptionClass) {
@@ -4907,7 +5022,7 @@ var lexer = {
 var YYSTATE = YY_START;
 switch($avoiding_name_collisions) {
 case 0 : 
-/*! Conditions:: INITIAL TAG LINE VALUE TEXT BLOCK EXPR REGEXP */ 
+/*! Conditions:: INITIAL TAG LINE VALUE TEXT BLOCK EXPR REGEXP IMPORT */ 
 /*! Rule::       $ */ 
  
                                       const tokens = ["EOF"];
@@ -4970,6 +5085,11 @@ case 6 :
 break;
 case 8 : 
 /*! Conditions:: TAG */ 
+/*! Rule::       import */ 
+ this.begin("IMPORT"); return 33; 
+break;
+case 9 : 
+/*! Conditions:: TAG */ 
 /*! Rule::       {Selector} */ 
  
                                      this.begin("LINE");
@@ -4979,42 +5099,57 @@ case 8 :
                                      return 27;
                                     
 break;
-case 9 : 
+case 10 : 
 /*! Conditions:: LINE */ 
 /*! Rule::       \n+ */ 
  this.begin("INITIAL"); return 26; 
 break;
-case 10 : 
+case 11 : 
 /*! Conditions:: LINE */ 
 /*! Rule::       {Space}+ */ 
  /* skip whitespace, separate tokens */ 
 break;
-case 11 : 
+case 12 : 
 /*! Conditions:: LINE */ 
 /*! Rule::       \. */ 
  this.begin("BLOCK"); return 5; 
 break;
-case 13 : 
+case 14 : 
 /*! Conditions:: LINE */ 
 /*! Rule::       \{ */ 
  this.begin("EXPR"); return 7; 
 break;
-case 16 : 
+case 17 : 
 /*! Conditions:: LINE */ 
 /*! Rule::       {Quote} */ 
  this.begin("VALUE"); return 30; 
 break;
 case 19 : 
+/*! Conditions:: IMPORT */ 
+/*! Rule::       \n+ */ 
+ this.begin("INITIAL"); return 26; 
+break;
+case 20 : 
+/*! Conditions:: IMPORT */ 
+/*! Rule::       {Space}+ */ 
+ /* Skip spaces */ 
+break;
+case 27 : 
+/*! Conditions:: IMPORT */ 
+/*! Rule::       {Quote} */ 
+ this.begin("VALUE"); return 30; 
+break;
+case 30 : 
 /*! Conditions:: VALUE */ 
 /*! Rule::       {Quote} */ 
  this.popState(); return 30; 
 break;
-case 20 : 
+case 31 : 
 /*! Conditions:: TEXT */ 
 /*! Rule::       \n+ */ 
  this.begin("INITIAL"); return 26; 
 break;
-case 23 : 
+case 34 : 
 /*! Conditions:: BLOCK */ 
 /*! Rule::       .* */ 
  
@@ -5027,22 +5162,22 @@ case 23 :
                                      }
                                     
 break;
-case 24 : 
+case 35 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \n+ */ 
  this.begin("INITIAL"); return 26; 
 break;
-case 25 : 
+case 36 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \s+ */ 
  /* skip whitespaces */ 
 break;
-case 46 : 
+case 57 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \{ */ 
  brackets.push("{"); return 7; 
 break;
-case 47 : 
+case 58 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \} */ 
  
@@ -5054,10 +5189,10 @@ case 47 :
                                      return 8;
                                     
 break;
-case 95 : 
+case 106 : 
 /*! Conditions:: REGEXP */ 
 /*! Rule::       {RegularExpressionLiteral} */ 
- this.popState(); return 61; 
+ this.popState(); return 64; 
 break;
 default:
   return this.simpleCaseActionClusters[$avoiding_name_collisions];
@@ -5070,226 +5205,247 @@ default:
    7 : 32,
   /*! Conditions:: LINE */ 
   /*! Rule::       = */ 
-   12 : 6,
+   13 : 6,
   /*! Conditions:: LINE */ 
   /*! Rule::       \} */ 
-   14 : 8,
+   15 : 8,
   /*! Conditions:: LINE */ 
   /*! Rule::       {Attribute} */ 
-   15 : 28,
+   16 : 28,
   /*! Conditions:: LINE */ 
   /*! Rule::       {Text} */ 
-   17 : 29,
+   18 : 29,
+  /*! Conditions:: IMPORT */ 
+  /*! Rule::       from */ 
+   21 : 35,
+  /*! Conditions:: IMPORT */ 
+  /*! Rule::       \{ */ 
+   22 : 7,
+  /*! Conditions:: IMPORT */ 
+  /*! Rule::       , */ 
+   23 : 3,
+  /*! Conditions:: IMPORT */ 
+  /*! Rule::       \} */ 
+   24 : 8,
+  /*! Conditions:: IMPORT */ 
+  /*! Rule::       \* */ 
+   25 : 9,
+  /*! Conditions:: IMPORT */ 
+  /*! Rule::       as */ 
+   26 : 36,
+  /*! Conditions:: IMPORT */ 
+  /*! Rule::       {Identifier} */ 
+   28 : 34,
   /*! Conditions:: VALUE */ 
   /*! Rule::       {ValueText} */ 
-   18 : 29,
+   29 : 29,
   /*! Conditions:: TEXT */ 
   /*! Rule::       {Text} */ 
-   21 : 29,
+   32 : 29,
   /*! Conditions:: BLOCK */ 
   /*! Rule::       \n+ */ 
-   22 : 26,
+   33 : 26,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {StringLiteral} */ 
-   26 : 60,
+   37 : 63,
   /*! Conditions:: EXPR */ 
   /*! Rule::       import */ 
-   27 : 87,
+   38 : 33,
   /*! Conditions:: EXPR */ 
   /*! Rule::       from */ 
-   28 : 'FROM',
+   39 : 35,
   /*! Conditions:: EXPR */ 
   /*! Rule::       if */ 
-   29 : 31,
+   40 : 31,
   /*! Conditions:: EXPR */ 
   /*! Rule::       else */ 
-   30 : 32,
+   41 : 32,
   /*! Conditions:: EXPR */ 
   /*! Rule::       endif */ 
-   31 : 'ENDIF',
+   42 : 'ENDIF',
   /*! Conditions:: EXPR */ 
   /*! Rule::       for */ 
-   32 : 72,
+   43 : 75,
   /*! Conditions:: EXPR */ 
   /*! Rule::       endfor */ 
-   33 : 'ENDFOR',
+   44 : 'ENDFOR',
   /*! Conditions:: EXPR */ 
   /*! Rule::       of */ 
-   34 : 'OF',
+   45 : 'OF',
   /*! Conditions:: EXPR */ 
   /*! Rule::       in */ 
-   35 : 44,
+   46 : 48,
   /*! Conditions:: EXPR */ 
   /*! Rule::       instanceof */ 
-   36 : 43,
+   47 : 47,
   /*! Conditions:: EXPR */ 
   /*! Rule::       true */ 
-   37 : 57,
+   48 : 60,
   /*! Conditions:: EXPR */ 
   /*! Rule::       false */ 
-   38 : 58,
+   49 : 61,
   /*! Conditions:: EXPR */ 
   /*! Rule::       null */ 
-   39 : 56,
+   50 : 59,
   /*! Conditions:: EXPR */ 
   /*! Rule::       this */ 
-   40 : 54,
+   51 : 57,
   /*! Conditions:: EXPR */ 
   /*! Rule::       unsafe */ 
-   41 : 'UNSAFE',
+   52 : 'UNSAFE',
   /*! Conditions:: EXPR */ 
   /*! Rule::       {Identifier} */ 
-   42 : 51,
+   53 : 34,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {DecimalLiteral} */ 
-   43 : 59,
+   54 : 62,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {HexIntegerLiteral} */ 
-   44 : 59,
+   55 : 62,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {OctalIntegerLiteral} */ 
-   45 : 59,
+   56 : 62,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \( */ 
-   48 : 20,
+   59 : 20,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \) */ 
-   49 : 21,
+   60 : 21,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \[ */ 
-   50 : 22,
+   61 : 22,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \] */ 
-   51 : 23,
+   62 : 23,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \. */ 
-   52 : 5,
+   63 : 5,
   /*! Conditions:: EXPR */ 
   /*! Rule::       ; */ 
-   53 : ';',
+   64 : ';',
   /*! Conditions:: EXPR */ 
   /*! Rule::       , */ 
-   54 : 3,
+   65 : 3,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \? */ 
-   55 : 9,
+   66 : 10,
   /*! Conditions:: EXPR */ 
   /*! Rule::       : */ 
-   56 : 10,
+   67 : 11,
   /*! Conditions:: EXPR */ 
   /*! Rule::       === */ 
-   57 : 39,
+   68 : 43,
   /*! Conditions:: EXPR */ 
   /*! Rule::       == */ 
-   58 : 37,
+   69 : 41,
   /*! Conditions:: EXPR */ 
   /*! Rule::       = */ 
-   59 : 6,
+   70 : 6,
   /*! Conditions:: EXPR */ 
   /*! Rule::       !== */ 
-   60 : 40,
+   71 : 44,
   /*! Conditions:: EXPR */ 
   /*! Rule::       != */ 
-   61 : 38,
+   72 : 42,
   /*! Conditions:: EXPR */ 
   /*! Rule::       ! */ 
-   62 : 19,
+   73 : 19,
   /*! Conditions:: EXPR */ 
   /*! Rule::       <<= */ 
-   63 : '<<=',
+   74 : '<<=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       << */ 
-   64 : 45,
+   75 : 49,
   /*! Conditions:: EXPR */ 
   /*! Rule::       <= */ 
-   65 : 41,
+   76 : 45,
   /*! Conditions:: EXPR */ 
   /*! Rule::       < */ 
-   66 : 11,
+   77 : 12,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>>= */ 
-   67 : '>>>=',
+   78 : '>>>=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>> */ 
-   68 : 47,
+   79 : 51,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>= */ 
-   69 : '>>=',
+   80 : '>>=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       >> */ 
-   70 : 46,
+   81 : 50,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >= */ 
-   71 : 42,
+   82 : 46,
   /*! Conditions:: EXPR */ 
   /*! Rule::       > */ 
-   72 : 12,
+   83 : 13,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+= */ 
-   73 : '+=',
+   84 : '+=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+\+ */ 
-   74 : 49,
+   85 : 53,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+ */ 
-   75 : 13,
+   86 : 14,
   /*! Conditions:: EXPR */ 
   /*! Rule::       -= */ 
-   76 : '-=',
+   87 : '-=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       -- */ 
-   77 : 50,
+   88 : 54,
   /*! Conditions:: EXPR */ 
   /*! Rule::       - */ 
-   78 : 14,
+   89 : 15,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \*= */ 
-   79 : '*=',
+   90 : '*=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \* */ 
-   80 : 15,
+   91 : 9,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \/= */ 
-   81 : 62,
+   92 : 65,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \/ */ 
-   82 : 16,
+   93 : 16,
   /*! Conditions:: EXPR */ 
   /*! Rule::       %= */ 
-   83 : '%=',
+   94 : '%=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       % */ 
-   84 : 17,
+   95 : 17,
   /*! Conditions:: EXPR */ 
   /*! Rule::       && */ 
-   85 : 36,
+   96 : 40,
   /*! Conditions:: EXPR */ 
   /*! Rule::       &= */ 
-   86 : '&=',
+   97 : '&=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       & */ 
-   87 : '&',
+   98 : '&',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \|\| */ 
-   88 : 35,
+   99 : 39,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \|= */ 
-   89 : '|=',
+   100 : '|=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \| */ 
-   90 : 4,
+   101 : 4,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \^= */ 
-   91 : '^=',
+   102 : '^=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \^ */ 
-   92 : '^',
+   103 : '^',
   /*! Conditions:: EXPR */ 
   /*! Rule::       ~ */ 
-   93 : 18,
+   104 : 18,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \.\.\. */ 
-   94 : '...'
+   105 : '...'
 },
     rules: [
 /^(?:$)/,
@@ -5300,6 +5456,7 @@ default:
 /^(?:\|)/,
 /^(?:if)/,
 /^(?:else)/,
+/^(?:import)/,
 /^(?:([\w#.][\w\-.]*))/,
 /^(?:\n+)/,
 /^(?:([\t   -​\u2028\u2029　])+)/,
@@ -5310,6 +5467,16 @@ default:
 /^(?:([\w\-]+))/,
 /^(?:(["]))/,
 /^(?:([^\n{]+))/,
+/^(?:\n+)/,
+/^(?:([\t   -​\u2028\u2029　])+)/,
+/^(?:from)/,
+/^(?:\{)/,
+/^(?:,)/,
+/^(?:\})/,
+/^(?:\*)/,
+/^(?:as)/,
+/^(?:(["]))/,
+/^(?:((?:(?:[^\u0000-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-ͯ͵͸͹;-΅·΋΍΢϶҂-҉Ԩ-԰՗՘՚-ՠֈ-׏׫-ׯ׳-؟ً-٭ٰ۔ۖ-ۤۧ-ۭ۰-۹۽۾܀-܏ܑܰ-݌ަ-ް޲-߉߫-߳߶-߹߻-߿ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࠿࡙-࢟ࢡࢭ-ःऺ-़ा-ॏ॑-ॗॢ-॰ॸঀ-঄঍঎঑঒঩঱঳-঵঺-়া-্৏-৛৞ৢ-৯৲-਄਋-਎਑਒਩਱਴਷਺-੘੝੟-ੱੵ-઄઎઒઩઱઴઺-઼ા-૏૑-૟ૢ-଄଍଎଑଒଩଱଴଺-଼ା-୛୞ୢ-୰୲-ஂ஄஋-஍஑஖-஘஛஝஠-஢஥-஧஫-஭஺-௏௑-ఄ఍఑఩ఴ఺-఼ా-౗ౚ-౟ౢ-಄಍಑಩಴಺-಼ಾ-ೝ೟ೢ-೰ೳ-ഄ഍഑഻഼ാ-്൏-ൟൢ-൹඀-඄඗-඙඲඼඾඿෇-฀ัิ-฿็-຀຃຅ຆຉ຋ຌຎ-ຓຘຠ຤຦ຨຩຬັິ-ຼ຾຿໅໇-໛໠-໿༁-༿཈཭-྇ྍ-࿿ါ-ှ၀-၏ၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏ-႟჆჈-჌჎჏჻቉቎቏቗቙቞቟኉኎኏኱኶኷኿዁዆዇዗጑጖጗፛-፿᎐-᎟Ᏽ-᐀᙭᙮ ᚛-᚟᛫-᛭ᛱ-᛿ᜍᜒ-ᜟᜲ-᜿ᝒ-᝟᝭᝱-᝿឴-៖៘-៛៝-᠟ᡸ-᡿ᢩ᢫-᢯᣶-᣿ᤝ-᥏᥮᥯᥵-᥿᦬-ᧀᧈ-᧿ᨗ-᨟ᩕ-᪦᪨-ᬄ᬴-᭄ᭌ-ᮂᮡ-ᮭ᮰-᮹᯦-᯿ᰤ-᱌᱐-᱙᱾-᳨᳭ᳲ-᳴᳷-᳿᷀-᷿἖἗἞἟὆὇὎὏὘὚὜὞὾὿᾵᾽᾿-῁῅῍-῏῔῕῜-῟῭-῱῵´-⁰⁲-⁾₀-₏₝-℁℃-℆℈℉℔№-℘℞-℣℥℧℩℮℺℻⅀-⅄⅊-⅍⅏-⅟↉-⯿Ⱟⱟ⳥-⳪⳯-⳱⳴-⳿⴦⴨-⴬⴮⴯⵨-⵮⵰-⵿⶗-⶟⶧⶯⶷⶿⷇⷏⷗⷟-⸮⸰-〄〈-〠〪-〰〶〷〽-぀゗-゜゠・㄀-㄄ㄮ-㄰㆏-㆟ㆻ-㇯㈀-㏿䶶-䷿鿍-鿿꒍-꓏꓾꓿꘍-꘏꘠-꘩꘬-꘿꙯-꙾Ꚙ-ꚟ꛰-꜖꜠꜡꞉꞊ꞏꞔ-ꞟꞫ-ꟷꠂ꠆ꠋꠣ-꠿꡴-ꢁꢴ-꣱꣸-꣺꣼-꤉ꤦ-꤯ꥇ-꥟꥽-ꦃ꦳-꧎꧐-꧿ꨩ-꨿ꩃꩌ-꩟꩷-꩹ꩻ-ꩿꪰꪲ-ꪴꪷꪸꪾ꪿꫁꫃-꫚꫞꫟ꫫ-꫱ꫵ-꬀꬇꬈꬏꬐꬗-꬟꬧꬯-ꮿꯣ-꯿힤-힯퟇-퟊퟼-﩮﩯﫚-﫿﬇-﬒﬘-﬜ﬞ﬩﬷﬽﬿﭂﭅﮲-﯒﴾-﵏﶐﶑﷈-﷯﷼-﹯﹵﻽-＠［-｀｛-･﾿-￁￈￉￐￑￘￙￝-\uffff])|[$A-Z_a-z]|(\\[u](?:[\dA-Fa-f]){4}))(?:(?:(?:[^\u0000-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-ͯ͵͸͹;-΅·΋΍΢϶҂-҉Ԩ-԰՗՘՚-ՠֈ-׏׫-ׯ׳-؟ً-٭ٰ۔ۖ-ۤۧ-ۭ۰-۹۽۾܀-܏ܑܰ-݌ަ-ް޲-߉߫-߳߶-߹߻-߿ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࠿࡙-࢟ࢡࢭ-ःऺ-़ा-ॏ॑-ॗॢ-॰ॸঀ-঄঍঎঑঒঩঱঳-঵঺-়া-্৏-৛৞ৢ-৯৲-਄਋-਎਑਒਩਱਴਷਺-੘੝੟-ੱੵ-઄઎઒઩઱઴઺-઼ા-૏૑-૟ૢ-଄଍଎଑଒଩଱଴଺-଼ା-୛୞ୢ-୰୲-ஂ஄஋-஍஑஖-஘஛஝஠-஢஥-஧஫-஭஺-௏௑-ఄ఍఑఩ఴ఺-఼ా-౗ౚ-౟ౢ-಄಍಑಩಴಺-಼ಾ-ೝ೟ೢ-೰ೳ-ഄ഍഑഻഼ാ-്൏-ൟൢ-൹඀-඄඗-඙඲඼඾඿෇-฀ัิ-฿็-຀຃຅ຆຉ຋ຌຎ-ຓຘຠ຤຦ຨຩຬັິ-ຼ຾຿໅໇-໛໠-໿༁-༿཈཭-྇ྍ-࿿ါ-ှ၀-၏ၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏ-႟჆჈-჌჎჏჻቉቎቏቗቙቞቟኉኎኏኱኶኷኿዁዆዇዗጑጖጗፛-፿᎐-᎟Ᏽ-᐀᙭᙮ ᚛-᚟᛫-᛭ᛱ-᛿ᜍᜒ-ᜟᜲ-᜿ᝒ-᝟᝭᝱-᝿឴-៖៘-៛៝-᠟ᡸ-᡿ᢩ᢫-᢯᣶-᣿ᤝ-᥏᥮᥯᥵-᥿᦬-ᧀᧈ-᧿ᨗ-᨟ᩕ-᪦᪨-ᬄ᬴-᭄ᭌ-ᮂᮡ-ᮭ᮰-᮹᯦-᯿ᰤ-᱌᱐-᱙᱾-᳨᳭ᳲ-᳴᳷-᳿᷀-᷿἖἗἞἟὆὇὎὏὘὚὜὞὾὿᾵᾽᾿-῁῅῍-῏῔῕῜-῟῭-῱῵´-⁰⁲-⁾₀-₏₝-℁℃-℆℈℉℔№-℘℞-℣℥℧℩℮℺℻⅀-⅄⅊-⅍⅏-⅟↉-⯿Ⱟⱟ⳥-⳪⳯-⳱⳴-⳿⴦⴨-⴬⴮⴯⵨-⵮⵰-⵿⶗-⶟⶧⶯⶷⶿⷇⷏⷗⷟-⸮⸰-〄〈-〠〪-〰〶〷〽-぀゗-゜゠・㄀-㄄ㄮ-㄰㆏-㆟ㆻ-㇯㈀-㏿䶶-䷿鿍-鿿꒍-꓏꓾꓿꘍-꘏꘠-꘩꘬-꘿꙯-꙾Ꚙ-ꚟ꛰-꜖꜠꜡꞉꞊ꞏꞔ-ꞟꞫ-ꟷꠂ꠆ꠋꠣ-꠿꡴-ꢁꢴ-꣱꣸-꣺꣼-꤉ꤦ-꤯ꥇ-꥟꥽-ꦃ꦳-꧎꧐-꧿ꨩ-꨿ꩃꩌ-꩟꩷-꩹ꩻ-ꩿꪰꪲ-ꪴꪷꪸꪾ꪿꫁꫃-꫚꫞꫟ꫫ-꫱ꫵ-꬀꬇꬈꬏꬐꬗-꬟꬧꬯-ꮿꯣ-꯿힤-힯퟇-퟊퟼-﩮﩯﫚-﫿﬇-﬒﬘-﬜ﬞ﬩﬷﬽﬿﭂﭅﮲-﯒﴾-﵏﶐﶑﷈-﷯﷼-﹯﹵﻽-＠［-｀｛-･﾿-￁￈￉￐￑￘￙￝-\uffff])|[$A-Z_a-z]|(\\[u](?:[\dA-Fa-f]){4}))|(?:[^\u0000-\/:-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵͸͹;-΅·΋΍΢϶҂҈҉Ԩ-԰՗՘՚-ՠֈ-֐־׀׃׆׈-׏׫-ׯ׳-؏؛-؟٪-٭۔۝۞۩۽۾܀-܏݋݌޲-޿߶-߹߻-߿࠮-࠿࡜-࢟ࢡࢭ-ࣣࣿ।॥॰ॸঀ঄঍঎঑঒঩঱঳-঵঺঻৅৆৉৊৏-৖৘-৛৞৤৥৲-਀਄਋-਎਑਒਩਱਴਷਺਻਽੃-੆੉੊੎-੐੒-੘੝੟-੥੶-઀઄઎઒઩઱઴઺઻૆૊૎૏૑-૟૤૥૰-଀଄଍଎଑଒଩଱଴଺଻୅୆୉୊୎-୕୘-୛୞୤୥୰୲-஁஄஋-஍஑஖-஘஛஝஠-஢஥-஧஫-஭஺-஽௃-௅௉௎௏௑-௖௘-௥௰-ఀఄ఍఑఩ఴ఺-఼౅౉౎-౔౗ౚ-౟౤౥౰-ಁ಄಍಑಩಴಺಻೅೉೎-೔೗-ೝ೟೤೥೰ೳ-ഁഄ഍഑഻഼൅൉൏-ൖ൘-ൟ൤൥൰-൹඀ඁ඄඗-඙඲඼඾඿෇-෉෋-෎෕෗෠-෱෴-฀฻-฿๏๚-຀຃຅ຆຉ຋ຌຎ-ຓຘຠ຤຦ຨຩຬ຺຾຿໅໇໎໏໚໛໠-໿༁-༗༚-༟༪-༴༶༸༺-༽཈཭-཰྅྘྽-࿅࿇-࿿၊-၏႞႟჆჈-჌჎჏჻቉቎቏቗቙቞቟኉኎኏኱኶኷኿዁዆዇዗጑጖጗፛፜፠-፿᎐-᎟Ᏽ-᐀᙭᙮ ᚛-᚟᛫-᛭ᛱ-᛿ᜍ᜕-ᜟ᜵-᜿᝔-᝟᝭᝱᝴-᝿។-៖៘-៛៞៟៪-᠊᠎᠏᠚-᠟ᡸ-᡿᢫-᢯᣶-᣿ᤝ-᤟᤬-᤯᤼-᥅᥮᥯᥵-᥿᦬-᦯᧊-᧏᧚-᧿᨜-᨟᩟᩽᩾᪊-᪏᪚-᪦᪨-᫿ᭌ-᭏᭚-᭪᭴-᭿᯴-᯿᰸-᰿᱊-᱌᱾-᳏᳓᳷-᳿ᷧ-᷻἖἗἞἟὆὇὎὏὘὚὜὞὾὿᾵᾽᾿-῁῅῍-῏῔῕῜-῟῭-῱῵´-​‎-‾⁁-⁓⁕-⁰⁲-⁾₀-₏₝-⃏⃝-⃠⃢-⃤⃱-℁℃-℆℈℉℔№-℘℞-℣℥℧℩℮℺℻⅀-⅄⅊-⅍⅏-⅟↉-⯿Ⱟⱟ⳥-⳪⳴-⳿⴦⴨-⴬⴮⴯⵨-⵮⵰-⵾⶗-⶟⶧⶯⶷⶿⷇⷏⷗⷟⸀-⸮⸰-〄〈-〠〰〶〷〽-぀゗゘゛゜゠・㄀-㄄ㄮ-㄰㆏-㆟ㆻ-㇯㈀-㏿䶶-䷿鿍-鿿꒍-꓏꓾꓿꘍-꘏꘬-꘿꙰-꙳꙾Ꚙ-ꚞ꛲-꜖꜠꜡꞉꞊ꞏꞔ-ꞟꞫ-ꟷ꠨-꠿꡴-꡿ꣅ-꣏꣚-꣟꣸-꣺꣼-ꣿ꤮꤯꥔-꥟꥽-꥿꧁-꧎꧚-꧿꨷-꨿꩎꩏꩚-꩟꩷-꩹ꩼ-ꩿ꫃-꫚꫞꫟꫰꫱꫷-꬀꬇꬈꬏꬐꬗-꬟꬧꬯-ꮿ꯫꯮꯯꯺-꯿힤-힯퟇-퟊퟼-﩮﩯﫚-﫿﬇-﬒﬘-﬜﬩﬷﬽﬿﭂﭅﮲-﯒﴾-﵏﶐﶑﷈-﷯﷼-﷿︐-︟︧-︲︵-﹌﹐-﹯﹵﻽-／：-＠［-＾｀｛-･﾿-￁￈￉￐￑￘￙￝-\uffff])|\d)*))/,
 /^(?:([^"]+))/,
 /^(?:(["]))/,
 /^(?:\n+)/,
@@ -5406,14 +5573,14 @@ default:
       5,
       6,
       7,
-      8
+      8,
+      9
     ],
     inclusive: true
   },
   "LINE": {
     rules: [
       0,
-      9,
       10,
       11,
       12,
@@ -5421,48 +5588,38 @@ default:
       14,
       15,
       16,
-      17
+      17,
+      18
     ],
     inclusive: true
   },
   "VALUE": {
     rules: [
       0,
-      18,
-      19
+      29,
+      30
     ],
     inclusive: true
   },
   "TEXT": {
     rules: [
       0,
-      20,
-      21
+      31,
+      32
     ],
     inclusive: true
   },
   "BLOCK": {
     rules: [
       0,
-      22,
-      23
+      33,
+      34
     ],
     inclusive: true
   },
   "EXPR": {
     rules: [
       0,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31,
-      32,
-      33,
-      34,
       35,
       36,
       37,
@@ -5522,14 +5679,41 @@ default:
       91,
       92,
       93,
-      94
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105
     ],
     inclusive: true
   },
   "REGEXP": {
     rules: [
       0,
-      95
+      106
+    ],
+    inclusive: true
+  },
+  "IMPORT": {
+    rules: [
+      0,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
     ],
     inclusive: true
   }
