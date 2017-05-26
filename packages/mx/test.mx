@@ -1,7 +1,7 @@
 body
   if
     div
-  else if
-    div
   else
+    div
+  else if
     p
