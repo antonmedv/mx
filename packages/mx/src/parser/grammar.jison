@@ -45,7 +45,7 @@ Text [^{\n]+
 ValueText [^\"]+
 Quote [\"]
 
-%s INITIAL TAG LINE VALUE TEXT BLOCK
+%s INITIAL TAG LINE VALUE TEXT BLOCK EXPR REGEXP
 
 %%
 <<EOF>>                            %{
@@ -82,7 +82,7 @@ Quote [\"]
 <TAG>\n+                           this.begin("INITIAL"); return "NEWLINE";
 <TAG>{Space}+                      /* skip whitespace, separate tokens */
 <TAG>"|"                           this.begin("TEXT"); return "|";
-<TAG>"if"                          return "IF";
+<TAG>"if"                          this.begin("EXPR"); return "IF";
 <TAG>"else"                        return "ELSE";
 <TAG>{Selector}                    %{
                                      this.begin("LINE");
@@ -116,6 +116,80 @@ Quote [\"]
                                        this.unput(yytext);
                                      }
                                    %}
+
+<EXPR>\n+                          this.begin("INITIAL"); return "NEWLINE";
+<EXPR>\s+                          /* skip whitespaces */
+<EXPR>{StringLiteral}              return "STRING_LITERAL";
+<EXPR>"import"                     return "IMPORT";
+<EXPR>"from"                       return "FROM";
+<EXPR>"if"                         return "IF";
+<EXPR>"else"                       return "ELSE";
+<EXPR>"endif"                      return "ENDIF";
+<EXPR>"for"                        return "FOR";
+<EXPR>"endfor"                     return "ENDFOR";
+<EXPR>"of"                         return "OF";
+<EXPR>"in"                         return "IN";
+<EXPR>"instanceof"                 return "INSTANCEOF";
+<EXPR>"true"                       return "TRUE";
+<EXPR>"false"                      return "FALSE";
+<EXPR>"null"                       return "NULL";
+<EXPR>"this"                       return "THIS";
+<EXPR>"unsafe"                     return "UNSAFE";
+<EXPR>{Identifier}                 return "IDENTIFIER";
+<EXPR>{DecimalLiteral}             return "NUMERIC_LITERAL";
+<EXPR>{HexIntegerLiteral}          return "NUMERIC_LITERAL";
+<EXPR>{OctalIntegerLiteral}        return "NUMERIC_LITERAL";
+<EXPR>"{"                          return "{";
+<EXPR>"}"                          return "}";
+<EXPR>"("                          return "(";
+<EXPR>")"                          return ")";
+<EXPR>"["                          return "[";
+<EXPR>"]"                          return "]";
+<EXPR>"."                          return ".";
+<EXPR>";"                          return ";";
+<EXPR>","                          return ",";
+<EXPR>"?"                          return "?";
+<EXPR>":"                          return ":";
+<EXPR>"==="                        return "===";
+<EXPR>"=="                         return "==";
+<EXPR>"="                          return "=";
+<EXPR>"!=="                        return "!==";
+<EXPR>"!="                         return "!=";
+<EXPR>"!"                          return "!";
+<EXPR>"<<="                        return "<<=";
+<EXPR>"<<"                         return "<<";
+<EXPR>"<="                         return "<=";
+<EXPR>"<"                          return "<";
+<EXPR>">>>="                       return ">>>=";
+<EXPR>">>>"                        return ">>>";
+<EXPR>">>="                        return ">>=";
+<EXPR>">>"                         return ">>";
+<EXPR>">="                         return ">=";
+<EXPR>">"                          return ">";
+<EXPR>"+="                         return "+=";
+<EXPR>"++"                         return "++";
+<EXPR>"+"                          return "+";
+<EXPR>"-="                         return "-=";
+<EXPR>"--"                         return "--";
+<EXPR>"-"                          return "-";
+<EXPR>"*="                         return "*=";
+<EXPR>"*"                          return "*";
+<EXPR>"/="                         return "/=";
+<EXPR>"/"                          return "/";
+<EXPR>"%="                         return "%=";
+<EXPR>"%"                          return "%";
+<EXPR>"&&"                         return "&&";
+<EXPR>"&="                         return "&=";
+<EXPR>"&"                          return "&";
+<EXPR>"||"                         return "||";
+<EXPR>"|="                         return "|=";
+<EXPR>"|"                          return "|";
+<EXPR>"^="                         return "^=";
+<EXPR>"^"                          return "^";
+<EXPR>"~"                          return "~";
+<EXPR>"..."                        return "...";
+
+<REGEXP>{RegularExpressionLiteral} this.popState(); return "REGEXP_LITERAL";
 
 %%
 
@@ -279,18 +353,534 @@ AttributeValue
     ;
 
 If
-    : IF NEWLINE ElementBlock
+    : IF Expression NEWLINE ElementBlock
         {
-            $$ = new IfStatementNode(null, $3, null, createSourceLocation(@1, @3));
+            $$ = new IfStatementNode($Expression, $ElementBlock, null, createSourceLocation(@1, @4));
         }
-    | IF NEWLINE ElementBlock ELSE NEWLINE ElementBlock
+    | IF Expression NEWLINE ElementBlock ELSE NEWLINE ElementBlock
         {
-            $$ = new IfStatementNode(null, $3, $6, createSourceLocation(@1, @6));
+            $$ = new IfStatementNode($Expression, $ElementBlock1, $ElementBlock2, createSourceLocation(@1, @7));
         }
-    | IF NEWLINE ElementBlock ELSE If
+    | IF Expression NEWLINE ElementBlock ELSE If
         {
-            $$ = new IfStatementNode(null, $3, $5, createSourceLocation(@1, @5));
+            $$ = new IfStatementNode($Expression, $ElementBlock, $If, createSourceLocation(@1, @6));
         }
+    ;
+
+Expression
+    : AssignmentExpression
+    | Expression "," AssignmentExpression
+        {
+            if ($1.type === "SequenceExpression") {
+                $1.expressions.concat($3);
+                $1.loc = createSourceLocation(@1, @3);
+                $$ = $1;
+            } else {
+                $$ = new SequenceExpressionNode([$1, $3], createSourceLocation(@1, @3));
+            }
+        }
+    ;
+
+AssignmentExpression
+    : ConditionalExpression
+    | FilterExpression
+    | LeftHandSideExpression "=" AssignmentExpression
+        {
+            $$ = new AssignmentExpressionNode("=", $1, $3, createSourceLocation(@1, @3));
+        }
+    | LeftHandSideExpression AssignmentOperator AssignmentExpression
+        {
+            $$ = new AssignmentExpressionNode($2, $1, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+ConditionalExpression
+    : LogicalORExpression
+    | LogicalORExpression "?" AssignmentExpression ":" AssignmentExpression
+        {
+            $$ = new ConditionalExpressionNode($1, $3, $5, createSourceLocation(@1, @5));
+        }
+    ;
+
+LogicalORExpression
+    : LogicalANDExpression
+    | LogicalORExpression "||" LogicalANDExpression
+        {
+            $$ = new LogicalExpressionNode("||", $1, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+LogicalANDExpression
+    : EqualityExpression
+    | LogicalANDExpression "&&" EqualityExpression
+        {
+            $$ = new LogicalExpressionNode("&&", $1, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+EqualityExpression
+    : RelationalExpression
+    | EqualityExpression "==" RelationalExpression
+        {
+            $$ = new BinaryExpressionNode("==", $1, $3, createSourceLocation(@1, @3));
+        }
+    | EqualityExpression "!=" RelationalExpression
+        {
+            $$ = new BinaryExpressionNode("!=", $1, $3, createSourceLocation(@1, @3));
+        }
+    | EqualityExpression "===" RelationalExpression
+        {
+            $$ = new BinaryExpressionNode("===", $1, $3, createSourceLocation(@1, @3));
+        }
+    | EqualityExpression "!==" RelationalExpression
+        {
+            $$ = new BinaryExpressionNode("!==", $1, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+RelationalExpression
+    : ShiftExpression
+    | RelationalExpression "<" ShiftExpression
+        {
+            $$ = new BinaryExpressionNode("<", $1, $3, createSourceLocation(@1, @3));
+        }
+    | RelationalExpression ">" ShiftExpression
+        {
+            $$ = new BinaryExpressionNode(">", $1, $3, createSourceLocation(@1, @3));
+        }
+    | RelationalExpression "<=" ShiftExpression
+        {
+            $$ = new BinaryExpressionNode("<=", $1, $3, createSourceLocation(@1, @3));
+        }
+    | RelationalExpression ">=" ShiftExpression
+        {
+            $$ = new BinaryExpressionNode(">=", $1, $3, createSourceLocation(@1, @3));
+        }
+    | RelationalExpression "INSTANCEOF" ShiftExpression
+        {
+            $$ = new BinaryExpressionNode("instanceof", $1, $3, createSourceLocation(@1, @3));
+        }
+    | RelationalExpression "IN" ShiftExpression
+        {
+            $$ = new BinaryExpressionNode("in", $1, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+ShiftExpression
+    : AdditiveExpression
+    | ShiftExpression "<<" AdditiveExpression
+        {
+            $$ = new BinaryExpressionNode("<<", $1, $3, createSourceLocation(@1, @3));
+        }
+    | ShiftExpression ">>" AdditiveExpression
+        {
+            $$ = new BinaryExpressionNode(">>", $1, $3, createSourceLocation(@1, @3));
+        }
+    | ShiftExpression ">>>" AdditiveExpression
+        {
+            $$ = new BinaryExpressionNode(">>>", $1, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+AdditiveExpression
+    : MultiplicativeExpression
+    | AdditiveExpression "+" MultiplicativeExpression
+        {
+            $$ = new BinaryExpressionNode("+", $1, $3, createSourceLocation(@1, @3));
+        }
+    | AdditiveExpression "-" MultiplicativeExpression
+        {
+            $$ = new BinaryExpressionNode("-", $1, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+
+MultiplicativeExpression
+    : UnaryExpression
+    | MultiplicativeExpression "*" UnaryExpression
+        {
+            $$ = new BinaryExpressionNode("*", $1, $3, createSourceLocation(@1, @3));
+        }
+    | MultiplicativeExpression "/" UnaryExpression
+        {
+            $$ = new BinaryExpressionNode("/", $1, $3, createSourceLocation(@1, @3));
+        }
+    | MultiplicativeExpression "%" UnaryExpression
+        {
+            $$ = new BinaryExpressionNode("%", $1, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+UnaryExpression
+    : PostfixExpression
+    | UnaryExpr
+    ;
+
+UnaryExpr
+    : "TYPEOF" UnaryExpression
+        {
+            $$ = new UnaryExpressionNode("typeof", true, $2, createSourceLocation(@1, @2));
+        }
+    | "++" UnaryExpression
+        {
+            $$ = new UpdateExpressionNode("++", $2, true, createSourceLocation(@1, @2));
+        }
+    | "--" UnaryExpression
+        {
+            $$ = new UpdateExpressionNode("--", $2, true, createSourceLocation(@1, @2));
+        }
+    | "+" UnaryExpression
+        {
+            $$ = new UnaryExpressionNode("+", true, $2, createSourceLocation(@1, @2));
+        }
+    | "-" UnaryExpression
+        {
+            $$ = new UnaryExpressionNode("-", true, $2, createSourceLocation(@1, @2));
+        }
+    | "~" UnaryExpression
+        {
+            $$ = new UnaryExpressionNode("~", true, $2, createSourceLocation(@1, @2));
+        }
+    | "!" UnaryExpression
+        {
+            $$ = new UnaryExpressionNode("!", true, $2, createSourceLocation(@1, @2));
+        }
+    ;
+
+PostfixExpression
+    : LeftHandSideExpression
+    | LeftHandSideExpression "++"
+        {
+            $$ = new UpdateExpressionNode("++", $1, false, createSourceLocation(@1, @2));
+        }
+    | LeftHandSideExpression "--"
+        {
+            $$ = new UpdateExpressionNode("--", $1, false, createSourceLocation(@1, @2));
+        }
+    ;
+
+LeftHandSideExpression
+    : NewExpression
+    | CallExpression
+    ;
+
+IdentifierName
+    : "IDENTIFIER"
+        {
+            $$ = new IdentifierNode($1, createSourceLocation(@1, @1));
+        }
+    | ReservedWord
+        {
+            $$ = new IdentifierNode($1, createSourceLocation(@1, @1));
+        }
+    ;
+
+AccessorName
+    : "IDENTIFIER"
+        {
+            $$ = new AccessorNode($1, createSourceLocation(@1, @1));
+        }
+    | ReservedWord
+        {
+            $$ = new AccessorNode($1, createSourceLocation(@1, @1));
+        }
+    ;
+
+Arguments
+    : "(" ")"
+        {
+            $$ = [];
+        }
+    | "(" ArgumentList ")"
+        {
+            $$ = $2;
+        }
+    ;
+
+ArgumentList
+    : AssignmentExpression
+        {
+            $$ = [$1];
+        }
+    | ArgumentList "," AssignmentExpression
+        {
+            $$ = $1.concat($3);
+        }
+    ;
+
+NewExpression
+    : MemberExpression
+    | "NEW" NewExpression
+        {
+            $$ = new NewExpressionNode($2, null, createSourceLocation(@1, @2));
+        }
+    ;
+
+CallExpression
+    : MemberExpression Arguments
+        {
+            $$ = new CallExpressionNode($1, $2, createSourceLocation(@1, @2));
+        }
+    | CallExpression Arguments
+        {
+            $$ = new CallExpressionNode($1, $2, createSourceLocation(@1, @2));
+        }
+    | CallExpression "[" Expression "]"
+        {
+            $$ = new MemberExpressionNode($1, $3, true, createSourceLocation(@1, @4));
+        }
+    | CallExpression "." AccessorName
+        {
+            $$ = new MemberExpressionNode($1, $3, false, createSourceLocation(@1, @3));
+        }
+    ;
+
+PropertySetParameterList
+    : "IDENTIFIER"
+        {
+            $$ = [new IdentifierNode($1, createSourceLocation(@1, @1))];
+        }
+    ;
+
+MemberExpression
+    : PrimaryExpression
+    | FunctionExpression
+    | MemberExpression "[" Expression "]"
+        {
+            $$ = new MemberExpressionNode($1, $3, true, createSourceLocation(@1, @4));
+        }
+    | MemberExpression "." AccessorName
+        {
+            $$ = new MemberExpressionNode($1, $3, false, createSourceLocation(@1, @3));
+        }
+    | "NEW" MemberExpression Arguments
+        {
+            $$ = new NewExpressionNode($2, $3, createSourceLocation(@1, @3));
+        }
+    ;
+
+PropertyName
+    : IdentifierName
+    | StringLiteral
+    | NumericLiteral
+    ;
+
+PrimaryExpression
+    : "THIS"
+        {
+            $$ = new ThisExpressionNode(createSourceLocation(@1, @1));
+        }
+    | "IDENTIFIER"
+        {
+            $$ = new IdentifierNode($1, createSourceLocation(@1, @1));
+        }
+    | Literal
+    | ArrayLiteral
+    | "(" Expression ")"
+        {
+            $$ = $2;
+        }
+    | ObjectLiteral
+    ;
+
+
+ArrayLiteral
+    : "[" "]"
+        {
+            $$ = new ArrayExpressionNode([], createSourceLocation(@1, @2));
+        }
+    | "[" Elision "]"
+        {
+            $$ = new ArrayExpressionNode($2, createSourceLocation(@1, @3));
+        }
+    | "[" ElementList "]"
+        {
+            $$ = new ArrayExpressionNode($2, createSourceLocation(@1, @3));
+        }
+    | "[" ElementList "," "]"
+        {
+            $$ = new ArrayExpressionNode($2.concat(null), createSourceLocation(@1, @4));
+        }
+    | "[" ElementList "," Elision "]"
+        {
+            $$ = new ArrayExpressionNode($2.concat($4), createSourceLocation(@1, @5));
+        }
+    ;
+
+ElementList
+    : AssignmentExpression
+        {
+            $$ = [$1];
+        }
+    | Elision AssignmentExpression
+        {
+            $$ = $1.concat($2);
+        }
+    | ElementList "," AssignmentExpression
+        {
+            $$ = $1.concat($3);
+        }
+    | ElementList "," Elision AssignmentExpression
+        {
+            $$ = $1.concat($3).concat($4);
+        }
+    ;
+
+Elision
+    : ","
+        {
+            $$ = [null, null];
+        }
+    | Elision ","
+        {
+            $$ = $1.concat(null);
+        }
+    ;
+
+ObjectLiteral
+    : "{" "}"
+        {
+            $$ = new ObjectExpressionNode([], createSourceLocation(@1, @2));
+        }
+    | "{" PropertyNameAndValueList "}"
+        {
+            $$ = new ObjectExpressionNode($2, createSourceLocation(@1, @3));
+        }
+    | "{" PropertyNameAndValueList "," "}"
+        {
+            $$ = new ObjectExpressionNode($2, createSourceLocation(@1, @4));
+        }
+    ;
+
+PropertyNameAndValueList
+    : PropertyAssignment
+        {
+            $$ = [$1];
+        }
+    | PropertyNameAndValueList "," PropertyAssignment
+        {
+            $$ = $1.concat($3);
+        }
+    ;
+
+PropertyAssignment
+    : PropertyName ":" AssignmentExpression
+        {
+            $$ = {key: $1, value: $3, kind: "init"};
+        }
+    | "IDENTIFIER" PropertyName "(" ")" "{" FunctionBody "}"
+        {
+            if ($1 === "get") {
+                $$ = {key: $2, value: (new FunctionExpressionNode(null, [], $6, false, false, createSourceLocation(@2, @7))), kind: "get"};
+            } else {
+                this.parseError("Invalid getter", {});
+            }
+        }
+    | "IDENTIFIER" PropertyName "(" PropertySetParameterList ")" "{" FunctionBody "}"
+        {
+            if ($1 === "set") {
+                $$ = {key: $2, value: (new FunctionExpressionNode(null, $4, $7, false, false, createSourceLocation(@2, @8))), kind: "set"};
+            } else {
+                this.parseError("Invalid setter", {});
+            }
+        }
+    ;
+
+Literal
+    : NullLiteral
+    | BooleanLiteral
+    | NumericLiteral
+    | StringLiteral
+    | RegularExpressionLiteral
+    ;
+
+NullLiteral
+    : "NULL"
+        {
+            $$ = new LiteralNode(null, createSourceLocation(@1, @1));
+        }
+    ;
+
+BooleanLiteral
+    : "TRUE"
+        {
+            $$ = new LiteralNode(true, createSourceLocation(@1, @1));
+        }
+    | "FALSE"
+        {
+            $$ = new LiteralNode(false, createSourceLocation(@1, @1));
+        }
+    ;
+
+NumericLiteral
+    : "NUMERIC_LITERAL"
+        {
+            $$ = new LiteralNode(parseNumericLiteral($1), createSourceLocation(@1, @1));
+        }
+    ;
+
+StringLiteral
+    : "STRING_LITERAL"
+        {
+            $$ = new LiteralNode($1, createSourceLocation(@1, @1));
+        }
+    ;
+
+RegularExpressionLiteral
+    : RegularExpressionLiteralBegin "REGEXP_LITERAL"
+        {
+            $$ = new LiteralNode(parseRegularExpressionLiteral($1 + $2), createSourceLocation(@1, @2));
+        }
+    ;
+
+RegularExpressionLiteralBegin
+    : "/"
+        {
+            yy.lexer.begin("regexp");
+        }
+    | "/="
+        {
+            yy.lexer.begin("regexp");
+        }
+    ;
+
+ReservedWord
+    : "BREAK"
+    | "CASE"
+    | "CATCH"
+    | "CONTINUE"
+    | "DEBUGGER"
+    | "DEFAULT"
+    | "DELETE"
+    | "DO"
+    | "ELSE"
+    | "FINALLY"
+    | "FOR"
+    | "FUNCTION"
+    | "IF"
+    | "IN"
+    | "INSTANCEOF"
+    | "NEW"
+    | "RETURN"
+    | "SWITCH"
+    | "THIS"
+    | "THROW"
+    | "TRY"
+    | "TYPEOF"
+    | "VAR"
+    | "VOID"
+    | "WHILE"
+    | "WITH"
+    | "TRUE"
+    | "FALSE"
+    | "NULL"
+    | "CLASS"
+    | "CONST"
+    | "ENUM"
+    | "EXPORT"
+    | "EXTENDS"
+    | "IMPORT"
+    | "SUPER"
     ;
 
 %%

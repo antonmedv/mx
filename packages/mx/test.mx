@@ -1,6 +1,6 @@
 body.nice
-  p
-    | adf dfsga sdfasdf
-  p sdfsdfs
-
+  if value && 'hello world'
+    p This is awesome
+  else if props.value('test', cool)
+    | ok
 

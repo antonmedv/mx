@@ -8,11 +8,12 @@ const code = fs.readFileSync(file, {encoding: 'utf8'})
 
 const lexer = parser.Parser.prototype.lexer;
 lexer.setInput(code)
-let token;
-while(token != 1) {
-  token = lexer.lex()
+for(;;) {
+  let token = lexer.lex()
   console.log(parser.Parser.prototype.terminals_[token] || token);
+  if (token === 1) break
 }
 
 const ast = parser.parse(file, code)
+//console.log(JSON.stringify(ast, null, 4))
 console.log(drawGraph(ast))
