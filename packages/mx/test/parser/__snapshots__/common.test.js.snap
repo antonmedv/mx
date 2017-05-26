@@ -881,3 +881,73 @@ DocumentNode {
   "type": "Document",
 }
 `;
+
+exports[`parse text tags 1`] = `
+DocumentNode {
+  "body": Array [
+    ElementNode {
+      "attributes": Array [],
+      "body": Array [
+        ElementNode {
+          "attributes": Array [],
+          "body": Array [
+            TextNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 23,
+                  "line": 2,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 3,
+                  "line": 2,
+                },
+              },
+              "text": " Here goes some text",
+              "type": "Text",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 3,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 2,
+            },
+          },
+          "name": "text",
+          "type": "Element",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 3,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "p",
+      "type": "Element",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 3,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;

@@ -45,7 +45,7 @@ Text [^{\n]+
 ValueText [^\"]+
 Quote [\"]
 
-%s INITIAL TAG LINE VALUE TEXT
+%s INITIAL TAG LINE VALUE TEXT BLOCK
 
 %%
 <<EOF>>                            %{
@@ -81,7 +81,7 @@ Quote [\"]
 
 <TAG>\n+                           this.begin("INITIAL"); return "NEWLINE";
 <TAG>{Space}+                      /* skip whitespace, separate tokens */
-<TAG>"|"                           return "|";
+<TAG>"|"                           this.begin("TEXT"); return "|";
 <TAG>"if"                          return "IF";
 <TAG>"else"                        return "ELSE";
 <TAG>{Selector}                    %{
@@ -94,7 +94,7 @@ Quote [\"]
 
 <LINE>\n+                          this.begin("INITIAL"); return "NEWLINE";
 <LINE>{Space}+                     /* skip whitespace, separate tokens */
-<LINE>"."                          this.begin("TEXT"); return ".";
+<LINE>"."                          this.begin("BLOCK"); return ".";
 <LINE>"="                          return "=";
 <LINE>{Attribute}                  return "ATTRIBUTE";
 <LINE>{Quote}                      this.begin("VALUE"); return "QUOTE";
@@ -103,8 +103,11 @@ Quote [\"]
 <VALUE>{ValueText}                 return "TEXT";
 <VALUE>{Quote}                     this.popState(); return "QUOTE";
 
-<TEXT>\n+                          return "NEWLINE";
-<TEXT>.*                           %{
+<TEXT>\n+                          this.begin("INITIAL"); return "NEWLINE";
+<TEXT>{Text}                       return "TEXT";
+
+<BLOCK>\n+                         return "NEWLINE";
+<BLOCK>.*                          %{
                                      const lead = yytext.search(/\S/);
                                      if (lead > current() || lead === -1) {
                                        return "TEXT"

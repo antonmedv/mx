@@ -89,3 +89,11 @@ test('parse complex selector with dot on end', t => {
   `
   t.snapshot(parse(code))
 })
+
+test('parse text tags', t => {
+  const code = `
+  p
+    | Here goes some text
+  `
+  t.snapshot(parse(code))
+})

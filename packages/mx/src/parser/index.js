@@ -2962,7 +2962,7 @@ var lexer = {
 var YYSTATE = YY_START;
 switch($avoiding_name_collisions) {
 case 0 : 
-/*! Conditions:: INITIAL TAG LINE VALUE TEXT */ 
+/*! Conditions:: INITIAL TAG LINE VALUE TEXT BLOCK */ 
 /*! Rule::       $ */ 
  
                                       const tokens = ["EOF"];
@@ -3013,6 +3013,11 @@ case 4 :
 /*! Rule::       {Space}+ */ 
  /* skip whitespace, separate tokens */ 
 break;
+case 5 : 
+/*! Conditions:: TAG */ 
+/*! Rule::       \| */ 
+ this.begin("TEXT"); return 3; 
+break;
 case 8 : 
 /*! Conditions:: TAG */ 
 /*! Rule::       {Selector} */ 
@@ -3037,7 +3042,7 @@ break;
 case 11 : 
 /*! Conditions:: LINE */ 
 /*! Rule::       \. */ 
- this.begin("TEXT"); return 4; 
+ this.begin("BLOCK"); return 4; 
 break;
 case 14 : 
 /*! Conditions:: LINE */ 
@@ -3049,8 +3054,13 @@ case 17 :
 /*! Rule::       {Quote} */ 
  this.popState(); return 12; 
 break;
-case 19 : 
+case 18 : 
 /*! Conditions:: TEXT */ 
+/*! Rule::       \n+ */ 
+ this.begin("INITIAL"); return 8; 
+break;
+case 21 : 
+/*! Conditions:: BLOCK */ 
 /*! Rule::       .* */ 
  
                                      const lead = yy_.yytext.search(/\S/);
@@ -3068,9 +3078,6 @@ default:
 },
     simpleCaseActionClusters: {
 
-  /*! Conditions:: TAG */ 
-  /*! Rule::       \| */ 
-   5 : 3,
   /*! Conditions:: TAG */ 
   /*! Rule::       if */ 
    6 : 13,
@@ -3090,8 +3097,11 @@ default:
   /*! Rule::       {ValueText} */ 
    16 : 11,
   /*! Conditions:: TEXT */ 
+  /*! Rule::       {Text} */ 
+   19 : 11,
+  /*! Conditions:: BLOCK */ 
   /*! Rule::       \n+ */ 
-   18 : 8
+   20 : 8
 },
     rules: [
 /^(?:$)/,
@@ -3107,11 +3117,13 @@ default:
 /^(?:([\t   -​\u2028\u2029　])+)/,
 /^(?:\.)/,
 /^(?:=)/,
-/^(?:(\w+))/,
+/^(?:([\w\-]+))/,
 /^(?:(["]))/,
 /^(?:([^\n{]+))/,
 /^(?:([^"]+))/,
 /^(?:(["]))/,
+/^(?:\n+)/,
+/^(?:([^\n{]+))/,
 /^(?:\n+)/,
 /^(?:.*)/
 ],
@@ -3162,6 +3174,14 @@ default:
       0,
       18,
       19
+    ],
+    inclusive: true
+  },
+  "BLOCK": {
+    rules: [
+      0,
+      20,
+      21
     ],
     inclusive: true
   }
