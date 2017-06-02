@@ -1,7 +1,7 @@
 const asciitree = require('asciitree')
 
 module.exports = function drawGraph(ast) {
-  return ast.body.map((root) => asciitree(
+  return ast.children.map((root) => asciitree(
     root,
     function (node) {
       if (node && node.type) {
@@ -37,7 +37,7 @@ module.exports = function drawGraph(ast) {
         case  'Accessor':
           return []
         case 'Element':
-          return node.body.concat(node.attributes)
+          return node.children.concat(node.attributes)
         case 'Text':
           return []
         case 'ObjectExpression':

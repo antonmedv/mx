@@ -33,8 +33,8 @@ const visitors = {
       visit(node.attributes[i], visitor)
     }
 
-    for (let i = 0; i < node.body.length; i++) {
-      visit(node.body[i], visitor)
+    for (let i = 0; i < node.children.length; i++) {
+      visit(node.children[i], visitor)
     }
   },
   Attribute: (node, visitor) => {
@@ -50,16 +50,7 @@ const visitors = {
     handle(node, visitor)
     visit(node.identifier, visitor)
   },
-  Directive: (node, visitor) => {
-    handle(node, visitor)
-
-    if (node.body) {
-      for (let i = 0; i < node.body.length; i++) {
-        visit(node.body[i], visitor)
-      }
-    }
-  },
-  ExpressionStatement: (node, visitor) => {
+  Expression: (node, visitor) => {
     handle(node, visitor)
     visit(node.expression, visitor)
   },
@@ -86,28 +77,8 @@ const visitors = {
 
     visit(node.expr, visitor)
 
-    for (let i = 0; i < node.body.length; i++) {
-      visit(node.body[i], visitor)
-    }
-  },
-  BlockStatement: (node, visitor) => {
-    handle(node, visitor)
-
-    for (let i = 0; i < node.body.length; i++) {
-      visit(node.body[i], visitor)
-    }
-  },
-  UnsafeStatement: (node, visitor) => {
-    handle(node, visitor)
-  },
-  FilterExpression: (node, visitor) => {
-    handle(node, visitor)
-
-    visit(node.callee, visitor)
-    let args = node.arguments
-
-    for (let i = 0, len = args.length; i < len; i++) {
-      visit(args[i], visitor)
+    for (let i = 0; i < node.children.length; i++) {
+      visit(node.children[i], visitor)
     }
   },
   ArrayExpression: (node, visitor) => {

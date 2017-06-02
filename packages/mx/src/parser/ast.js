@@ -1,6 +1,6 @@
-function DocumentNode(body, loc) {
+function DocumentNode(children, loc) {
   this.type = 'Document'
-  this.body = body
+  this.children = children
   this.loc = loc
 }
 
@@ -16,11 +16,11 @@ function CommentNode(comment, loc) {
   this.loc = loc
 }
 
-function ElementNode(name, attributes, body, loc) {
+function ElementNode(name, attributes, children, loc) {
   this.type = 'Element'
   this.name = name
   this.attributes = attributes
-  this.body = body
+  this.children = children
   this.loc = loc
 }
 
@@ -58,14 +58,13 @@ function IfStatementNode(cond, then, otherwise, loc) {
   this.loc = loc
 }
 
-function ForStatementNode(expr, body, options, loc) {
+function ForStatementNode(expr, children, options, loc) {
   this.type = 'ForStatement'
   this.expr = expr
-  this.body = body
+  this.children = children
   this.options = options
   this.loc = loc
 }
-
 
 function ThisExpressionNode(loc) {
   this.type = 'ThisExpression'
