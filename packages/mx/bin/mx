@@ -22,7 +22,8 @@ const ast = parser.parse(file, code)
 console.log(drawGraph(ast))
 
 let node = sourceNode('')
-node.add(compile(file, ast, {}))
+//node.add(compile(file, ast, {}))
+console.log(JSON.stringify(node, null, 4))
 let output = node.toStringWithSourceMap({file})
 
 console.log(prettier.format(output.code, {}))

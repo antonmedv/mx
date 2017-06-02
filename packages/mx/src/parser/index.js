@@ -3828,10 +3828,10 @@ function ElementNode(name, attributes, children, loc) {
   this.loc = loc
 }
 
-function AttributeNode(name, body, loc) {
+function AttributeNode(name, value, loc) {
   this.type = 'Attribute'
   this.name = name
-  this.body = body
+  this.value = value
   this.loc = loc
 }
 

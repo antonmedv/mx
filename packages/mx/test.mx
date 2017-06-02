@@ -1,7 +1,7 @@
 body
-  header
-    h1
-  section
-    div
+  div value="s"
     p
   footer
+    h1
+    span
+      button
