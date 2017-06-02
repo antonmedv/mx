@@ -18,3 +18,10 @@ test('compile html and components', t => {
   `
   t.snapshot(compile(code))
 })
+
+test('compile class name from tag', t => {
+  const code = `
+  .class-name
+  `
+  t.snapshot(compile(code))
+})

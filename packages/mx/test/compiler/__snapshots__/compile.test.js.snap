@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`compile class name from tag 1`] = `
+"import React from \\"react\\"
+
+export default function({}) {
+  return React.createElement(\\"div\\", { className: \\"class-name\\" })
+}
+"
+`;
+
 exports[`compile html and components 1`] = `
 "import React from \\"react\\"
 

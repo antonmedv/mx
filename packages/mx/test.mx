@@ -1,3 +1,2 @@
-div onClick={handleClick({"value": foo.baz + bar['n']})}
-  p onClick={handleClick}
-
+body
+  .container-overview.is-active
