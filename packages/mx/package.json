@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "ava",
+    "lint": "eslint src/**",
     "build": "make build",
     "prepublish": "npm run build"
   },
@@ -28,6 +29,7 @@
   "devDependencies": {
     "ava": "^0.19.1",
     "dedent": "^0.7.0",
+    "eslint": "^3.19.0",
     "jison-gho": "^0.4.18-180",
     "preprocessor": "^1.4.0"
   },
