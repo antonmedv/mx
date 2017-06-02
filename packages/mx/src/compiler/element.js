@@ -5,11 +5,15 @@ module.exports = {
 
     let attributes = source`null`
 
-    // if (node.attributes.length > 0) {
-    //   attributes = sourceNode(node.loc, '{')
-    //   node.attributes.map({value} => compile(value))
-    //   attributes += '}'
-    // }
+    if (node.attributes.length > 0) {
+      attributes = source`{`
+      node.attributes.forEach(attr => {
+        attributes.add(
+          source`${attr.name}: ${attr.value ? compile(attr.value): `null`},`
+        )
+      })
+      attributes.add('}')
+    }
 
     return source`React.createElement(${name}, ${attributes}, ${children})`
   }

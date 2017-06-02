@@ -372,7 +372,7 @@ AttributeValue
     :
     | TEXT
         {
-            $$ = [new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1))];
+            $$ = new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1));
         }
     ;
 

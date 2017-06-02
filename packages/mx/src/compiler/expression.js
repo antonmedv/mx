@@ -1,221 +1,171 @@
-import { sourceNode } from './sourceNode';
-import { collectVariables } from './variable';
+const sourceNode = require('./sourceNode')
+const {collectProps} = require('./props')
 
-export default {
-  ExpressionStatement: ({node, compile, figure}) => {
-    node.reference = 'text' + figure.uniqid();
-
-    let defaultValue = `''`;
-
-    if (node.expression.type == 'LogicalExpression' && node.expression.operator == '||') {
-      // Add as default right side of "||" expression if there are no variables.
-      if (collectVariables(figure.getScope(), node.expression.right) == 0) {
-        defaultValue = compile(node.expression.right);
-      }
-    }
-
-    figure.declare(
-      sourceNode(`var ${node.reference} = document.createTextNode(${defaultValue});`)
-    );
-
-    let variables = collectVariables(figure.getScope(), node.expression);
-
-    if (variables.length == 0) {
-      figure.construct(
-        sourceNode(node.loc, [node.reference, '.textContent = ', compile(node.expression)])
-      );
-    } else {
-      figure.spot(variables).add(
-        sourceNode(node.loc, [`      `, node.reference, '.textContent = ', compile(node.expression)])
-      );
-    }
-
-    return node.reference;
-  },
-
-  FilterExpression: ({node, figure, compile}) => { 
-    let prefix = ``;
-
-    if (!figure.isInScope(node.callee.name)) {
-      figure.thisRef = true;
-      prefix = `_this.filters.`;
-    }
-    
-    let sn = sourceNode(node.loc, [prefix, compile(node.callee), '(']);
-
-    for (let i = 0; i < node.arguments.length; i++) {
-      if (i !== 0) {
-        sn.add(', ');
-      }
-
-      sn.add(compile(node.arguments[i]));
-    }
-
-    return sn.add(')');
+module.exports = {
+  Expression: ({node, compile, record}) => {
+    let props = collectProps(node.expression)
+    record.props.push(...props)
+    return compile(node.expression)
   },
 
   ArrayExpression: ({node, compile}) => {
-    let sn = sourceNode(node.loc, '[');
-    let elements = node.elements;
+    let sn = sourceNode(node.loc, '[')
+    let elements = node.elements
 
     for (let i = 0; i < node.elements.length; i++) {
       if (i !== 0) {
-        sn.add(', ');
+        sn.add(', ')
       }
 
-      sn.add(compile(elements[i]));
+      sn.add(compile(elements[i]))
     }
 
-    return sn.add(']');
+    return sn.add(']')
   },
 
   ObjectExpression: ({node, compile}) => {
-    let sn = sourceNode(node.loc, '({');
+    let sn = sourceNode(node.loc, '({')
 
     for (let i = 0; i < node.properties.length; i++) {
-      let prop = node.properties[i];
-      let kind = prop.kind;
-      let key = prop.key;
-      let value = prop.value;
+      let prop = node.properties[i]
+      let kind = prop.kind
+      let key = prop.key
+      let value = prop.value
 
       if (i !== 0) {
-        sn.add(', ');
+        sn.add(', ')
       }
 
       if (kind === 'init') {
-        sn.add([compile(key), ': ', compile(value)]);
+        sn.add([compile(key), ': ', compile(value)])
       } else {
-        let params = value.params;
-        let body = value.body;
+        let params = value.params
+        let body = value.body
 
-        sn.add([kind, ' ', compile(key), '(']);
+        sn.add([kind, ' ', compile(key), '('])
 
         for (let j = 0; j < params.length; j++) {
           if (j !== 0) {
-            sn.add(', ');
+            sn.add(', ')
           }
 
-          sn.add(compile(params[j]));
+          sn.add(compile(params[j]))
         }
 
-        sn.add(') { ');
+        sn.add(') { ')
 
         for (let j = 0; j < body.length; j++) {
-          sn.add([compile(body[j]), ' ']);
+          sn.add([compile(body[j]), ' '])
         }
 
-        sn.add('}');
+        sn.add('}')
       }
     }
 
-    return sn.add('})');
+    return sn.add('})')
   },
 
   SequenceExpression: ({node, compile}) => {
-    let sn = sourceNode(node.loc, '');
+    let sn = sourceNode(node.loc, '')
 
     for (let i = 0; i < node.expressions.length; i++) {
       if (i !== 0) {
-        sn.add(', ');
+        sn.add(', ')
       }
 
-      sn.add(compile(node.expressions[i]));
+      sn.add(compile(node.expressions[i]))
     }
 
-    return sn;
+    return sn
   },
 
   UnaryExpression: ({node, compile}) => {
-    if (node.operator == 'delete' || node.operator == 'void' || node.operator == 'typeof') {
-      return sourceNode(node.loc, [node.operator, ' (', compile(node.argument), ')']);
+    if (node.operator === 'delete' || node.operator === 'void' || node.operator === 'typeof') {
+      return sourceNode(node.loc, [node.operator, ' (', compile(node.argument), ')'])
     } else {
-      return sourceNode(node.loc, [node.operator, '(', compile(node.argument), ')']);
+      return sourceNode(node.loc, [node.operator, '(', compile(node.argument), ')'])
     }
   },
 
   BinaryExpression: ({node, compile}) => {
-    return sourceNode(node.loc, ['(', compile(node.left), ') ', node.operator, ' (', compile(node.right), ')']);
+    return sourceNode(node.loc, ['(', compile(node.left), ') ', node.operator, ' (', compile(node.right), ')'])
   },
 
   AssignmentExpression: ({node, compile}) => {
-    return sourceNode(node.loc, ['(', compile(node.left), ') ', node.operator, ' (', compile(node.right), ')']);
+    return sourceNode(node.loc, ['(', compile(node.left), ') ', node.operator, ' (', compile(node.right), ')'])
   },
 
   UpdateExpression: ({node, compile}) => {
     if (node.prefix) {
-      return sourceNode(node.loc, ['(', node.operator, compile(node.argument), ')']);
+      return sourceNode(node.loc, ['(', node.operator, compile(node.argument), ')'])
     } else {
-      return sourceNode(node.loc, ['(', compile(node.argument), node.operator, ')']);
+      return sourceNode(node.loc, ['(', compile(node.argument), node.operator, ')'])
     }
   },
 
   LogicalExpression: ({node, compile}) => {
-    return sourceNode(node.loc, ['(', compile(node.left), ') ', node.operator, ' (' + compile(node.right), ')']);
+    return sourceNode(node.loc, ['(', compile(node.left), ') ', node.operator, ' (' + compile(node.right), ')'])
   },
 
   ConditionalExpression: ({node, compile}) => {
-    return sourceNode(node.loc, ['(', compile(node.test), ') ? ', compile(node.consequent), ' : ', compile(node.alternate)]);
+    return sourceNode(node.loc, ['(', compile(node.test), ') ? ', compile(node.consequent), ' : ', compile(node.alternate)])
   },
 
   NewExpression: ({node, compile}) => {
-    let sn = sourceNode(node.loc, ['new ', compile(node.callee)]);
+    let sn = sourceNode(node.loc, ['new ', compile(node.callee)])
 
     if (node.arguments !== null) {
-      sn.add('(');
+      sn.add('(')
 
       for (let i = 0; i < node.arguments.length; i++) {
         if (i !== 0) {
-          sn.add(', ');
+          sn.add(', ')
         }
 
-        sn.add(compile(node.arguments[i]));
+        sn.add(compile(node.arguments[i]))
       }
 
-      sn.add(')');
+      sn.add(')')
     }
 
-    return sn;
+    return sn
   },
 
   CallExpression: ({node, compile}) => {
-    let sn = sourceNode(node.loc, [compile(node.callee), '(']);
+    let sn = sourceNode(node.loc, [compile(node.callee), '('])
 
     for (let i = 0; i < node.arguments.length; i++) {
       if (i !== 0) {
-        sn.add(', ');
+        sn.add(', ')
       }
 
-      sn.add(compile(node.arguments[i]));
+      sn.add(compile(node.arguments[i]))
     }
 
-    return sn.add(')');
+    return sn.add(')')
   },
 
   MemberExpression: ({node, compile}) => {
     if (node.computed) {
-      return sourceNode(node.loc, [compile(node.object), '[', compile(node.property), ']']);
+      return sourceNode(node.loc, [compile(node.object), '[', compile(node.property), ']'])
     } else {
-      return sourceNode(node.loc, [compile(node.object), '.', compile(node.property)]);
+      return sourceNode(node.loc, [compile(node.object), '.', compile(node.property)])
     }
   },
 
-  ThisExpression: ({node, figure}) => {
-    const ref = fig => fig.parent == null ? '' : '.parent' + ref(fig.parent);
-
-    figure.thisRef = true;
-    
-    return sourceNode(node.loc, '_this' + ref(figure));
+  ThisExpression: ({node}) => {
+    return sourceNode(node.loc, 'this')
   },
 
   Identifier: ({node}) => {
-    return sourceNode(node.loc, node.name);
+    return sourceNode(node.loc, node.name)
   },
 
   Accessor: ({node}) => {
-    return sourceNode(node.loc, node.name);
+    return sourceNode(node.loc, node.name)
   },
 
   Literal: ({node}) => {
-    return sourceNode(node.loc, node.value.toString());
+    return sourceNode(node.loc, node.value.toString())
   }
-};
+}

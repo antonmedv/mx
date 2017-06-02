@@ -1216,7 +1216,7 @@ case 35:
 
 case 37:
     /*! Production::    AttributeValue : TEXT */
-    this.$ = [new LiteralNode(JSON.stringify(yyvstack[yysp]), createSourceLocation(yylstack[yysp], yylstack[yysp]))];
+    this.$ = new LiteralNode(JSON.stringify(yyvstack[yysp]), createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
 case 38:

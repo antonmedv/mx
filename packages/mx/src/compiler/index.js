@@ -1,27 +1,27 @@
+const sourceNode = require('./sourceNode')
 const document = require('./document')
 const element = require('./element')
-const sourceNode = require('./sourceNode')
+const expression = require('./expression')
 
 const compilers = Object.assign({},
   document,
-  element
+  element,
+  expression
 )
 
-function createSource(loc) {
-  return (codes, ...nodes) => {
-    const node = sourceNode(loc, '')
-    for (let i = 0; i < codes.length; i++) {
-      node.add(sourceNode(loc, codes[i]))
-      if (nodes && nodes[i]) {
-        if (Array.isArray(nodes[i])) {
-          node.add(sourceNode(loc, nodes[i]).join(', '))
-        } else {
-          node.add(nodes[i])
-        }
+const createSource = (loc) => (codes, ...nodes) => {
+  const root = sourceNode(loc, '')
+  for (let i = 0; i < codes.length; i++) {
+    root.add(sourceNode(loc, codes[i]))
+    if (nodes && nodes[i]) {
+      if (Array.isArray(nodes[i])) {
+        root.add(sourceNode(loc, nodes[i]).join(', '))
+      } else {
+        root.add(nodes[i])
       }
     }
-    return node
   }
+  return root
 }
 
 function next(parent, node, record, options) {
@@ -31,7 +31,7 @@ function next(parent, node, record, options) {
     record,
     options,
     source: createSource(node.loc),
-    compile: (child, subrecord = record) => next(node, child, subrecord, options)
+    compile: (child) => next(node, child, record, options)
   }
 
   if (node.type in compilers) {
@@ -42,7 +42,9 @@ function next(parent, node, record, options) {
 }
 
 module.exports = function compile(name, ast, options) {
-  const record = {}
+  const record = {
+    props: [],
+  }
   //let figure = new Figure(name)
   //figure.scope = globals
   return next(null, ast, record, options)
