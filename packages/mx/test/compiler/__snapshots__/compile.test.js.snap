@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compile html and components 1`] = `
+"import React from \\"react\\"
+
+export default function({ value }) {
+  return React.createElement(
+    \\"body\\",
+    null,
+    React.createElement(Header, { title: \\"hello world\\" }),
+    React.createElement(
+      Content,
+      null,
+      React.createElement(\\"section\\", { className: \\"container\\" }),
+    ),
+    React.createElement(Footer, { value: value }),
+  )
+}
+"
+`;
+
+exports[`compile single tag 1`] = `
+"import React from \\"react\\"
+
+export default function({}) {
+  return React.createElement(\\"div\\", null)
+}
+"
+`;

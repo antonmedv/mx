@@ -2,11 +2,24 @@
 
 exports[`parse attribute with expressions 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [
         AttributeNode {
-          "body": ExpressionNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 28,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 7,
+              "line": 1,
+            },
+          },
+          "name": "onClick",
+          "type": "Attribute",
+          "value": ExpressionNode {
             "expression": IdentifierNode {
               "loc": SourceLocation {
                 "end": Position {
@@ -35,22 +48,9 @@ DocumentNode {
             },
             "type": "Expression",
           },
-          "loc": SourceLocation {
-            "end": Position {
-              "column": 28,
-              "line": 1,
-            },
-            "source": "file.mx",
-            "start": Position {
-              "column": 7,
-              "line": 1,
-            },
-          },
-          "name": "onClick",
-          "type": "Attribute",
         },
       ],
-      "body": Array [],
+      "children": Array [],
       "loc": SourceLocation {
         "end": Position {
           "column": 0,
@@ -83,11 +83,24 @@ DocumentNode {
 
 exports[`parse objects in attributes 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [
         AttributeNode {
-          "body": ExpressionNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 49,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 5,
+              "line": 1,
+            },
+          },
+          "name": "json",
+          "type": "Attribute",
+          "value": ExpressionNode {
             "expression": ObjectExpressionNode {
               "loc": SourceLocation {
                 "end": Position {
@@ -217,38 +230,8 @@ DocumentNode {
             },
             "type": "Expression",
           },
-          "loc": SourceLocation {
-            "end": Position {
-              "column": 49,
-              "line": 1,
-            },
-            "source": "file.mx",
-            "start": Position {
-              "column": 5,
-              "line": 1,
-            },
-          },
-          "name": "json",
-          "type": "Attribute",
         },
         AttributeNode {
-          "body": Array [
-            LiteralNode {
-              "loc": SourceLocation {
-                "end": Position {
-                  "column": 65,
-                  "line": 1,
-                },
-                "source": "file.mx",
-                "start": Position {
-                  "column": 61,
-                  "line": 1,
-                },
-              },
-              "type": "Literal",
-              "value": "\\"text\\"",
-            },
-          ],
           "loc": SourceLocation {
             "end": Position {
               "column": 66,
@@ -262,9 +245,24 @@ DocumentNode {
           },
           "name": "className",
           "type": "Attribute",
+          "value": LiteralNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 65,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 61,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "\\"text\\"",
+          },
         },
       ],
-      "body": Array [],
+      "children": Array [],
       "loc": SourceLocation {
         "end": Position {
           "column": 0,
@@ -297,11 +295,24 @@ DocumentNode {
 
 exports[`parse regexp in attributes 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [
         AttributeNode {
-          "body": ExpressionNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 40,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 1,
+            },
+          },
+          "name": "is",
+          "type": "Attribute",
+          "value": ExpressionNode {
             "expression": ConditionalExpressionNode {
               "alternate": LiteralNode {
                 "loc": SourceLocation {
@@ -435,22 +446,9 @@ DocumentNode {
             },
             "type": "Expression",
           },
-          "loc": SourceLocation {
-            "end": Position {
-              "column": 40,
-              "line": 1,
-            },
-            "source": "file.mx",
-            "start": Position {
-              "column": 2,
-              "line": 1,
-            },
-          },
-          "name": "is",
-          "type": "Attribute",
         },
       ],
-      "body": Array [],
+      "children": Array [],
       "loc": SourceLocation {
         "end": Position {
           "column": 0,

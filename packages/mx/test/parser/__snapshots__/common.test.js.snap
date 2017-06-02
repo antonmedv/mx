@@ -2,16 +2,16 @@
 
 exports[`ignore empty lines 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [],
-      "body": Array [
+      "children": Array [
         ElementNode {
           "attributes": Array [],
-          "body": Array [
+          "children": Array [
             ElementNode {
               "attributes": Array [],
-              "body": Array [],
+              "children": Array [],
               "loc": SourceLocation {
                 "end": Position {
                   "column": 0,
@@ -43,7 +43,7 @@ DocumentNode {
         },
         ElementNode {
           "attributes": Array [],
-          "body": Array [],
+          "children": Array [],
           "loc": SourceLocation {
             "end": Position {
               "column": 0,
@@ -91,27 +91,10 @@ DocumentNode {
 
 exports[`parse attributes 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [
         AttributeNode {
-          "body": Array [
-            LiteralNode {
-              "loc": SourceLocation {
-                "end": Position {
-                  "column": 12,
-                  "line": 1,
-                },
-                "source": "file.mx",
-                "start": Position {
-                  "column": 8,
-                  "line": 1,
-                },
-              },
-              "type": "Literal",
-              "value": "\\"code\\"",
-            },
-          ],
           "loc": SourceLocation {
             "end": Position {
               "column": 13,
@@ -125,25 +108,23 @@ DocumentNode {
           },
           "name": "id",
           "type": "Attribute",
+          "value": LiteralNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 12,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 8,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "\\"code\\"",
+          },
         },
         AttributeNode {
-          "body": Array [
-            LiteralNode {
-              "loc": SourceLocation {
-                "end": Position {
-                  "column": 25,
-                  "line": 1,
-                },
-                "source": "file.mx",
-                "start": Position {
-                  "column": 21,
-                  "line": 1,
-                },
-              },
-              "type": "Literal",
-              "value": "\\"cool\\"",
-            },
-          ],
           "loc": SourceLocation {
             "end": Position {
               "column": 26,
@@ -157,9 +138,24 @@ DocumentNode {
           },
           "name": "class",
           "type": "Attribute",
+          "value": LiteralNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 25,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 21,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "\\"cool\\"",
+          },
         },
       ],
-      "body": Array [],
+      "children": Array [],
       "loc": SourceLocation {
         "end": Position {
           "column": 0,
@@ -192,27 +188,10 @@ DocumentNode {
 
 exports[`parse attributes with children 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [
         AttributeNode {
-          "body": Array [
-            LiteralNode {
-              "loc": SourceLocation {
-                "end": Position {
-                  "column": 12,
-                  "line": 1,
-                },
-                "source": "file.mx",
-                "start": Position {
-                  "column": 8,
-                  "line": 1,
-                },
-              },
-              "type": "Literal",
-              "value": "\\"code\\"",
-            },
-          ],
           "loc": SourceLocation {
             "end": Position {
               "column": 13,
@@ -226,12 +205,27 @@ DocumentNode {
           },
           "name": "id",
           "type": "Attribute",
+          "value": LiteralNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 12,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 8,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "\\"code\\"",
+          },
         },
       ],
-      "body": Array [
+      "children": Array [
         ElementNode {
           "attributes": Array [],
-          "body": Array [],
+          "children": Array [],
           "loc": SourceLocation {
             "end": Position {
               "column": 0,
@@ -279,27 +273,10 @@ DocumentNode {
 
 exports[`parse attributes with content 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [
         AttributeNode {
-          "body": Array [
-            LiteralNode {
-              "loc": SourceLocation {
-                "end": Position {
-                  "column": 13,
-                  "line": 1,
-                },
-                "source": "file.mx",
-                "start": Position {
-                  "column": 11,
-                  "line": 1,
-                },
-              },
-              "type": "Literal",
-              "value": "\\"hi\\"",
-            },
-          ],
           "loc": SourceLocation {
             "end": Position {
               "column": 14,
@@ -313,9 +290,24 @@ DocumentNode {
           },
           "name": "class",
           "type": "Attribute",
+          "value": LiteralNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 13,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 11,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "\\"hi\\"",
+          },
         },
       ],
-      "body": Array [
+      "children": Array [
         TextNode {
           "loc": SourceLocation {
             "end": Position {
@@ -394,10 +386,10 @@ DocumentNode {
 
 exports[`parse complex selector 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [],
-      "body": Array [],
+      "children": Array [],
       "loc": SourceLocation {
         "end": Position {
           "column": 0,
@@ -430,10 +422,10 @@ DocumentNode {
 
 exports[`parse complex selector with dot on end 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [],
-      "body": Array [
+      "children": Array [
         TextNode {
           "loc": SourceLocation {
             "end": Position {
@@ -483,16 +475,16 @@ DocumentNode {
 
 exports[`parse indent and dedent 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [],
-      "body": Array [
+      "children": Array [
         ElementNode {
           "attributes": Array [],
-          "body": Array [
+          "children": Array [
             ElementNode {
               "attributes": Array [],
-              "body": Array [],
+              "children": Array [],
               "loc": SourceLocation {
                 "end": Position {
                   "column": 0,
@@ -524,10 +516,10 @@ DocumentNode {
         },
         ElementNode {
           "attributes": Array [],
-          "body": Array [
+          "children": Array [
             ElementNode {
               "attributes": Array [],
-              "body": Array [],
+              "children": Array [],
               "loc": SourceLocation {
                 "end": Position {
                   "column": 0,
@@ -544,7 +536,7 @@ DocumentNode {
             },
             ElementNode {
               "attributes": Array [],
-              "body": Array [],
+              "children": Array [],
               "loc": SourceLocation {
                 "end": Position {
                   "column": 0,
@@ -576,7 +568,7 @@ DocumentNode {
         },
         ElementNode {
           "attributes": Array [],
-          "body": Array [],
+          "children": Array [],
           "loc": SourceLocation {
             "end": Position {
               "column": 0,
@@ -624,10 +616,10 @@ DocumentNode {
 
 exports[`parse single tag 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [],
-      "body": Array [],
+      "children": Array [],
       "loc": SourceLocation {
         "end": Position {
           "column": 0,
@@ -696,13 +688,13 @@ DocumentNode {
 
 exports[`parse tag with block of text 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [],
-      "body": Array [
+      "children": Array [
         ElementNode {
           "attributes": Array [],
-          "body": Array [
+          "children": Array [
             TextNode {
               "loc": SourceLocation {
                 "end": Position {
@@ -739,7 +731,7 @@ DocumentNode {
         },
         ElementNode {
           "attributes": Array [],
-          "body": Array [],
+          "children": Array [],
           "loc": SourceLocation {
             "end": Position {
               "column": 0,
@@ -787,10 +779,10 @@ DocumentNode {
 
 exports[`parse tag with content 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [],
-      "body": Array [
+      "children": Array [
         TextNode {
           "loc": SourceLocation {
             "end": Position {
@@ -884,13 +876,13 @@ DocumentNode {
 
 exports[`parse text tags 1`] = `
 DocumentNode {
-  "body": Array [
+  "children": Array [
     ElementNode {
       "attributes": Array [],
-      "body": Array [
+      "children": Array [
         ElementNode {
           "attributes": Array [],
-          "body": Array [
+          "children": Array [
             TextNode {
               "loc": SourceLocation {
                 "end": Position {
