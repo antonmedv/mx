@@ -4,7 +4,9 @@ exports[`compile class name from tag 1`] = `
 "import React from \\"react\\"
 
 export default function({}) {
-  return React.createElement(\\"div\\", { className: \\"class-name\\" })
+  return React.createElement(\\"div\\", {
+    className: \\"class-name\\",
+  }), React.createElement(\\"article\\", { className: \\"title is-active\\" })
 }
 "
 `;

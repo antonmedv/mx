@@ -1,2 +1,3 @@
 body
-  .container-overview.is-active
+  span.block
+  .code.is-active

@@ -22,6 +22,7 @@ test('compile html and components', t => {
 test('compile class name from tag', t => {
   const code = `
   .class-name
+  article.title.is-active
   `
   t.snapshot(compile(code))
 })

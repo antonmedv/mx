@@ -9,19 +9,16 @@ module.exports = {
     if (/^[A-Z]/.test(node.name)) {
       name = node.name
     } else {
-      const isDot = /^\./
-      if (isDot.test(node.name)) {
-        name = source`'div'`
-        let classNames = node.name.replace(isDot, '').split('.').join(' ')
+      let [tag, ...classNames] = node.name.split('.')
+      name = tag === '' ? source`'div'` : source`'${tag}'`
+      if (classNames.length > 0) {
         node.attributes.push(
           new AttributeNode(
             'className',
-            new LiteralNode(JSON.stringify(classNames), node.loc),
+            new LiteralNode(JSON.stringify(classNames.join(' ')), node.loc),
             node.loc
           )
         )
-      } else {
-        name = source`'${node.name}'`
       }
     }
 
