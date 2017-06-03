@@ -13,7 +13,9 @@ const lexer = parser.Parser.prototype.lexer;
 lexer.setInput(code)
 for(;;) {
   let token = lexer.lex()
-  console.log(parser.Parser.prototype.terminals_[token] || token);
+  console.log(parser.Parser.prototype.terminals_[token] || token , JSON.stringify(
+    lexer.yytext
+  ))
   if (token === 1) break
 }
 

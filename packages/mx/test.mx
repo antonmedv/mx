@@ -1,11 +1,4 @@
-section className="main"
-  if todos.length > 0
-    input className="toggle-all" type="checkbox" checked={completedCount === todos.length} onChange={actions.completeAll}
-  ul className="main"
-    if todo in filteredTodos
-      TodoItem key={todo.id} todo={todo}
-    else if toto.f > 1
-      p Okay
-  if todos.length
-    Footer completedCount={completedCount} activeCount={activeCount} filter={filter} onClearCompleted={actions.clearCompleted} onShow={handleShow}
-  div Муц!
+body
+  input value={name}
+  for name, index of [1,2,3]
+    input value={name + index}

@@ -58,11 +58,12 @@ function IfStatementNode(cond, then, otherwise, loc) {
   this.loc = loc
 }
 
-function ForStatementNode(expr, children, options, loc) {
+function ForStatementNode(expression, children, currentValue, index, loc) {
   this.type = 'ForStatement'
-  this.expr = expr
+  this.expression = expression
   this.children = children
-  this.options = options
+  this.currentValue = currentValue
+  this.index = index
   this.loc = loc
 }
 

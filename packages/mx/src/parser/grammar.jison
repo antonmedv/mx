@@ -41,11 +41,11 @@ RegularExpressionLiteral {RegularExpressionBody}\/{RegularExpressionFlags}
 Space [\t \u00a0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000]
 Selector [#\.\w][\.\-\w]*
 Attribute [\-\w\t ]+
-Text [^{\n]+
+Text [^={\n]+
 ValueText [^\"]+
 Quote [\"]
 
-%s INITIAL TAG LINE VALUE TEXT BLOCK EXPR REGEXP IMPORT
+%s INITIAL TAG LINE VALUE TEXT BLOCK EXPR REGEXP FOR IMPORT
 
 %%
 <<EOF>>                            %{
@@ -80,10 +80,11 @@ Quote [\"]
                                    %}
 
 <TAG>\n+                           this.begin("INITIAL"); return "NEWLINE";
-<TAG>{Space}+                      /* skip whitespace, separate tokens */
+<TAG>{Space}+                      /* skip whitespaces */
 <TAG>"|"                           this.begin("TEXT"); return "|";
 <TAG>"if"                          this.begin("EXPR"); return "IF";
 <TAG>"else"                        return "ELSE";
+<TAG>"for"                         this.begin("FOR"); return "FOR";
 <TAG>"import"                      this.begin("IMPORT"); return "IMPORT";
 <TAG>{Selector}                    %{
                                      this.begin("LINE");
@@ -102,8 +103,14 @@ Quote [\"]
 <LINE>{Quote}                      this.begin("VALUE"); return "QUOTE";
 <LINE>{Text}                       return "TEXT";
 
+<FOR>\n+                           this.begin("INITIAL"); return "NEWLINE";
+<FOR>{Space}+                      /* skip whitespaces */
+<FOR>","                           return "COMMA";
+<FOR>"of"                          this.begin("EXPR"); return "OF";
+<FOR>{Identifier}                  return "IDENTIFIER";
+
 <IMPORT>\n+                        this.begin("INITIAL"); return "NEWLINE";
-<IMPORT>{Space}+                   /* Skip spaces */
+<IMPORT>{Space}+                   /* skip whitespaces */
 <IMPORT>"from"                     return "FROM";
 <IMPORT>"{"                        return "{";
 <IMPORT>","                        return ",";
@@ -131,23 +138,21 @@ Quote [\"]
                                    %}
 
 <EXPR>\n+                          this.begin("INITIAL"); return "NEWLINE";
-<EXPR>\s+                          /* skip whitespaces */
+<EXPR>{Space}+                     /* skip whitespaces */
 <EXPR>{StringLiteral}              return "STRING_LITERAL";
-<EXPR>"import"                     return "IMPORT";
-<EXPR>"from"                       return "FROM";
-<EXPR>"if"                         return "IF";
-<EXPR>"else"                       return "ELSE";
-<EXPR>"endif"                      return "ENDIF";
-<EXPR>"for"                        return "FOR";
-<EXPR>"endfor"                     return "ENDFOR";
-<EXPR>"of"                         return "OF";
-<EXPR>"in"                         return "IN";
-<EXPR>"instanceof"                 return "INSTANCEOF";
-<EXPR>"true"                       return "TRUE";
-<EXPR>"false"                      return "FALSE";
-<EXPR>"null"                       return "NULL";
-<EXPR>"this"                       return "THIS";
-<EXPR>"unsafe"                     return "UNSAFE";
+<EXPR>"import"\b                   return "IMPORT";
+<EXPR>"from"\b                     return "FROM";
+<EXPR>"if"\b                       return "IF";
+<EXPR>"else"\b                     return "ELSE";
+<EXPR>"endif"\b                    return "ENDIF";
+<EXPR>"for"\b                      return "FOR";
+<EXPR>"of"\b                       return "OF";
+<EXPR>"in"\b                       return "IN";
+<EXPR>"instanceof"\b               return "INSTANCEOF";
+<EXPR>"true"\b                     return "TRUE";
+<EXPR>"false"\b                    return "FALSE";
+<EXPR>"null"\b                     return "NULL";
+<EXPR>"this"\b                     return "THIS";
 <EXPR>{Identifier}                 return "IDENTIFIER";
 <EXPR>{DecimalLiteral}             return "NUMERIC_LITERAL";
 <EXPR>{HexIntegerLiteral}          return "NUMERIC_LITERAL";
@@ -254,6 +259,7 @@ Element
     : Text
     | Tag
     | If
+    | For
     | Import
     ;
 
@@ -405,6 +411,18 @@ If
     | IF Expression NEWLINE ElementBlock ELSE If
         {
             $$ = new IfStatementNode($Expression, $ElementBlock, [$If], createSourceLocation(@1, @6));
+        }
+    ;
+
+
+For
+    : FOR IDENTIFIER OF Expression NEWLINE ElementBlock
+        {
+            $$ = new ForStatementNode($Expression, $ElementBlock, $2, null, createSourceLocation(@1, @6));
+        }
+    | FOR IDENTIFIER COMMA IDENTIFIER OF Expression NEWLINE ElementBlock
+        {
+            $$ = new ForStatementNode($Expression, $ElementBlock, $2, $4, createSourceLocation(@1, @8));
         }
     ;
 

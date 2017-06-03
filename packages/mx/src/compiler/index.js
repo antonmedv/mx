@@ -4,13 +4,15 @@ const element = require('./element')
 const expression = require('./expression')
 const text = require('./text')
 const cond = require('./if')
+const loop = require('./for')
 
 const compilers = Object.assign({},
   document,
   element,
   expression,
   text,
-  cond
+  cond,
+  loop
 )
 
 function compile(name, ast, options) {
