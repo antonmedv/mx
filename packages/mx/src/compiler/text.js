@@ -1,3 +1,3 @@
 module.exports = {
-  Text: ({node, source}) => source`'${node.text}'`
+  Text: ({node, source}) => source`\`${node.text}\``
 }

@@ -38,3 +38,27 @@ export default function({}) {
 }
 "
 `;
+
+exports[`compile text 1`] = `
+"import React from \\"react\\"
+
+export default function({}) {
+  return React.createElement(
+    \\"p\\",
+    null,
+    \` hello world\`,
+    \`!\`,
+  ), React.createElement(
+    \\"p\\",
+    null,
+    \`  here goes a long
+  block of text
+\`,
+  ), React.createElement(
+    \\"div\\",
+    null,
+    React.createElement(\\"text\\", null, \` Also a text\`),
+  )
+}
+"
+`;

@@ -26,3 +26,15 @@ test('compile class name from tag', t => {
   `
   t.snapshot(compile(code))
 })
+
+test('compile text', t => {
+  const code = `
+  p hello world!
+  p.
+    here goes a long
+    block of text
+  div
+    | Also a text
+  `
+  t.snapshot(compile(code))
+})
