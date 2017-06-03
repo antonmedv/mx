@@ -60,105 +60,107 @@ DocumentNode {
           "line": 1,
         },
       },
-      "otherwise": IfStatementNode {
-        "cond": IdentifierNode {
+      "otherwise": Array [
+        IfStatementNode {
+          "cond": IdentifierNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 11,
+                "line": 3,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 8,
+                "line": 3,
+              },
+            },
+            "name": "bar",
+            "type": "Identifier",
+          },
           "loc": SourceLocation {
             "end": Position {
-              "column": 11,
-              "line": 3,
+              "column": 0,
+              "line": 7,
             },
             "source": "file.mx",
             "start": Position {
-              "column": 8,
+              "column": 5,
               "line": 3,
             },
           },
-          "name": "bar",
-          "type": "Identifier",
-        },
-        "loc": SourceLocation {
-          "end": Position {
-            "column": 0,
-            "line": 7,
-          },
-          "source": "file.mx",
-          "start": Position {
-            "column": 5,
-            "line": 3,
-          },
-        },
-        "otherwise": Array [
-          ElementNode {
-            "attributes": Array [],
-            "children": Array [
-              TextNode {
-                "loc": SourceLocation {
-                  "end": Position {
-                    "column": 8,
-                    "line": 6,
+          "otherwise": Array [
+            ElementNode {
+              "attributes": Array [],
+              "children": Array [
+                TextNode {
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 8,
+                      "line": 6,
+                    },
+                    "source": "file.mx",
+                    "start": Position {
+                      "column": 3,
+                      "line": 6,
+                    },
                   },
-                  "source": "file.mx",
-                  "start": Position {
-                    "column": 3,
-                    "line": 6,
-                  },
+                  "text": " Okay",
+                  "type": "Text",
                 },
-                "text": " Okay",
-                "type": "Text",
-              },
-            ],
-            "loc": SourceLocation {
-              "end": Position {
-                "column": 0,
-                "line": 7,
-              },
-              "source": "file.mx",
-              "start": Position {
-                "column": 2,
-                "line": 6,
-              },
-            },
-            "name": "p",
-            "type": "Element",
-          },
-        ],
-        "then": Array [
-          ElementNode {
-            "attributes": Array [],
-            "children": Array [
-              TextNode {
-                "loc": SourceLocation {
-                  "end": Position {
-                    "column": 13,
-                    "line": 4,
-                  },
-                  "source": "file.mx",
-                  "start": Position {
-                    "column": 3,
-                    "line": 4,
-                  },
+              ],
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 0,
+                  "line": 7,
                 },
-                "text": " Bar is ok",
-                "type": "Text",
+                "source": "file.mx",
+                "start": Position {
+                  "column": 2,
+                  "line": 6,
+                },
               },
-            ],
-            "loc": SourceLocation {
-              "end": Position {
-                "column": 0,
-                "line": 5,
-              },
-              "source": "file.mx",
-              "start": Position {
-                "column": 2,
-                "line": 4,
-              },
+              "name": "p",
+              "type": "Element",
             },
-            "name": "p",
-            "type": "Element",
-          },
-        ],
-        "type": "IfStatement",
-      },
+          ],
+          "then": Array [
+            ElementNode {
+              "attributes": Array [],
+              "children": Array [
+                TextNode {
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 13,
+                      "line": 4,
+                    },
+                    "source": "file.mx",
+                    "start": Position {
+                      "column": 3,
+                      "line": 4,
+                    },
+                  },
+                  "text": " Bar is ok",
+                  "type": "Text",
+                },
+              ],
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 0,
+                  "line": 5,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 2,
+                  "line": 4,
+                },
+              },
+              "name": "p",
+              "type": "Element",
+            },
+          ],
+          "type": "IfStatement",
+        },
+      ],
       "then": Array [
         ElementNode {
           "attributes": Array [],

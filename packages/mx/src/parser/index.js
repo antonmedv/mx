@@ -1246,7 +1246,7 @@ case 42:
 
 case 43:
     /*! Production::    If : IF Expression NEWLINE ElementBlock ELSE If */
-    this.$ = new IfStatementNode(yyvstack[yysp - 4], yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 5], yylstack[yysp]));
+    this.$ = new IfStatementNode(yyvstack[yysp - 4], yyvstack[yysp - 2], [yyvstack[yysp]], createSourceLocation(yylstack[yysp - 5], yylstack[yysp]));
     break;
 
 case 44:

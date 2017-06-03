@@ -11,6 +11,17 @@ export default function({}) {
 "
 `;
 
+exports[`compile conditions 1`] = `
+"import React from \\"react\\"
+
+export default function({}) {
+  return foo == \\"bar\\"
+    ? React.createElement(\\"p\\", null, \` Foo is bar\`)
+    : React.createElement(\\"p\\", null, \` Nope\`)
+}
+"
+`;
+
 exports[`compile html and components 1`] = `
 "import React from \\"react\\"
 

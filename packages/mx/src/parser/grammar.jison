@@ -404,7 +404,7 @@ If
         }
     | IF Expression NEWLINE ElementBlock ELSE If
         {
-            $$ = new IfStatementNode($Expression, $ElementBlock, $If, createSourceLocation(@1, @6));
+            $$ = new IfStatementNode($Expression, $ElementBlock, [$If], createSourceLocation(@1, @6));
         }
     ;
 

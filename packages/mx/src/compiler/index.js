@@ -3,27 +3,21 @@ const document = require('./document')
 const element = require('./element')
 const expression = require('./expression')
 const text = require('./text')
+const cond = require('./if')
 
 const compilers = Object.assign({},
   document,
   element,
   expression,
-  text
+  text,
+  cond
 )
 
-const createSource = (loc) => (codes, ...nodes) => {
-  const root = sourceNode(loc, '')
-  for (let i = 0; i < codes.length; i++) {
-    root.add(sourceNode(loc, codes[i]))
-    if (nodes && nodes[i]) {
-      if (Array.isArray(nodes[i])) {
-        root.add(sourceNode(loc, nodes[i]).join(', '))
-      } else {
-        root.add(nodes[i])
-      }
-    }
+function compile(name, ast, options) {
+  const record = {
+    props: [],
   }
-  return root
+  return next(null, ast, record, options)
 }
 
 function next(parent, node, record, options) {
@@ -43,11 +37,21 @@ function next(parent, node, record, options) {
   }
 }
 
-module.exports = function compile(name, ast, options) {
-  const record = {
-    props: [],
+function createSource(loc) {
+  return (codes, ...nodes) => {
+    const root = sourceNode(loc, '')
+    for (let i = 0; i < codes.length; i++) {
+      root.add(sourceNode(loc, codes[i]))
+      if (nodes && nodes[i]) {
+        if (Array.isArray(nodes[i])) {
+          root.add(sourceNode(loc, nodes[i]).join(', '))
+        } else {
+          root.add(nodes[i])
+        }
+      }
+    }
+    return root
   }
-  //let figure = new Figure(name)
-  //figure.scope = globals
-  return next(null, ast, record, options)
 }
+
+module.exports = compile

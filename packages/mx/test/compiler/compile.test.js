@@ -38,3 +38,13 @@ test('compile text', t => {
   `
   t.snapshot(compile(code))
 })
+
+test('compile conditions', t => {
+  const code = `
+  if foo == "bar"
+    p Foo is bar
+  else
+    p Nope
+  `
+  t.snapshot(compile(code))
+})
