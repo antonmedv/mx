@@ -3830,7 +3830,7 @@ function ElementNode(name, attributes, children, loc) {
 
 function AttributeNode(name, value, loc) {
   this.type = 'Attribute'
-  this.name = name
+  this.name = name.trim()
   this.value = value
   this.loc = loc
 }
@@ -5106,50 +5106,45 @@ case 10 :
 break;
 case 11 : 
 /*! Conditions:: LINE */ 
-/*! Rule::       {Space}+ */ 
- /* skip whitespace, separate tokens */ 
-break;
-case 12 : 
-/*! Conditions:: LINE */ 
 /*! Rule::       \. */ 
  this.begin("BLOCK"); return 5; 
 break;
-case 14 : 
+case 13 : 
 /*! Conditions:: LINE */ 
 /*! Rule::       \{ */ 
  this.begin("EXPR"); return 7; 
 break;
-case 17 : 
+case 16 : 
 /*! Conditions:: LINE */ 
 /*! Rule::       {Quote} */ 
  this.begin("VALUE"); return 30; 
 break;
-case 19 : 
+case 18 : 
 /*! Conditions:: IMPORT */ 
 /*! Rule::       \n+ */ 
  this.begin("INITIAL"); return 26; 
 break;
-case 20 : 
+case 19 : 
 /*! Conditions:: IMPORT */ 
 /*! Rule::       {Space}+ */ 
  /* Skip spaces */ 
 break;
-case 27 : 
+case 26 : 
 /*! Conditions:: IMPORT */ 
 /*! Rule::       {Quote} */ 
  this.begin("VALUE"); return 30; 
 break;
-case 30 : 
+case 29 : 
 /*! Conditions:: VALUE */ 
 /*! Rule::       {Quote} */ 
  this.popState(); return 30; 
 break;
-case 31 : 
+case 30 : 
 /*! Conditions:: TEXT */ 
 /*! Rule::       \n+ */ 
  this.begin("INITIAL"); return 26; 
 break;
-case 34 : 
+case 33 : 
 /*! Conditions:: BLOCK */ 
 /*! Rule::       .* */ 
  
@@ -5162,22 +5157,22 @@ case 34 :
                                      }
                                     
 break;
-case 35 : 
+case 34 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \n+ */ 
  this.begin("INITIAL"); return 26; 
 break;
-case 36 : 
+case 35 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \s+ */ 
  /* skip whitespaces */ 
 break;
-case 57 : 
+case 56 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \{ */ 
  brackets.push("{"); return 7; 
 break;
-case 58 : 
+case 57 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \} */ 
  
@@ -5189,7 +5184,7 @@ case 58 :
                                      return 8;
                                     
 break;
-case 106 : 
+case 105 : 
 /*! Conditions:: REGEXP */ 
 /*! Rule::       {RegularExpressionLiteral} */ 
  this.popState(); return 64; 
@@ -5205,247 +5200,247 @@ default:
    7 : 32,
   /*! Conditions:: LINE */ 
   /*! Rule::       = */ 
-   13 : 6,
+   12 : 6,
   /*! Conditions:: LINE */ 
   /*! Rule::       \} */ 
-   15 : 8,
+   14 : 8,
   /*! Conditions:: LINE */ 
   /*! Rule::       {Attribute} */ 
-   16 : 28,
+   15 : 28,
   /*! Conditions:: LINE */ 
   /*! Rule::       {Text} */ 
-   18 : 29,
+   17 : 29,
   /*! Conditions:: IMPORT */ 
   /*! Rule::       from */ 
-   21 : 35,
+   20 : 35,
   /*! Conditions:: IMPORT */ 
   /*! Rule::       \{ */ 
-   22 : 7,
+   21 : 7,
   /*! Conditions:: IMPORT */ 
   /*! Rule::       , */ 
-   23 : 3,
+   22 : 3,
   /*! Conditions:: IMPORT */ 
   /*! Rule::       \} */ 
-   24 : 8,
+   23 : 8,
   /*! Conditions:: IMPORT */ 
   /*! Rule::       \* */ 
-   25 : 9,
+   24 : 9,
   /*! Conditions:: IMPORT */ 
   /*! Rule::       as */ 
-   26 : 36,
+   25 : 36,
   /*! Conditions:: IMPORT */ 
   /*! Rule::       {Identifier} */ 
-   28 : 34,
+   27 : 34,
   /*! Conditions:: VALUE */ 
   /*! Rule::       {ValueText} */ 
-   29 : 29,
+   28 : 29,
   /*! Conditions:: TEXT */ 
   /*! Rule::       {Text} */ 
-   32 : 29,
+   31 : 29,
   /*! Conditions:: BLOCK */ 
   /*! Rule::       \n+ */ 
-   33 : 26,
+   32 : 26,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {StringLiteral} */ 
-   37 : 63,
+   36 : 63,
   /*! Conditions:: EXPR */ 
   /*! Rule::       import */ 
-   38 : 33,
+   37 : 33,
   /*! Conditions:: EXPR */ 
   /*! Rule::       from */ 
-   39 : 35,
+   38 : 35,
   /*! Conditions:: EXPR */ 
   /*! Rule::       if */ 
-   40 : 31,
+   39 : 31,
   /*! Conditions:: EXPR */ 
   /*! Rule::       else */ 
-   41 : 32,
+   40 : 32,
   /*! Conditions:: EXPR */ 
   /*! Rule::       endif */ 
-   42 : 'ENDIF',
+   41 : 'ENDIF',
   /*! Conditions:: EXPR */ 
   /*! Rule::       for */ 
-   43 : 75,
+   42 : 75,
   /*! Conditions:: EXPR */ 
   /*! Rule::       endfor */ 
-   44 : 'ENDFOR',
+   43 : 'ENDFOR',
   /*! Conditions:: EXPR */ 
   /*! Rule::       of */ 
-   45 : 'OF',
+   44 : 'OF',
   /*! Conditions:: EXPR */ 
   /*! Rule::       in */ 
-   46 : 48,
+   45 : 48,
   /*! Conditions:: EXPR */ 
   /*! Rule::       instanceof */ 
-   47 : 47,
+   46 : 47,
   /*! Conditions:: EXPR */ 
   /*! Rule::       true */ 
-   48 : 60,
+   47 : 60,
   /*! Conditions:: EXPR */ 
   /*! Rule::       false */ 
-   49 : 61,
+   48 : 61,
   /*! Conditions:: EXPR */ 
   /*! Rule::       null */ 
-   50 : 59,
+   49 : 59,
   /*! Conditions:: EXPR */ 
   /*! Rule::       this */ 
-   51 : 57,
+   50 : 57,
   /*! Conditions:: EXPR */ 
   /*! Rule::       unsafe */ 
-   52 : 'UNSAFE',
+   51 : 'UNSAFE',
   /*! Conditions:: EXPR */ 
   /*! Rule::       {Identifier} */ 
-   53 : 34,
+   52 : 34,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {DecimalLiteral} */ 
-   54 : 62,
+   53 : 62,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {HexIntegerLiteral} */ 
-   55 : 62,
+   54 : 62,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {OctalIntegerLiteral} */ 
-   56 : 62,
+   55 : 62,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \( */ 
-   59 : 20,
+   58 : 20,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \) */ 
-   60 : 21,
+   59 : 21,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \[ */ 
-   61 : 22,
+   60 : 22,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \] */ 
-   62 : 23,
+   61 : 23,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \. */ 
-   63 : 5,
+   62 : 5,
   /*! Conditions:: EXPR */ 
   /*! Rule::       ; */ 
-   64 : ';',
+   63 : ';',
   /*! Conditions:: EXPR */ 
   /*! Rule::       , */ 
-   65 : 3,
+   64 : 3,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \? */ 
-   66 : 10,
+   65 : 10,
   /*! Conditions:: EXPR */ 
   /*! Rule::       : */ 
-   67 : 11,
+   66 : 11,
   /*! Conditions:: EXPR */ 
   /*! Rule::       === */ 
-   68 : 43,
+   67 : 43,
   /*! Conditions:: EXPR */ 
   /*! Rule::       == */ 
-   69 : 41,
+   68 : 41,
   /*! Conditions:: EXPR */ 
   /*! Rule::       = */ 
-   70 : 6,
+   69 : 6,
   /*! Conditions:: EXPR */ 
   /*! Rule::       !== */ 
-   71 : 44,
+   70 : 44,
   /*! Conditions:: EXPR */ 
   /*! Rule::       != */ 
-   72 : 42,
+   71 : 42,
   /*! Conditions:: EXPR */ 
   /*! Rule::       ! */ 
-   73 : 19,
+   72 : 19,
   /*! Conditions:: EXPR */ 
   /*! Rule::       <<= */ 
-   74 : '<<=',
+   73 : '<<=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       << */ 
-   75 : 49,
+   74 : 49,
   /*! Conditions:: EXPR */ 
   /*! Rule::       <= */ 
-   76 : 45,
+   75 : 45,
   /*! Conditions:: EXPR */ 
   /*! Rule::       < */ 
-   77 : 12,
+   76 : 12,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>>= */ 
-   78 : '>>>=',
+   77 : '>>>=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>> */ 
-   79 : 51,
+   78 : 51,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>= */ 
-   80 : '>>=',
+   79 : '>>=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       >> */ 
-   81 : 50,
+   80 : 50,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >= */ 
-   82 : 46,
+   81 : 46,
   /*! Conditions:: EXPR */ 
   /*! Rule::       > */ 
-   83 : 13,
+   82 : 13,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+= */ 
-   84 : '+=',
+   83 : '+=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+\+ */ 
-   85 : 53,
+   84 : 53,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+ */ 
-   86 : 14,
+   85 : 14,
   /*! Conditions:: EXPR */ 
   /*! Rule::       -= */ 
-   87 : '-=',
+   86 : '-=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       -- */ 
-   88 : 54,
+   87 : 54,
   /*! Conditions:: EXPR */ 
   /*! Rule::       - */ 
-   89 : 15,
+   88 : 15,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \*= */ 
-   90 : '*=',
+   89 : '*=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \* */ 
-   91 : 9,
+   90 : 9,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \/= */ 
-   92 : 65,
+   91 : 65,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \/ */ 
-   93 : 16,
+   92 : 16,
   /*! Conditions:: EXPR */ 
   /*! Rule::       %= */ 
-   94 : '%=',
+   93 : '%=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       % */ 
-   95 : 17,
+   94 : 17,
   /*! Conditions:: EXPR */ 
   /*! Rule::       && */ 
-   96 : 40,
+   95 : 40,
   /*! Conditions:: EXPR */ 
   /*! Rule::       &= */ 
-   97 : '&=',
+   96 : '&=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       & */ 
-   98 : '&',
+   97 : '&',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \|\| */ 
-   99 : 39,
+   98 : 39,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \|= */ 
-   100 : '|=',
+   99 : '|=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \| */ 
-   101 : 4,
+   100 : 4,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \^= */ 
-   102 : '^=',
+   101 : '^=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \^ */ 
-   103 : '^',
+   102 : '^',
   /*! Conditions:: EXPR */ 
   /*! Rule::       ~ */ 
-   104 : 18,
+   103 : 18,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \.\.\. */ 
-   105 : '...'
+   104 : '...'
 },
     rules: [
 /^(?:$)/,
@@ -5459,12 +5454,11 @@ default:
 /^(?:import)/,
 /^(?:([\w#.][\w\-.]*))/,
 /^(?:\n+)/,
-/^(?:([\t   -​\u2028\u2029　])+)/,
 /^(?:\.)/,
 /^(?:=)/,
 /^(?:\{)/,
 /^(?:\})/,
-/^(?:([\w\-]+))/,
+/^(?:([\w\t \-]+))/,
 /^(?:(["]))/,
 /^(?:([^\n{]+))/,
 /^(?:\n+)/,
@@ -5588,38 +5582,38 @@ default:
       14,
       15,
       16,
-      17,
-      18
+      17
     ],
     inclusive: true
   },
   "VALUE": {
     rules: [
       0,
-      29,
-      30
+      28,
+      29
     ],
     inclusive: true
   },
   "TEXT": {
     rules: [
       0,
-      31,
-      32
+      30,
+      31
     ],
     inclusive: true
   },
   "BLOCK": {
     rules: [
       0,
-      33,
-      34
+      32,
+      33
     ],
     inclusive: true
   },
   "EXPR": {
     rules: [
       0,
+      34,
       35,
       36,
       37,
@@ -5689,21 +5683,21 @@ default:
       101,
       102,
       103,
-      104,
-      105
+      104
     ],
     inclusive: true
   },
   "REGEXP": {
     rules: [
       0,
-      106
+      105
     ],
     inclusive: true
   },
   "IMPORT": {
     rules: [
       0,
+      18,
       19,
       20,
       21,
@@ -5712,8 +5706,7 @@ default:
       24,
       25,
       26,
-      27,
-      28
+      27
     ],
     inclusive: true
   }

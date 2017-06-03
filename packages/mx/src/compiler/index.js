@@ -2,11 +2,13 @@ const sourceNode = require('./sourceNode')
 const document = require('./document')
 const element = require('./element')
 const expression = require('./expression')
+const text = require('./text')
 
 const compilers = Object.assign({},
   document,
   element,
-  expression
+  expression,
+  text
 )
 
 const createSource = (loc) => (codes, ...nodes) => {

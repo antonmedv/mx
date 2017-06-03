@@ -1,3 +1,1 @@
-body
-  span.block
-  .code.is-active
+div class="hi" Hello world!

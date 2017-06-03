@@ -102,7 +102,7 @@ DocumentNode {
             },
             "source": "file.mx",
             "start": Position {
-              "column": 4,
+              "column": 3,
               "line": 1,
             },
           },
@@ -132,7 +132,7 @@ DocumentNode {
             },
             "source": "file.mx",
             "start": Position {
-              "column": 14,
+              "column": 13,
               "line": 1,
             },
           },
@@ -199,7 +199,7 @@ DocumentNode {
             },
             "source": "file.mx",
             "start": Position {
-              "column": 4,
+              "column": 3,
               "line": 1,
             },
           },
@@ -284,7 +284,7 @@ DocumentNode {
             },
             "source": "file.mx",
             "start": Position {
-              "column": 4,
+              "column": 3,
               "line": 1,
             },
           },
@@ -311,31 +311,16 @@ DocumentNode {
         TextNode {
           "loc": SourceLocation {
             "end": Position {
-              "column": 20,
-              "line": 1,
-            },
-            "source": "file.mx",
-            "start": Position {
-              "column": 15,
-              "line": 1,
-            },
-          },
-          "text": "Hello",
-          "type": "Text",
-        },
-        TextNode {
-          "loc": SourceLocation {
-            "end": Position {
               "column": 26,
               "line": 1,
             },
             "source": "file.mx",
             "start": Position {
-              "column": 21,
+              "column": 14,
               "line": 1,
             },
           },
-          "text": "world",
+          "text": " Hello world",
           "type": "Text",
         },
         TextNode {
@@ -786,46 +771,16 @@ DocumentNode {
         TextNode {
           "loc": SourceLocation {
             "end": Position {
-              "column": 8,
+              "column": 20,
               "line": 1,
             },
             "source": "file.mx",
             "start": Position {
-              "column": 2,
+              "column": 1,
               "line": 1,
             },
           },
-          "text": "Beware",
-          "type": "Text",
-        },
-        TextNode {
-          "loc": SourceLocation {
-            "end": Position {
-              "column": 11,
-              "line": 1,
-            },
-            "source": "file.mx",
-            "start": Position {
-              "column": 9,
-              "line": 1,
-            },
-          },
-          "text": "of",
-          "type": "Text",
-        },
-        TextNode {
-          "loc": SourceLocation {
-            "end": Position {
-              "column": 19,
-              "line": 1,
-            },
-            "source": "file.mx",
-            "start": Position {
-              "column": 12,
-              "line": 1,
-            },
-          },
-          "text": "dragons",
+          "text": " Beware of dragons ",
           "type": "Text",
         },
         TextNode {

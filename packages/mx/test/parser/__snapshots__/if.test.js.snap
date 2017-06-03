@@ -99,11 +99,11 @@ DocumentNode {
                   },
                   "source": "file.mx",
                   "start": Position {
-                    "column": 4,
+                    "column": 3,
                     "line": 6,
                   },
                 },
-                "text": "Okay",
+                "text": " Okay",
                 "type": "Text",
               },
             ],
@@ -129,46 +129,16 @@ DocumentNode {
               TextNode {
                 "loc": SourceLocation {
                   "end": Position {
-                    "column": 7,
-                    "line": 4,
-                  },
-                  "source": "file.mx",
-                  "start": Position {
-                    "column": 4,
-                    "line": 4,
-                  },
-                },
-                "text": "Bar",
-                "type": "Text",
-              },
-              TextNode {
-                "loc": SourceLocation {
-                  "end": Position {
-                    "column": 10,
-                    "line": 4,
-                  },
-                  "source": "file.mx",
-                  "start": Position {
-                    "column": 8,
-                    "line": 4,
-                  },
-                },
-                "text": "is",
-                "type": "Text",
-              },
-              TextNode {
-                "loc": SourceLocation {
-                  "end": Position {
                     "column": 13,
                     "line": 4,
                   },
                   "source": "file.mx",
                   "start": Position {
-                    "column": 11,
+                    "column": 3,
                     "line": 4,
                   },
                 },
-                "text": "ok",
+                "text": " Bar is ok",
                 "type": "Text",
               },
             ],
@@ -196,46 +166,16 @@ DocumentNode {
             TextNode {
               "loc": SourceLocation {
                 "end": Position {
-                  "column": 7,
-                  "line": 2,
-                },
-                "source": "file.mx",
-                "start": Position {
-                  "column": 4,
-                  "line": 2,
-                },
-              },
-              "text": "Foo",
-              "type": "Text",
-            },
-            TextNode {
-              "loc": SourceLocation {
-                "end": Position {
-                  "column": 10,
-                  "line": 2,
-                },
-                "source": "file.mx",
-                "start": Position {
-                  "column": 8,
-                  "line": 2,
-                },
-              },
-              "text": "is",
-              "type": "Text",
-            },
-            TextNode {
-              "loc": SourceLocation {
-                "end": Position {
                   "column": 16,
                   "line": 2,
                 },
                 "source": "file.mx",
                 "start": Position {
-                  "column": 11,
+                  "column": 3,
                   "line": 2,
                 },
               },
-              "text": "value",
+              "text": " Foo is value",
               "type": "Text",
             },
           ],

@@ -26,7 +26,7 @@ function ElementNode(name, attributes, children, loc) {
 
 function AttributeNode(name, value, loc) {
   this.type = 'Attribute'
-  this.name = name
+  this.name = name.trim()
   this.value = value
   this.loc = loc
 }
