@@ -1,12 +1,16 @@
 module.exports = {
-  Document: ({node, compile, record, source}) => {
+  Document: ({node, compile, scope, source}) => {
     const children = node.children.map(child => compile(child))
-    const props = new Set(record.props)
+
+    let props = source``
+    if (scope.props.size > 0) {
+      props = source`{${[...scope.props]}}`
+    }
 
     return source`
     import React from 'react'
     
-    export default function ({${[...props]}}) {
+    export default function (${props}) {
       return ${children}
     }`
   }

@@ -1,4 +1,5 @@
 const sourceNode = require('./sourceNode')
+const Scope = require('./scope')
 const document = require('./document')
 const element = require('./element')
 const expression = require('./expression')
@@ -16,20 +17,18 @@ const compilers = Object.assign({},
 )
 
 function compile(name, ast, options) {
-  const record = {
-    props: [],
-  }
-  return next(null, ast, record, options)
+  const scope = new Scope()
+  return next(null, ast, scope, options)
 }
 
-function next(parent, node, record, options) {
+function next(parent, node, scope, options) {
   let path = {
     parent,
     node,
-    record,
+    scope,
     options,
     source: createSource(node.loc),
-    compile: (child) => next(node, child, record, options)
+    compile: (child, subscope = scope) => next(node, child, subscope, options)
   }
 
   if (node.type in compilers) {

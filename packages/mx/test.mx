@@ -1,4 +1,2 @@
-body
-  input value={name}
-  for name, index of [1,2,3]
-    input value={name + index}
+for name, index of [1,2,3]
+    input value={name + index + foo}

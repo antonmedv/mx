@@ -1,10 +1,8 @@
 const sourceNode = require('./sourceNode')
-const {collectProps} = require('./props')
 
 module.exports = {
-  Expression: ({node, compile, record}) => {
-    let props = collectProps(node.expression)
-    record.props.push(...props)
+  Expression: ({node, compile, scope}) => {
+    scope.collectProps(node.expression)
     return compile(node.expression)
   },
 
