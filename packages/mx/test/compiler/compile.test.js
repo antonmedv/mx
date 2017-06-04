@@ -48,3 +48,11 @@ test('compile conditions', t => {
   `
   t.snapshot(compile(code))
 })
+
+test('compile loop', t => {
+  const code = `
+  for name, index of something
+    input value={name}
+  `
+  t.snapshot(compile(code))
+})

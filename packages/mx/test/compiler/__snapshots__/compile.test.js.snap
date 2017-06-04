@@ -41,6 +41,17 @@ export default function({ value }) {
 "
 `;
 
+exports[`compile loop 1`] = `
+"import React from \\"react\\"
+
+export default function() {
+  return something.map((name, index) =>
+    React.createElement(\\"input\\", { value: name }),
+  )
+}
+"
+`;
+
 exports[`compile single tag 1`] = `
 "import React from \\"react\\"
 
