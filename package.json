@@ -1,6 +1,20 @@
 {
   "private": true,
+  "scripts": {
+    "test": "ava",
+    "lint": "eslint packages",
+    "build": "make build",
+    "precommit": "npm run lint; npm test"
+  },
   "devDependencies": {
-    "lerna": "^2.0.0-rc.4"
+    "ava": "^0.19.1",
+    "lerna": "^2.0.0-rc.4",
+    "eslint": "^3.19.0",
+    "husky": "^0.13.4"
+  },
+  "ava": {
+    "files": [
+      "**/*.test.js"
+    ]
   }
 }

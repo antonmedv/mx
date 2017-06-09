@@ -49,4 +49,32 @@ parser.parse = function (source, code) {
   }
   return originalParseMethod.call(this, code)
 }
+
+exports.lex = function (code) {
+  const lexer = parser.Parser.prototype.lexer
+  const terminals = parser.Parser.prototype.terminals_
+
+  lexer.setInput(code)
+  let stack = []
+  const lex = () => {
+    let token = stack.pop() || lexer.lex()
+    if (Array.isArray(token)) {
+      stack = token
+      token = stack.pop()
+    }
+    // if token is numeric value, convert
+    if (typeof token === 'number') {
+      token = terminals[token] || token
+    }
+    return token
+  }
+
+  let token, lexemes = [], i = 0
+  do {
+    token = lex()
+    lexemes.push([token, JSON.stringify(lexer.yytext)])
+  } while (token !== 1 && token !== 'EOF')
+
+  return lexemes
+}
 /* End Parser Customization Methods */

@@ -16,7 +16,7 @@ const compilers = Object.assign({},
   loop
 )
 
-function compile(name, ast, options) {
+function compile(ast, options) {
   const scope = new Scope()
   return next(null, ast, scope, options)
 }

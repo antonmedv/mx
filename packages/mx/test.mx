@@ -1,2 +1,0 @@
-for name, index of [1,2,3]
-    input value={name + index + foo}

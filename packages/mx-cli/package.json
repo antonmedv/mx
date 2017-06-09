@@ -1,11 +1,9 @@
 {
-  "name": "mx",
+  "name": "mx-cli",
   "version": "1.0.0",
-  "description": "Markup without JSX",
-  "main": "index.js",
-  "scripts": {
-    "build": "make build",
-    "prepublish": "npm run build"
+  "description": "mx command line",
+  "bin": {
+    "mx": "./bin/mx"
   },
   "repository": {
     "type": "git",
@@ -18,12 +16,14 @@
   },
   "homepage": "https://github.com/aviasales/mx#readme",
   "dependencies": {
-    "source-map": "^0.5.6"
-  },
-  "devDependencies": {
-    "dedent": "^0.7.0",
-    "jison-gho": "^0.4.18-180",
-    "preprocessor": "^1.4.0",
-    "prettier": "^1.4.4"
+    "mx": "1.0.0",
+    "async-foreach": "^0.1.3",
+    "chalk": "latest",
+    "chokidar": "^1.7.0",
+    "get-stdin": "^5.0.1",
+    "glob": "^7.1.2",
+    "meow": "^3.7.0",
+    "prettier": "^1.3.1",
+    "stdout-stream": "^1.4.0"
   }
 }

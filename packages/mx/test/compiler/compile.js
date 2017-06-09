@@ -3,7 +3,7 @@ const compile = require('../../src/compiler')
 const prettier = require('prettier')
 
 module.exports = (code) => {
-  const node = compile('file.mx', parse(code))
+  const node = compile(parse(code))
   return prettier.format(node.toString(), {
     semi: false,
     trailingComma: 'all',
