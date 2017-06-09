@@ -3,6 +3,7 @@ const fs = require('fs')
 const mkdirp = require('mkdirp')
 const path = require('path')
 const prettier = require('prettier')
+const columnify = require('columnify')
 const parser = require('mx/src/parser/index')
 const compile = require('mx/src/compiler/index')
 
@@ -87,21 +88,32 @@ exports.render = function (options, emitter) {
       sourceMapPath = path.basename(options.dest + '.map')
     }
 
-    const ast = parser.parse(sourcePath, code)
-    const node = compile(ast, {})
-
     let output
-    if (sourceMap) {
-      node.add(`\n//# sourceMappingURL=${sourceMapPath}\n`)
-      output = node.toStringWithSourceMap({
-        file: filename
-      })
-    } else {
+    if (options.lex) {
+      const lex = parser.lex(code)
       output = {
-        code: prettier.format(node.toString(), {})
+        code: columnify(lex, {showHeaders: false}) + '\n'
+      }
+    } else if (options.ast) {
+      const ast = parser.parse(sourcePath, code)
+      output = {
+        code: JSON.stringify(ast, (key, value) => key === 'loc' ? void 0 : value, 2) + '\n'
+      }
+    } else {
+      const ast = parser.parse(sourcePath, code)
+      const node = compile(ast, {})
+
+      if (sourceMap) {
+        node.add(`\n//# sourceMappingURL=${sourceMapPath}\n`)
+        output = node.toStringWithSourceMap({
+          file: filename
+        })
+      } else {
+        output = {
+          code: prettier.format(node.toString(), {})
+        }
       }
     }
-
     success(output)
   } catch (err) {
     error(err)

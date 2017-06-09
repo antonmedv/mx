@@ -32,7 +32,9 @@ const cli = meow({
     '  -v, --version              Prints version info',
     '  --source-map               Emit source map',
     '  --follow                   Follow symlinked directories',
-    '  --help                     Print this help'
+    '  --lex                      Print tokens from lexer',
+    '  --ast                      Print AST from parser',
+    '  --help                     Print this help',
   ].join('\n')
 }, {
   boolean: [
@@ -40,6 +42,8 @@ const cli = meow({
     'follow',
     'quiet',
     'source-map',
+    'lex',
+    'ast',
   ],
   string: [
     'output',
@@ -48,7 +52,7 @@ const cli = meow({
     w: 'watch',
     o: 'output',
     q: 'quiet',
-    v: 'version'
+    v: 'version',
   },
   default: {
     quiet: false
