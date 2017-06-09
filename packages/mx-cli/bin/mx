@@ -179,7 +179,7 @@ function renderDir(options, emitter) {
  */
 
 const options = getOptions(cli.input, cli.flags)
-const emitter = getEmitter();
+const emitter = getEmitter()
 
 /**
  * Show usage if no arguments are supplied
