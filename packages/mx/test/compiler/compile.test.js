@@ -27,6 +27,18 @@ test('compile class name from tag', t => {
   t.snapshot(compile(code))
 })
 
+test('compile import statements', t => {
+  const code = `
+  body
+    header.header
+      import {one, two, three} from "four.js"
+    import test from "test-pkg"
+    import * as Constructor from "Module"
+    footer
+  `
+  t.snapshot(compile(code))
+})
+
 test('compile text', t => {
   const code = `
   p hello world!

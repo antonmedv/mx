@@ -434,7 +434,6 @@ Import
         }
     | IMPORT "{" ImportsList "}" FROM QUOTE TEXT QUOTE NEWLINE
         {
-            console.error($3);
             $$ = new ImportStatementNode($3, $TEXT, createSourceLocation(@1, @9));
         }
     | IMPORT "*" AS IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE

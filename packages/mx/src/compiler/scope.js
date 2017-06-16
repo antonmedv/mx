@@ -4,6 +4,7 @@ class Scope {
   constructor(parent = null) {
     this.parent = parent
     this.children = []
+    this.imports = []
     this.props = new Set()
     this.vars = new Set()
   }
@@ -16,6 +17,10 @@ class Scope {
 
   add(...vars) {
     vars.forEach(x => this.vars.add(x))
+  }
+
+  getImports() {
+    return this.imports.join('\n')
   }
 
   collectProps(node) {

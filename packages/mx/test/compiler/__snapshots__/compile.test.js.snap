@@ -41,6 +41,23 @@ export default function({ value }) {
 "
 `;
 
+exports[`compile import statements 1`] = `
+"import React from \\"react\\"
+import { one, two, three } from \\"four.js\\"
+import test from \\"test-pkg\\"
+import Constructor from \\"Module\\"
+
+export default function() {
+  return React.createElement(
+    \\"body\\",
+    null,
+    React.createElement(\\"header\\", { className: \\"header\\" }),
+    React.createElement(\\"footer\\", null),
+  )
+}
+"
+`;
+
 exports[`compile loop 1`] = `
 "import React from \\"react\\"
 

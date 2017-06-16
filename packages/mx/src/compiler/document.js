@@ -6,10 +6,12 @@ module.exports = {
     if (scope.props.size > 0) {
       props = source`{${[...scope.props]}}`
     }
+    const imports = source`${scope.getImports()}`
 
     return source`
     import React from 'react'
-    
+    ${imports}
+
     export default function (${props}) {
       return ${children}
     }`

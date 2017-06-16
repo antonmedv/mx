@@ -1279,7 +1279,6 @@ case 47:
 
 case 48:
     /*! Production::    Import : IMPORT "{" ImportsList "}" FROM QUOTE TEXT QUOTE NEWLINE */
-    console.error(yyvstack[yysp - 6]);
     this.$ = new ImportStatementNode(yyvstack[yysp - 6], yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 8], yylstack[yysp]));
     break;
 

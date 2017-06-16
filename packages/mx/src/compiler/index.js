@@ -6,6 +6,7 @@ const expression = require('./expression')
 const text = require('./text')
 const cond = require('./if')
 const loop = require('./for')
+const include = require('./import')
 
 const compilers = Object.assign({},
   document,
@@ -13,7 +14,8 @@ const compilers = Object.assign({},
   expression,
   text,
   cond,
-  loop
+  loop,
+  include
 )
 
 function compile(ast, options) {
@@ -45,7 +47,11 @@ function createSource(loc) {
       root.add(sourceNode(loc, codes[i]))
       if (nodes && nodes[i]) {
         if (Array.isArray(nodes[i])) {
-          root.add(sourceNode(loc, nodes[i]).join(', '))
+          /*
+           We filter nodes[i] for undefineds because some of compilers
+           (i.e. import compiler) may not return anything
+          */
+          root.add(sourceNode(loc, nodes[i].filter(node => !!node)).join(', '))
         } else {
           root.add(nodes[i])
         }
