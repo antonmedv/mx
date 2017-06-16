@@ -4,11 +4,26 @@ exports[`parse if/else 1`] = `
 DocumentNode {
   "children": Array [
     IfStatementNode {
-      "cond": BinaryExpressionNode {
-        "left": IdentifierNode {
+      "cond": ExpressionNode {
+        "expression": BinaryExpressionNode {
+          "left": IdentifierNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 6,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 3,
+                "line": 1,
+              },
+            },
+            "name": "foo",
+            "type": "Identifier",
+          },
           "loc": SourceLocation {
             "end": Position {
-              "column": 6,
+              "column": 17,
               "line": 1,
             },
             "source": "file.mx",
@@ -17,8 +32,23 @@ DocumentNode {
               "line": 1,
             },
           },
-          "name": "foo",
-          "type": "Identifier",
+          "operator": "==",
+          "right": LiteralNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 17,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 10,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "\\"value\\"",
+          },
+          "type": "BinaryExpression",
         },
         "loc": SourceLocation {
           "end": Position {
@@ -31,23 +61,7 @@ DocumentNode {
             "line": 1,
           },
         },
-        "operator": "==",
-        "right": LiteralNode {
-          "loc": SourceLocation {
-            "end": Position {
-              "column": 17,
-              "line": 1,
-            },
-            "source": "file.mx",
-            "start": Position {
-              "column": 10,
-              "line": 1,
-            },
-          },
-          "type": "Literal",
-          "value": "\\"value\\"",
-        },
-        "type": "BinaryExpression",
+        "type": "Expression",
       },
       "loc": SourceLocation {
         "end": Position {
@@ -62,7 +76,22 @@ DocumentNode {
       },
       "otherwise": Array [
         IfStatementNode {
-          "cond": IdentifierNode {
+          "cond": ExpressionNode {
+            "expression": IdentifierNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 11,
+                  "line": 3,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 8,
+                  "line": 3,
+                },
+              },
+              "name": "bar",
+              "type": "Identifier",
+            },
             "loc": SourceLocation {
               "end": Position {
                 "column": 11,
@@ -74,8 +103,7 @@ DocumentNode {
                 "line": 3,
               },
             },
-            "name": "bar",
-            "type": "Identifier",
+            "type": "Expression",
           },
           "loc": SourceLocation {
             "end": Position {

@@ -393,9 +393,9 @@ Interpolation
         {
             $$ = null
         }
-    | "{" Expression "}"
+    | "{" ExpressionStatement "}"
         {
-            $$ = new ExpressionNode($Expression, createSourceLocation(@1, @3))
+            $$ = new ExpressionNode($2, createSourceLocation(@1, @3))
         }
     ;
 
@@ -455,6 +455,13 @@ ImportsList
     ;
 
 Expression
+    : ExpressionStatement
+        {
+            $$ = new ExpressionNode($1, createSourceLocation(@1, @1))
+        }
+    ;
+
+ExpressionStatement
     : AssignmentExpression
     | Expression "," AssignmentExpression
         {

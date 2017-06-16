@@ -14,7 +14,7 @@ export default function() {
 exports[`compile conditions 1`] = `
 "import React from \\"react\\"
 
-export default function() {
+export default function({ foo }) {
   return foo == \\"bar\\"
     ? React.createElement(\\"p\\", null, \` Foo is bar\`)
     : React.createElement(\\"p\\", null, \` Nope\`)
@@ -44,7 +44,7 @@ export default function({ value }) {
 exports[`compile loop 1`] = `
 "import React from \\"react\\"
 
-export default function() {
+export default function({ something }) {
   return something.map((name, index) =>
     React.createElement(\\"input\\", { value: name }),
   )
