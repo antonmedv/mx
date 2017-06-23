@@ -903,8 +903,8 @@ productions_: bp({
   [98, 7],
   99,
   99,
-  100,
-  100,
+  s,
+  [100, 3],
   101,
   102,
   102,
@@ -1015,14 +1015,14 @@ productions_: bp({
   c,
   [21, 3],
   c,
-  [15, 4],
+  [16, 5],
   c,
   [4, 6],
   5,
   0,
   1,
   c,
-  [24, 4],
+  [25, 4],
   7,
   6,
   6,
@@ -1032,7 +1032,7 @@ productions_: bp({
   9,
   1,
   c,
-  [43, 3],
+  [44, 3],
   c,
   [3, 4],
   3,
@@ -1066,7 +1066,7 @@ productions_: bp({
   s,
   [2, 3],
   c,
-  [107, 5],
+  [108, 5],
   4,
   c,
   [34, 4],
@@ -1081,7 +1081,7 @@ productions_: bp({
   c,
   [26, 3],
   c,
-  [118, 3],
+  [119, 3],
   3,
   3,
   7,
@@ -1111,13 +1111,15 @@ case 4:
     /*! Production::    ElementList : AssignmentExpression */
 case 23:
     /*! Production::    ContentList : Content */
-case 32:
+case 29:
+    /*! Production::    BlockLines : BlockParts */
+case 33:
     /*! Production::    AttributeList : Attribute */
-case 50:
+case 51:
     /*! Production::    ImportsList : IDENTIFIER */
-case 108:
+case 109:
     /*! Production::    ArgumentList : AssignmentExpression */
-case 141:
+case 142:
     /*! Production::    PropertyNameAndValueList : PropertyAssignment */
     this.$ = [yyvstack[yysp]];
     break;
@@ -1128,18 +1130,20 @@ case 5:
     /*! Production::    ElementList : Elision AssignmentExpression */
 case 24:
     /*! Production::    ContentList : ContentList Content */
-case 33:
+case 30:
+    /*! Production::    BlockLines : BlockLines BlockParts */
+case 34:
     /*! Production::    AttributeList : AttributeList Attribute */
     this.$ = yyvstack[yysp - 1].concat(yyvstack[yysp]);
     break;
 
 case 6:
     /*! Production::    ElementList : ElementList "," AssignmentExpression */
-case 51:
+case 52:
     /*! Production::    ImportsList : ImportsList "," IDENTIFIER */
-case 109:
+case 110:
     /*! Production::    ArgumentList : ArgumentList "," AssignmentExpression */
-case 142:
+case 143:
     /*! Production::    PropertyNameAndValueList : PropertyNameAndValueList "," PropertyAssignment */
     this.$ = yyvstack[yysp - 2].concat(yyvstack[yysp]);
     break;
@@ -1151,21 +1155,21 @@ case 7:
 
 case 8:
     /*! Production::    ElementBlock : INDENT ElementList DEDENT */
-case 107:
+case 108:
     /*! Production::    Arguments : "(" ArgumentList ")" */
-case 129:
+case 130:
     /*! Production::    PrimaryExpression : "(" Expression ")" */
     this.$ = yyvstack[yysp - 1];
     break;
 
 case 14:
     /*! Production::    Text : "|" NEWLINE */
-    this.$ = new ElementNode(" ", createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
+    this.$ = new TextNode([], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
 case 15:
     /*! Production::    Text : "|" ContentList NEWLINE */
-    this.$ = new ElementNode("text", [], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
+    this.$ = new TextNode(yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
 case 16:
@@ -1207,92 +1211,86 @@ case 25:
     /*! Production::    Content : ATTRIBUTE */
 case 26:
     /*! Production::    Content : TEXT */
-case 27:
-    /*! Production::    Block : BlockLines */
-    this.$ = new TextNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
-    break;
-
-case 28:
-    /*! Production::    BlockLines : BlockParts */
-    this.$ = yyvstack[yysp];
-    break;
-
-case 29:
-    /*! Production::    BlockLines : BlockLines BlockParts */
-    this.$ = yyvstack[yysp - 1] + yyvstack[yysp];
-    break;
-
-case 36:
-    /*! Production::    PlainAttribute : ATTRIBUTE "=" QUOTE AttributeValue QUOTE */
-    this.$ = new AttributeNode(yyvstack[yysp - 4], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 4], yylstack[yysp]));
-    break;
-
-case 38:
+case 31:
+    /*! Production::    BlockParts : NEWLINE */
+case 32:
+    /*! Production::    BlockParts : TEXT */
+case 39:
     /*! Production::    AttributeValue : TEXT */
     this.$ = new LiteralNode(JSON.stringify(yyvstack[yysp]), createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 39:
+case 28:
+    /*! Production::    Block : BlockLines */
+    this.$ = new TextNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
+    break;
+
+case 37:
+    /*! Production::    PlainAttribute : ATTRIBUTE "=" QUOTE AttributeValue QUOTE */
+    this.$ = new AttributeNode(yyvstack[yysp - 4], yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 4], yylstack[yysp]));
+    break;
+
+case 40:
     /*! Production::    ExpressionAttribute : ATTRIBUTE "=" Interpolation */
     this.$ = new AttributeNode(yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 40:
+case 41:
     /*! Production::    Interpolation : "{" "}" */
     this.$ = null
     break;
 
-case 41:
+case 42:
     /*! Production::    Interpolation : "{" ExpressionStatement "}" */
     this.$ = new ExpressionNode(yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]))
     break;
 
-case 42:
+case 43:
     /*! Production::    If : IF Expression NEWLINE ElementBlock */
     this.$ = new IfStatementNode(yyvstack[yysp - 2], yyvstack[yysp], null, createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 43:
+case 44:
     /*! Production::    If : IF Expression NEWLINE ElementBlock ELSE NEWLINE ElementBlock */
     this.$ = new IfStatementNode(yyvstack[yysp - 5], yyvstack[yysp - 3], yyvstack[yysp], createSourceLocation(yylstack[yysp - 6], yylstack[yysp]));
     break;
 
-case 44:
+case 45:
     /*! Production::    If : IF Expression NEWLINE ElementBlock ELSE If */
     this.$ = new IfStatementNode(yyvstack[yysp - 4], yyvstack[yysp - 2], [yyvstack[yysp]], createSourceLocation(yylstack[yysp - 5], yylstack[yysp]));
     break;
 
-case 45:
+case 46:
     /*! Production::    For : FOR IDENTIFIER OF Expression NEWLINE ElementBlock */
     this.$ = new ForStatementNode(yyvstack[yysp - 2], yyvstack[yysp], yyvstack[yysp - 4], null, createSourceLocation(yylstack[yysp - 5], yylstack[yysp]));
     break;
 
-case 46:
+case 47:
     /*! Production::    For : FOR IDENTIFIER COMMA IDENTIFIER OF Expression NEWLINE ElementBlock */
     this.$ = new ForStatementNode(yyvstack[yysp - 2], yyvstack[yysp], yyvstack[yysp - 6], yyvstack[yysp - 4], createSourceLocation(yylstack[yysp - 7], yylstack[yysp]));
     break;
 
-case 47:
+case 48:
     /*! Production::    Import : IMPORT IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE */
     this.$ = new ImportStatementNode(yyvstack[yysp - 5], yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 6], yylstack[yysp]));
     break;
 
-case 48:
+case 49:
     /*! Production::    Import : IMPORT "{" ImportsList "}" FROM QUOTE TEXT QUOTE NEWLINE */
     this.$ = new ImportStatementNode(yyvstack[yysp - 6], yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 8], yylstack[yysp]));
     break;
 
-case 49:
+case 50:
     /*! Production::    Import : IMPORT "*" AS IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE */
     this.$ = new ImportStatementNode(yyvstack[yysp - 5], yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 8], yylstack[yysp]));
     break;
 
-case 52:
+case 53:
     /*! Production::    Expression : ExpressionStatement */
     this.$ = new ExpressionNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]))
     break;
 
-case 54:
+case 55:
     /*! Production::    ExpressionStatement : Expression "," AssignmentExpression */
     if (yyvstack[yysp - 2].type === "SequenceExpression") {
         yyvstack[yysp - 2].expressions.concat(yyvstack[yysp]);
@@ -1303,281 +1301,281 @@ case 54:
     }
     break;
 
-case 57:
+case 58:
     /*! Production::    AssignmentExpression : LeftHandSideExpression "=" AssignmentExpression */
     this.$ = new AssignmentExpressionNode("=", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 58:
+case 59:
     /*! Production::    AssignmentExpression : LeftHandSideExpression AssignmentOperator AssignmentExpression */
     this.$ = new AssignmentExpressionNode(yyvstack[yysp - 1], yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 60:
+case 61:
     /*! Production::    ConditionalExpression : LogicalORExpression "?" AssignmentExpression ":" AssignmentExpression */
     this.$ = new ConditionalExpressionNode(yyvstack[yysp - 4], yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 4], yylstack[yysp]));
     break;
 
-case 62:
+case 63:
     /*! Production::    LogicalORExpression : LogicalORExpression "||" LogicalANDExpression */
     this.$ = new LogicalExpressionNode("||", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 64:
+case 65:
     /*! Production::    LogicalANDExpression : LogicalANDExpression "&&" EqualityExpression */
     this.$ = new LogicalExpressionNode("&&", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 66:
+case 67:
     /*! Production::    EqualityExpression : EqualityExpression "==" RelationalExpression */
     this.$ = new BinaryExpressionNode("==", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 67:
+case 68:
     /*! Production::    EqualityExpression : EqualityExpression "!=" RelationalExpression */
     this.$ = new BinaryExpressionNode("!=", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 68:
+case 69:
     /*! Production::    EqualityExpression : EqualityExpression "===" RelationalExpression */
     this.$ = new BinaryExpressionNode("===", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 69:
+case 70:
     /*! Production::    EqualityExpression : EqualityExpression "!==" RelationalExpression */
     this.$ = new BinaryExpressionNode("!==", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 71:
+case 72:
     /*! Production::    RelationalExpression : RelationalExpression "<" ShiftExpression */
     this.$ = new BinaryExpressionNode("<", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 72:
+case 73:
     /*! Production::    RelationalExpression : RelationalExpression ">" ShiftExpression */
     this.$ = new BinaryExpressionNode(">", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 73:
+case 74:
     /*! Production::    RelationalExpression : RelationalExpression "<=" ShiftExpression */
     this.$ = new BinaryExpressionNode("<=", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 74:
+case 75:
     /*! Production::    RelationalExpression : RelationalExpression ">=" ShiftExpression */
     this.$ = new BinaryExpressionNode(">=", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 75:
+case 76:
     /*! Production::    RelationalExpression : RelationalExpression INSTANCEOF ShiftExpression */
     this.$ = new BinaryExpressionNode("instanceof", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 76:
+case 77:
     /*! Production::    RelationalExpression : RelationalExpression IN ShiftExpression */
     this.$ = new BinaryExpressionNode("in", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 78:
+case 79:
     /*! Production::    ShiftExpression : ShiftExpression "<<" AdditiveExpression */
     this.$ = new BinaryExpressionNode("<<", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 79:
+case 80:
     /*! Production::    ShiftExpression : ShiftExpression ">>" AdditiveExpression */
     this.$ = new BinaryExpressionNode(">>", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 80:
+case 81:
     /*! Production::    ShiftExpression : ShiftExpression ">>>" AdditiveExpression */
     this.$ = new BinaryExpressionNode(">>>", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 82:
+case 83:
     /*! Production::    AdditiveExpression : AdditiveExpression "+" MultiplicativeExpression */
     this.$ = new BinaryExpressionNode("+", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 83:
+case 84:
     /*! Production::    AdditiveExpression : AdditiveExpression "-" MultiplicativeExpression */
     this.$ = new BinaryExpressionNode("-", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 85:
+case 86:
     /*! Production::    MultiplicativeExpression : MultiplicativeExpression "*" UnaryExpression */
     this.$ = new BinaryExpressionNode("*", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 86:
+case 87:
     /*! Production::    MultiplicativeExpression : MultiplicativeExpression "/" UnaryExpression */
     this.$ = new BinaryExpressionNode("/", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 87:
+case 88:
     /*! Production::    MultiplicativeExpression : MultiplicativeExpression "%" UnaryExpression */
     this.$ = new BinaryExpressionNode("%", yyvstack[yysp - 2], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 90:
+case 91:
     /*! Production::    UnaryExpr : TYPEOF UnaryExpression */
     this.$ = new UnaryExpressionNode("typeof", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 91:
+case 92:
     /*! Production::    UnaryExpr : "++" UnaryExpression */
     this.$ = new UpdateExpressionNode("++", yyvstack[yysp], true, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 92:
+case 93:
     /*! Production::    UnaryExpr : "--" UnaryExpression */
     this.$ = new UpdateExpressionNode("--", yyvstack[yysp], true, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 93:
+case 94:
     /*! Production::    UnaryExpr : "+" UnaryExpression */
     this.$ = new UnaryExpressionNode("+", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 94:
+case 95:
     /*! Production::    UnaryExpr : "-" UnaryExpression */
     this.$ = new UnaryExpressionNode("-", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 95:
+case 96:
     /*! Production::    UnaryExpr : "~" UnaryExpression */
     this.$ = new UnaryExpressionNode("~", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 96:
+case 97:
     /*! Production::    UnaryExpr : "!" UnaryExpression */
     this.$ = new UnaryExpressionNode("!", true, yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 98:
+case 99:
     /*! Production::    PostfixExpression : LeftHandSideExpression "++" */
     this.$ = new UpdateExpressionNode("++", yyvstack[yysp - 1], false, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 99:
+case 100:
     /*! Production::    PostfixExpression : LeftHandSideExpression "--" */
     this.$ = new UpdateExpressionNode("--", yyvstack[yysp - 1], false, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 102:
-    /*! Production::    IdentifierName : IDENTIFIER */
 case 103:
+    /*! Production::    IdentifierName : IDENTIFIER */
+case 104:
     /*! Production::    IdentifierName : ReservedWord */
-case 126:
+case 127:
     /*! Production::    PrimaryExpression : IDENTIFIER */
     this.$ = new IdentifierNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 104:
-    /*! Production::    AccessorName : IDENTIFIER */
 case 105:
+    /*! Production::    AccessorName : IDENTIFIER */
+case 106:
     /*! Production::    AccessorName : ReservedWord */
     this.$ = new AccessorNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 106:
+case 107:
     /*! Production::    Arguments : "(" ")" */
     this.$ = [];
     break;
 
-case 111:
+case 112:
     /*! Production::    NewExpression : NEW NewExpression */
     this.$ = new NewExpressionNode(yyvstack[yysp], null, createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 112:
-    /*! Production::    CallExpression : MemberExpression Arguments */
 case 113:
+    /*! Production::    CallExpression : MemberExpression Arguments */
+case 114:
     /*! Production::    CallExpression : CallExpression Arguments */
     this.$ = new CallExpressionNode(yyvstack[yysp - 1], yyvstack[yysp], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 114:
+case 115:
     /*! Production::    CallExpression : CallExpression "[" Expression "]" */
-case 119:
+case 120:
     /*! Production::    MemberExpression : MemberExpression "[" Expression "]" */
     this.$ = new MemberExpressionNode(yyvstack[yysp - 3], yyvstack[yysp - 1], true, createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 115:
+case 116:
     /*! Production::    CallExpression : CallExpression "." AccessorName */
-case 120:
+case 121:
     /*! Production::    MemberExpression : MemberExpression "." AccessorName */
     this.$ = new MemberExpressionNode(yyvstack[yysp - 2], yyvstack[yysp], false, createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 116:
+case 117:
     /*! Production::    PropertySetParameterList : IDENTIFIER */
     this.$ = [new IdentifierNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]))];
     break;
 
-case 121:
+case 122:
     /*! Production::    MemberExpression : NEW MemberExpression Arguments */
     this.$ = new NewExpressionNode(yyvstack[yysp - 1], yyvstack[yysp], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 125:
+case 126:
     /*! Production::    PrimaryExpression : THIS */
     this.$ = new ThisExpressionNode(createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 131:
+case 132:
     /*! Production::    ArrayLiteral : "[" "]" */
     this.$ = new ArrayExpressionNode([], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 132:
-    /*! Production::    ArrayLiteral : "[" Elision "]" */
 case 133:
+    /*! Production::    ArrayLiteral : "[" Elision "]" */
+case 134:
     /*! Production::    ArrayLiteral : "[" ElementList "]" */
     this.$ = new ArrayExpressionNode(yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 134:
+case 135:
     /*! Production::    ArrayLiteral : "[" ElementList "," "]" */
     this.$ = new ArrayExpressionNode(yyvstack[yysp - 2].concat(null), createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 135:
+case 136:
     /*! Production::    ArrayLiteral : "[" ElementList "," Elision "]" */
     this.$ = new ArrayExpressionNode(yyvstack[yysp - 3].concat(yyvstack[yysp - 1]), createSourceLocation(yylstack[yysp - 4], yylstack[yysp]));
     break;
 
-case 136:
+case 137:
     /*! Production::    Elision : "," */
     this.$ = [null, null];
     break;
 
-case 137:
+case 138:
     /*! Production::    Elision : Elision "," */
     this.$ = yyvstack[yysp - 1].concat(null);
     break;
 
-case 138:
+case 139:
     /*! Production::    ObjectLiteral : "{" "}" */
     this.$ = new ObjectExpressionNode([], createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 139:
+case 140:
     /*! Production::    ObjectLiteral : "{" PropertyNameAndValueList "}" */
     this.$ = new ObjectExpressionNode(yyvstack[yysp - 1], createSourceLocation(yylstack[yysp - 2], yylstack[yysp]));
     break;
 
-case 140:
+case 141:
     /*! Production::    ObjectLiteral : "{" PropertyNameAndValueList "," "}" */
     this.$ = new ObjectExpressionNode(yyvstack[yysp - 2], createSourceLocation(yylstack[yysp - 3], yylstack[yysp]));
     break;
 
-case 143:
+case 144:
     /*! Production::    PropertyAssignment : PropertyName ":" AssignmentExpression */
     this.$ = {key: yyvstack[yysp - 2], value: yyvstack[yysp], kind: "init"};
     break;
 
-case 144:
+case 145:
     /*! Production::    PropertyAssignment : IDENTIFIER PropertyName "(" ")" "{" FunctionBody "}" */
     if (yyvstack[yysp - 6] === "get") {
         this.$ = {key: yyvstack[yysp - 5], value: (new FunctionExpressionNode(null, [], yyvstack[yysp - 1], false, false, createSourceLocation(yylstack[yysp - 5], yylstack[yysp]))), kind: "get"};
@@ -1586,7 +1584,7 @@ case 144:
     }
     break;
 
-case 145:
+case 146:
     /*! Production::    PropertyAssignment : IDENTIFIER PropertyName "(" PropertySetParameterList ")" "{" FunctionBody "}" */
     if (yyvstack[yysp - 7] === "set") {
         this.$ = {key: yyvstack[yysp - 6], value: (new FunctionExpressionNode(null, yyvstack[yysp - 4], yyvstack[yysp - 1], false, false, createSourceLocation(yylstack[yysp - 6], yylstack[yysp]))), kind: "set"};
@@ -1595,39 +1593,39 @@ case 145:
     }
     break;
 
-case 151:
+case 152:
     /*! Production::    NullLiteral : NULL */
     this.$ = new LiteralNode(null, createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 152:
+case 153:
     /*! Production::    BooleanLiteral : TRUE */
     this.$ = new LiteralNode(true, createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 153:
+case 154:
     /*! Production::    BooleanLiteral : FALSE */
     this.$ = new LiteralNode(false, createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 154:
+case 155:
     /*! Production::    NumericLiteral : NUMERIC_LITERAL */
     this.$ = new LiteralNode(parseNumericLiteral(yyvstack[yysp]), createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 155:
+case 156:
     /*! Production::    StringLiteral : STRING_LITERAL */
     this.$ = new LiteralNode(yyvstack[yysp], createSourceLocation(yylstack[yysp], yylstack[yysp]));
     break;
 
-case 156:
+case 157:
     /*! Production::    RegularExpressionLiteral : RegularExpressionLiteralBegin REGEXP_LITERAL */
     this.$ = new LiteralNode(parseRegularExpressionLiteral(yyvstack[yysp - 1] + yyvstack[yysp]), createSourceLocation(yylstack[yysp - 1], yylstack[yysp]));
     break;
 
-case 157:
-    /*! Production::    RegularExpressionLiteralBegin : "/" */
 case 158:
+    /*! Production::    RegularExpressionLiteralBegin : "/" */
+case 159:
     /*! Production::    RegularExpressionLiteralBegin : "/=" */
     yy.lexer.begin("REGEXP");
     break;
@@ -1646,8 +1644,8 @@ table: bt({
   [0, 7],
   38,
   0,
-  5,
-  10,
+  7,
+  12,
   50,
   1,
   3,
@@ -1686,15 +1684,18 @@ table: bt({
   48,
   s,
   [0, 3],
-  4,
+  6,
   s,
-  [0, 3],
+  [0, 4],
+  51,
   11,
-  4,
+  6,
   1,
-  8,
-  c,
-  [9, 4],
+  10,
+  0,
+  5,
+  0,
+  0,
   2,
   c,
   [3, 3],
@@ -1730,18 +1731,21 @@ table: bt({
   39,
   39,
   c,
-  [113, 4],
+  [115, 4],
   0,
   36,
   s,
   [0, 7],
   c,
-  [177, 6],
+  [179, 6],
+  2,
+  1,
+  0,
   62,
   0,
   5,
   11,
-  4,
+  6,
   0,
   3,
   2,
@@ -1750,13 +1754,13 @@ table: bt({
   1,
   1,
   c,
-  [77, 3],
+  [80, 3],
   1,
   16,
   c,
-  [119, 3],
+  [122, 3],
   c,
-  [124, 4],
+  [127, 4],
   20,
   c,
   [8, 3],
@@ -1767,9 +1771,8 @@ table: bt({
   0,
   s,
   [31, 3],
-  0,
-  0,
-  51,
+  c,
+  [158, 3],
   0,
   46,
   48,
@@ -1777,7 +1780,7 @@ table: bt({
   0,
   34,
   c,
-  [188, 5],
+  [193, 6],
   13,
   0,
   12,
@@ -1785,42 +1788,41 @@ table: bt({
   [0, 5],
   3,
   0,
-  51,
   10,
   c,
-  [168, 3],
+  [72, 3],
   s,
   [1, 4],
   c,
-  [193, 3],
+  [198, 3],
   c,
   [3, 3],
   c,
-  [203, 3],
+  [208, 3],
   c,
-  [21, 3],
+  [20, 3],
   0,
   1,
   c,
-  [190, 4],
-  3,
-  2,
+  [84, 3],
   c,
-  [86, 3],
+  [83, 3],
   c,
-  [11, 4],
+  [8, 3],
   c,
-  [89, 3],
+  [12, 3],
   c,
-  [86, 5],
+  [5, 3],
   c,
-  [42, 7],
+  [209, 5],
+  s,
+  [1, 4],
   c,
-  [183, 4],
+  [182, 4],
   c,
   [7, 4],
   c,
-  [29, 7]
+  [28, 7]
 ]),
   symbol: u([
   3,
@@ -1895,45 +1897,48 @@ table: bt({
   [41, 14, 1],
   56,
   57,
+  7,
   26,
   28,
   29,
   99,
   100,
+  109,
   5,
   c,
-  [6, 5],
+  [8, 6],
   104,
   105,
   106,
   108,
+  109,
   c,
-  [101, 22],
+  [105, 22],
   s,
   [114, 15, 1],
   c,
-  [103, 13],
+  [107, 13],
   34,
   7,
   9,
   34,
   c,
-  [107, 3],
+  [111, 3],
   8,
   10,
   11,
   c,
-  [99, 8],
+  [103, 8],
   42,
   c,
   [15, 3],
   5,
   c,
-  [123, 11],
+  [127, 11],
   s,
   [20, 4, 1],
   c,
-  [125, 22],
+  [129, 22],
   131,
   c,
   [57, 15],
@@ -1948,7 +1953,7 @@ table: bt({
   [161, 9],
   133,
   c,
-  [248, 14],
+  [252, 14],
   c,
   [84, 13],
   c,
@@ -1968,12 +1973,12 @@ table: bt({
   c,
   [154, 3],
   c,
-  [499, 10],
+  [503, 10],
   23,
   c,
-  [500, 18],
+  [504, 18],
   c,
-  [499, 34],
+  [503, 34],
   8,
   s,
   [31, 4, 1],
@@ -2003,7 +2008,7 @@ table: bt({
   c,
   [32, 4],
   c,
-  [514, 17],
+  [518, 17],
   c,
   [35, 13],
   c,
@@ -2015,34 +2020,37 @@ table: bt({
   c,
   [38, 228],
   c,
-  [864, 41],
+  [868, 41],
   c,
   [429, 9],
   c,
-  [913, 48],
+  [917, 48],
   c,
-  [48, 48],
+  [48, 49],
   c,
-  [917, 3],
+  [919, 3],
   100,
+  109,
+  7,
+  8,
   c,
-  [450, 3],
+  [674, 52],
   23,
   24,
   25,
   c,
-  [439, 4],
+  [492, 4],
   95,
   c,
-  [15, 4],
+  [68, 6],
   26,
   c,
-  [937, 5],
+  [994, 6],
   c,
-  [936, 3],
+  [993, 4],
   6,
   c,
-  [9, 3],
+  [11, 4],
   3,
   26,
   35,
@@ -2052,17 +2060,17 @@ table: bt({
   113,
   39,
   c,
-  [136, 57],
+  [194, 57],
   c,
   [47, 12],
   c,
-  [180, 45],
+  [238, 45],
   c,
-  [799, 28],
+  [183, 28],
   c,
-  [706, 13],
+  [764, 13],
   c,
-  [704, 24],
+  [762, 24],
   130,
   151,
   c,
@@ -2076,7 +2084,7 @@ table: bt({
   c,
   [182, 111],
   c,
-  [1184, 43],
+  [1242, 43],
   c,
   [174, 20],
   c,
@@ -2094,21 +2102,21 @@ table: bt({
   c,
   [40, 59],
   c,
-  [1127, 9],
+  [1185, 9],
   23,
   c,
   [943, 40],
   c,
-  [1026, 3],
+  [1031, 3],
   c,
-  [2054, 11],
+  [2116, 11],
   8,
   11,
   11,
   c,
-  [1572, 41],
+  [1630, 41],
   c,
-  [1570, 3],
+  [1628, 3],
   c,
   [151, 21],
   c,
@@ -2118,79 +2126,82 @@ table: bt({
   c,
   [38, 93],
   c,
-  [1730, 34],
+  [1788, 34],
   56,
   57,
   c,
-  [2330, 49],
+  [2392, 49],
+  3,
+  8,
+  3,
   c,
-  [2456, 28],
+  [2521, 28],
   c,
-  [1956, 34],
+  [2017, 34],
   26,
   29,
   101,
   102,
   103,
   c,
-  [1432, 15],
+  [1440, 17],
   7,
   30,
   109,
   24,
   95,
   c,
-  [1552, 70],
+  [1615, 70],
   c,
-  [2412, 29],
+  [2475, 29],
   30,
   3,
   8,
   34,
   11,
   c,
-  [2273, 16],
+  [2336, 16],
   3,
   23,
   3,
   21,
   c,
-  [2293, 20],
+  [2356, 20],
   3,
   23,
   c,
-  [2219, 26],
+  [2282, 26],
   c,
   [26, 104],
   c,
-  [417, 3],
+  [422, 3],
   c,
   [29, 153],
   c,
-  [2358, 23],
+  [2421, 23],
   c,
   [31, 62],
   c,
-  [992, 42],
+  [997, 42],
   c,
-  [2549, 51],
+  [2612, 51],
   c,
-  [2548, 4],
+  [2611, 4],
   c,
   [614, 48],
   20,
   c,
-  [835, 34],
+  [840, 34],
   c,
   [34, 34],
   3,
   4,
   c,
-  [748, 5],
+  [750, 5],
   c,
-  [796, 6],
+  [798, 6],
   c,
-  [764, 4],
+  [766, 4],
   c,
   [36, 3],
   29,
@@ -2200,39 +2211,33 @@ table: bt({
   29,
   30,
   107,
-  7,
-  8,
   c,
-  [2883, 52],
-  23,
+  [15, 5],
+  27,
   c,
-  [81, 3],
-  32,
-  33,
+  [196, 3],
   37,
   c,
-  [2244, 3],
+  [2198, 3],
   29,
   38,
   34,
   38,
   c,
-  [2379, 96],
+  [2391, 96],
   c,
-  [1398, 50],
+  [1352, 50],
   21,
   34,
   135,
-  c,
-  [877, 3],
-  3,
+  30,
   26,
   31,
   110,
   c,
-  [985, 24],
+  [931, 24],
   c,
-  [225, 28],
+  [883, 28],
   s,
   [30, 3],
   7,
@@ -2267,11 +2272,11 @@ table: bt({
   c,
   [72, 49],
   s,
-  [2, 41],
+  [2, 42],
   c,
-  [43, 6],
+  [45, 8],
   c,
-  [53, 28],
+  [57, 29],
   s,
   [0, 28],
   s,
@@ -2297,27 +2302,29 @@ table: bt({
   c,
   [436, 29],
   c,
-  [913, 70],
+  [917, 70],
   c,
-  [48, 29],
+  [48, 30],
   c,
-  [52, 11],
+  [152, 52],
   c,
-  [15, 9],
+  [51, 11],
   c,
-  [76, 15],
+  [68, 12],
   c,
-  [1049, 71],
+  [133, 17],
   c,
-  [180, 71],
+  [1111, 71],
   c,
-  [660, 39],
+  [238, 71],
   c,
-  [367, 73],
+  [718, 39],
+  c,
+  [425, 73],
   c,
   [182, 134],
   c,
-  [1242, 40],
+  [1300, 40],
   c,
   [216, 63],
   c,
@@ -2331,49 +2338,46 @@ table: bt({
   c,
   [943, 36],
   c,
-  [1522, 49],
+  [1580, 49],
   c,
   [151, 44],
   c,
   [39, 77],
   c,
-  [1430, 99],
+  [1488, 99],
   c,
-  [1902, 62],
+  [1960, 62],
   c,
-  [1956, 64],
+  [2017, 67],
   c,
-  [1408, 17],
+  [1440, 22],
+  0,
   c,
-  [20, 4],
+  [1422, 24],
   c,
-  [1417, 24],
+  [1615, 74],
   c,
-  [1552, 74],
-  c,
-  [2032, 89],
+  [2095, 89],
   s,
   [2, 356],
   c,
-  [2549, 73],
+  [2612, 73],
   c,
-  [3079, 89],
+  [3146, 90],
   c,
-  [130, 52],
+  [130, 51],
   c,
   [761, 5],
   c,
-  [712, 89],
+  [916, 86],
   c,
-  [2427, 96],
+  [210, 50],
   c,
-  [50, 30],
+  [949, 29],
   c,
-  [53, 7],
+  [173, 5],
   c,
-  [985, 51],
-  c,
-  [112, 8],
+  [883, 57],
   c,
   [57, 9],
   c,
@@ -2417,48 +2421,47 @@ table: bt({
   [32, 8],
   74,
   75,
-  79,
-  75,
+  78,
   81,
-  82,
-  s,
-  [84, 5, 1],
+  75,
+  83,
+  84,
+  86,
+  87,
+  78,
+  88,
+  89,
+  90,
   c,
-  [36, 25],
-  95,
-  100,
-  103,
-  104,
+  [38, 25],
+  97,
+  102,
+  105,
+  106,
   c,
   [14, 10],
-  115,
+  117,
   c,
   [42, 27],
-  121,
+  123,
   c,
-  [144, 24],
-  120,
+  [146, 24],
+  122,
   c,
   [34, 8],
+  129,
   127,
   125,
-  123,
-  124,
-  129,
-  128,
+  126,
+  131,
   130,
-  173,
+  132,
+  175,
   56,
   55,
-  174,
-  c,
-  [58, 13],
-  175,
-  c,
-  [17, 16],
   176,
   c,
-  [17, 16],
+  [58, 13],
   177,
   c,
   [17, 16],
@@ -2473,167 +2476,176 @@ table: bt({
   [17, 16],
   181,
   c,
-  [153, 17],
+  [17, 16],
   182,
   c,
-  [27, 8],
+  [17, 16],
   183,
   c,
-  [213, 25],
+  [153, 17],
   184,
   c,
-  [26, 25],
-  186,
-  187,
-  186,
-  192,
-  75,
-  193,
-  84,
-  85,
-  200,
-  203,
+  [27, 8],
+  185,
   c,
-  [35, 25],
-  204,
+  [213, 25],
+  186,
+  c,
+  [26, 25],
+  188,
+  78,
+  191,
+  190,
+  c,
+  [269, 26],
+  192,
+  188,
+  78,
+  197,
+  75,
+  198,
+  c,
+  [348, 3],
+  205,
+  208,
+  c,
+  [36, 25],
+  209,
   c,
   [23, 8],
   c,
-  [137, 14],
-  205,
-  c,
-  [325, 27],
-  206,
-  208,
-  211,
-  c,
-  [28, 12],
+  [168, 14],
   210,
   c,
-  [29, 13],
-  212,
-  c,
-  [79, 21],
+  [356, 27],
+  211,
   213,
-  c,
-  [79, 27],
-  214,
-  208,
-  215,
   216,
   c,
-  [52, 20],
+  [28, 12],
+  215,
+  c,
+  [29, 13],
   217,
   c,
-  [21, 20],
+  [79, 21],
   218,
   c,
-  [21, 20],
+  [79, 27],
   219,
-  c,
-  [21, 20],
+  213,
   220,
-  c,
-  [20, 19],
   221,
   c,
-  [20, 19],
+  [52, 20],
   222,
   c,
-  [20, 19],
+  [21, 20],
   223,
   c,
-  [20, 19],
+  [21, 20],
   224,
   c,
-  [20, 19],
+  [21, 20],
   225,
+  c,
+  [20, 19],
+  226,
   c,
   [20, 19],
   227,
   c,
-  [19, 18],
+  [20, 19],
   228,
   c,
-  [19, 18],
+  [20, 19],
   229,
   c,
+  [20, 19],
+  230,
+  c,
+  [20, 19],
+  232,
+  c,
+  [19, 18],
+  233,
+  c,
+  [19, 18],
+  234,
+  c,
   [19, 18],
   c,
-  [772, 26],
+  [805, 26],
   c,
-  [804, 6],
-  127,
-  236,
-  c,
-  [664, 3],
-  238,
-  c,
-  [55, 17],
-  239,
-  c,
-  [18, 17],
-  240,
-  c,
-  [17, 16],
+  [837, 6],
+  129,
   241,
   c,
-  [17, 16],
-  242,
-  c,
-  [17, 16],
+  [695, 3],
   243,
   c,
-  [124, 25],
+  [55, 17],
   244,
   c,
-  [962, 33],
+  [18, 17],
   245,
+  c,
+  [17, 16],
   246,
+  c,
+  [17, 16],
   247,
+  c,
+  [17, 16],
+  248,
+  c,
+  [124, 25],
   250,
-  186,
+  c,
+  [995, 33],
+  251,
+  252,
   253,
-  255,
   256,
+  188,
+  78,
+  259,
+  260,
+  261,
   c,
-  [67, 25],
-  257,
+  [68, 25],
+  262,
   c,
-  [509, 27],
+  [510, 27],
   c,
-  [753, 18],
-  269,
+  [785, 18],
+  274,
   c,
-  [906, 10],
-  271,
-  c,
-  [241, 3],
-  272,
-  c,
-  [278, 31],
-  275,
+  [938, 10],
   276,
+  c,
+  [242, 3],
+  277,
+  c,
+  [279, 31],
   280,
-  279,
+  281,
+  290,
   c,
-  [95, 26],
-  288,
-  c,
-  [26, 25],
-  289,
+  [34, 25],
+  291,
   c,
   [26, 25],
   c,
-  [268, 26],
-  292,
-  297,
+  [241, 26],
+  294,
   298,
   299,
+  300,
   c,
-  [204, 27],
-  305,
-  312
+  [176, 27],
+  306,
+  313
 ]),
   mode: u([
   s,
@@ -2647,14 +2659,14 @@ table: bt({
   c,
   [19, 14],
   c,
-  [71, 38],
+  [73, 40],
   c,
-  [53, 11],
+  [55, 11],
   c,
-  [86, 16],
+  [88, 16],
   1,
   c,
-  [100, 20],
+  [102, 20],
   s,
   [2, 20],
   c,
@@ -2670,65 +2682,65 @@ table: bt({
   c,
   [68, 28],
   c,
-  [256, 45],
+  [258, 47],
   c,
-  [364, 40],
+  [293, 39],
   c,
-  [148, 21],
+  [148, 20],
   c,
-  [373, 12],
+  [375, 12],
   c,
   [183, 23],
   c,
   [138, 79],
   s,
-  [1, 145],
+  [1, 169],
   c,
-  [251, 10],
+  [275, 10],
   c,
-  [665, 12],
+  [20, 15],
   c,
-  [233, 214],
+  [236, 214],
   c,
-  [737, 52],
+  [764, 52],
   s,
   [1, 295],
   c,
   [310, 145],
   c,
-  [1267, 35],
+  [1294, 35],
   c,
-  [817, 72],
+  [204, 57],
   c,
-  [155, 63],
+  [823, 20],
   c,
-  [1352, 25],
+  [159, 62],
   c,
-  [1354, 28],
+  [1383, 25],
+  c,
+  [1385, 28],
   c,
   [26, 84],
   c,
-  [293, 23],
+  [297, 23],
   c,
   [29, 153],
   c,
-  [485, 31],
+  [489, 31],
   c,
   [31, 54],
   c,
-  [1383, 97],
+  [1390, 97],
   c,
   [152, 28],
   c,
-  [1668, 37],
+  [1699, 37],
   c,
-  [1215, 11],
+  [1219, 11],
   c,
-  [887, 25],
+  [267, 10],
   c,
-  [80, 10],
-  c,
-  [999, 127]
+  [1211, 126]
 ]),
   goto: u([
   14,
@@ -2767,132 +2779,134 @@ table: bt({
   c,
   [30, 13],
   s,
-  [97, 3],
+  [98, 3],
   69,
   s,
-  [97, 18],
+  [98, 18],
   70,
   s,
-  [97, 13],
+  [98, 13],
   71,
   72,
+  79,
   73,
   76,
   77,
+  82,
+  79,
   80,
-  78,
-  83,
+  85,
   77,
   c,
-  [67, 22],
-  89,
+  [69, 22],
   91,
-  92,
-  90,
-  s,
-  [59, 4],
   93,
-  s,
-  [59, 9],
   94,
+  92,
   s,
-  [101, 3],
-  97,
+  [60, 4],
+  95,
   s,
-  [101, 11],
-  98,
-  101,
+  [60, 9],
   96,
   s,
-  [101, 23],
-  s,
-  [61, 15],
+  [102, 3],
   99,
   s,
-  [110, 3],
+  [102, 11],
+  100,
   102,
-  s,
-  [110, 11],
   98,
-  110,
+  s,
+  [102, 23],
+  s,
+  [62, 15],
   101,
   s,
-  [110, 23],
+  [111, 3],
+  104,
+  s,
+  [111, 11],
+  100,
+  111,
+  103,
+  s,
+  [111, 23],
   43,
   52,
   c,
   [135, 3],
   c,
-  [131, 9],
+  [230, 10],
   s,
-  [63, 16],
+  [64, 15],
   s,
-  [105, 4, 1],
+  [107, 4, 1],
   s,
-  [65, 6],
-  109,
-  110,
+  [66, 6],
+  111,
+  112,
   s,
-  [65, 14],
+  [66, 14],
   s,
-  [111, 4, 1],
+  [113, 4, 1],
   c,
   [199, 22],
   s,
-  [70, 26],
-  116,
-  117,
+  [71, 26],
   118,
-  c,
-  [353, 10],
   119,
+  120,
   c,
-  [354, 18],
-  122,
-  143,
-  139,
-  141,
-  126,
-  165,
+  [355, 10],
+  121,
+  c,
+  [356, 18],
+  124,
   145,
-  144,
-  152,
+  141,
+  143,
+  128,
+  167,
+  147,
   146,
-  149,
+  154,
+  148,
+  151,
+  161,
   159,
-  157,
-  158,
+  160,
   48,
   49,
   s,
-  [131, 8, 1],
-  140,
+  [133, 8, 1],
   142,
-  147,
-  148,
+  144,
+  149,
   150,
-  151,
+  152,
+  153,
   s,
-  [153, 4, 1],
+  [155, 4, 1],
   s,
-  [160, 5, 1],
-  166,
-  s,
-  [77, 8],
-  167,
+  [162, 5, 1],
   168,
   s,
-  [77, 21],
+  [78, 8],
   169,
-  s,
-  [81, 4],
   170,
   s,
-  [81, 6],
+  [78, 21],
   171,
+  s,
+  [82, 4],
   172,
   s,
-  [81, 21],
+  [82, 6],
+  173,
+  174,
+  s,
+  [82, 21],
   c,
   [186, 9],
   c,
@@ -2904,160 +2918,167 @@ table: bt({
   [334, 22],
   c,
   [22, 44],
-  185,
+  79,
+  187,
   76,
   77,
+  43,
+  189,
+  c,
+  [27, 21],
   s,
   [16, 4],
-  188,
+  193,
   s,
   [16, 5],
-  189,
+  79,
+  194,
   76,
   77,
-  190,
-  191,
-  83,
-  77,
-  194,
-  s,
-  [25, 3],
-  196,
   195,
-  197,
-  198,
+  79,
+  196,
+  85,
+  77,
   199,
+  s,
+  [25, 4],
   201,
+  200,
   202,
-  c,
-  [75, 31],
-  c,
-  [96, 34],
-  c,
-  [415, 3],
+  203,
+  204,
+  206,
   207,
   c,
-  [415, 9],
+  [102, 31],
   c,
-  [413, 24],
+  [123, 34],
+  c,
+  [442, 3],
+  212,
+  c,
+  [442, 9],
+  c,
+  [440, 24],
   c,
   [59, 7],
-  209,
+  214,
   c,
   [103, 95],
   c,
-  [737, 42],
+  [764, 42],
   c,
-  [491, 146],
+  [518, 146],
   c,
   [21, 63],
-  196,
-  226,
+  201,
+  231,
   c,
   [65, 63],
   c,
-  [1219, 9],
-  230,
+  [1248, 9],
+  235,
   c,
   [377, 14],
-  232,
+  237,
   15,
-  231,
+  236,
   c,
-  [1250, 4],
-  234,
-  233,
-  235,
-  102,
+  [1279, 4],
+  239,
+  238,
+  240,
+  103,
   c,
   [388, 3],
-  237,
+  242,
   c,
-  [906, 35],
+  [933, 35],
   c,
   [244, 105],
   s,
-  [97, 34],
+  [98, 34],
   71,
   72,
   c,
-  [1434, 23],
-  c,
-  [1492, 28],
-  248,
+  [1463, 23],
+  53,
   249,
+  201,
+  c,
+  [1524, 28],
+  254,
+  255,
   s,
   [19, 4],
-  188,
+  193,
   s,
   [19, 5],
-  251,
+  79,
+  257,
   76,
   77,
-  254,
-  252,
-  188,
-  c,
-  [880, 44],
+  79,
   258,
-  259,
-  261,
-  260,
-  262,
+  193,
+  c,
+  [911, 44],
   263,
-  s,
-  [62, 15],
-  99,
-  196,
   264,
   266,
   265,
-  s,
-  [64, 16],
-  c,
-  [1352, 4],
-  196,
   267,
+  268,
   s,
-  [66, 6],
-  109,
-  110,
+  [63, 15],
+  101,
+  201,
+  269,
+  271,
+  270,
   s,
-  [66, 14],
+  [65, 16],
   c,
-  [1354, 4],
+  [1383, 4],
+  201,
+  272,
   s,
   [67, 6],
-  109,
-  110,
+  111,
+  112,
   s,
   [67, 14],
   c,
-  [26, 4],
+  [1385, 4],
   s,
   [68, 6],
-  109,
-  110,
+  111,
+  112,
   s,
   [68, 14],
   c,
   [26, 4],
   s,
   [69, 6],
-  109,
-  110,
+  111,
+  112,
   s,
   [69, 14],
   c,
   [26, 4],
   s,
-  [71, 26],
+  [70, 6],
+  111,
+  112,
+  s,
+  [70, 14],
   c,
-  [1410, 3],
+  [26, 4],
   s,
   [72, 26],
   c,
-  [29, 3],
+  [1441, 3],
   s,
   [73, 26],
   c,
@@ -3075,104 +3096,101 @@ table: bt({
   c,
   [29, 3],
   s,
-  [78, 8],
-  167,
-  168,
-  s,
-  [78, 21],
+  [77, 26],
+  c,
+  [29, 3],
   s,
   [79, 8],
-  167,
-  168,
+  169,
+  170,
   s,
   [79, 21],
   s,
   [80, 8],
-  167,
-  168,
+  169,
+  170,
   s,
   [80, 21],
+  s,
+  [81, 8],
+  169,
+  170,
+  s,
+  [81, 21],
   c,
-  [1366, 9],
-  268,
+  [1397, 9],
+  273,
   c,
   [443, 14],
-  270,
+  275,
   c,
-  [1643, 39],
+  [1674, 39],
   c,
   [505, 22],
-  273,
-  s,
-  [82, 4],
-  170,
-  s,
-  [82, 6],
-  171,
-  172,
-  s,
-  [82, 21],
+  278,
   s,
   [83, 4],
-  170,
-  s,
-  [83, 6],
-  171,
   172,
   s,
+  [83, 6],
+  173,
+  174,
+  s,
   [83, 21],
+  s,
+  [84, 4],
+  172,
+  s,
+  [84, 6],
+  173,
+  174,
+  s,
+  [84, 21],
   66,
   15,
-  274,
+  279,
   c,
-  [878, 4],
+  [882, 4],
   s,
-  [27, 5],
-  248,
-  27,
-  249,
+  [28, 5],
+  254,
+  28,
+  255,
   s,
-  [27, 3],
-  277,
-  37,
+  [28, 3],
+  282,
+  38,
+  s,
+  [43, 7],
+  283,
   43,
-  278,
-  c,
-  [112, 21],
+  43,
+  201,
   s,
-  [42, 7],
-  281,
-  42,
-  42,
-  196,
-  s,
-  [282, 6, 1],
+  [284, 6, 1],
   c,
-  [678, 44],
+  [655, 44],
   c,
-  [791, 9],
-  290,
+  [772, 9],
+  292,
   c,
   [24, 14],
-  291,
   293,
-  294,
-  52,
   295,
-  196,
   296,
+  297,
   17,
   c,
-  [755, 23],
+  [729, 23],
   s,
-  [300, 5, 1],
-  188,
-  196,
+  [301, 5, 1],
+  193,
+  201,
   s,
-  [306, 6, 1],
-  188,
+  [307, 6, 1],
+  193,
   s,
-  [313, 7, 1]
+  [314, 7, 1]
 ])
 }),
 defaultActions: bda({
@@ -3201,187 +3219,186 @@ defaultActions: bda({
   71,
   72,
   73,
-  75,
-  76,
-  77,
-  82,
+  s,
+  [75, 4, 1],
   84,
-  85,
+  86,
   87,
-  88,
-  95,
-  100,
-  103,
-  119,
-  122,
+  89,
+  90,
+  97,
+  102,
+  105,
+  121,
   124,
+  126,
   s,
-  [127, 40, 1],
-  169,
-  173,
+  [129, 40, 1],
+  171,
+  175,
   s,
-  [175, 7, 1],
+  [177, 7, 1],
   s,
-  [183, 5, 1],
-  189,
-  193,
-  201,
+  [185, 5, 1],
+  192,
+  194,
+  198,
+  206,
   s,
-  [206, 4, 1],
-  211,
-  214,
-  215,
-  226,
-  230,
+  [211, 4, 1],
+  216,
+  219,
+  220,
   231,
-  233,
-  237,
+  235,
+  236,
+  238,
+  242,
   s,
-  [240, 4, 1],
-  245,
+  [245, 5, 1],
+  251,
   s,
-  [247, 5, 1],
-  253,
-  256,
-  264,
-  265,
-  267,
-  268,
+  [253, 5, 1],
+  259,
+  261,
+  269,
   270,
-  271,
   272,
-  274,
+  273,
   275,
+  276,
   277,
-  278,
-  286,
+  279,
+  280,
+  282,
   288,
-  289,
   290,
-  293,
-  294,
+  291,
+  292,
   295,
-  297,
+  296,
   298,
-  305,
-  307,
-  312,
-  315,
-  317,
+  299,
+  306,
+  308,
+  313,
+  316,
   318,
-  319
+  319,
+  320
 ]),
   goto: u([
   2,
   4,
   s,
   [9, 5, 1],
-  55,
   56,
-  136,
-  100,
-  117,
+  57,
+  137,
+  101,
   118,
+  119,
   s,
-  [125, 4, 1],
-  130,
+  [126, 4, 1],
+  131,
   s,
-  [146, 10, 1],
-  157,
+  [147, 10, 1],
   158,
-  84,
-  88,
+  159,
+  85,
   89,
+  90,
   1,
   3,
   5,
-  137,
-  98,
+  138,
   99,
+  100,
   14,
   23,
   25,
   26,
-  32,
-  34,
-  35,
-  52,
-  53,
-  113,
-  112,
-  111,
-  131,
-  138,
-  141,
-  122,
-  123,
-  124,
-  103,
-  s,
-  [159, 36, 1],
-  156,
-  s,
-  [90, 7, 1],
-  6,
-  57,
-  58,
-  15,
-  24,
-  21,
-  17,
+  27,
   33,
-  50,
-  115,
-  104,
-  105,
-  106,
-  108,
-  120,
-  121,
-  129,
-  132,
-  133,
-  139,
-  102,
-  85,
-  86,
-  87,
-  7,
-  18,
-  28,
-  30,
-  31,
-  22,
-  20,
-  39,
+  35,
+  36,
+  53,
   54,
   114,
+  113,
+  112,
+  132,
+  139,
+  142,
+  123,
+  124,
+  125,
+  104,
+  s,
+  [160, 36, 1],
+  157,
+  s,
+  [91, 7, 1],
+  6,
+  58,
+  59,
+  15,
+  24,
+  41,
+  21,
+  17,
+  34,
+  51,
+  116,
+  105,
+  106,
   107,
-  119,
+  109,
+  121,
+  122,
+  130,
+  133,
   134,
   140,
-  142,
-  143,
-  8,
+  103,
+  86,
+  87,
+  88,
+  7,
+  42,
+  18,
   29,
-  38,
+  31,
+  32,
+  22,
+  20,
   40,
-  51,
-  60,
-  109,
+  55,
+  115,
+  108,
+  120,
   135,
-  116,
-  36,
-  41,
-  44,
-  45,
-  43,
-  47,
-  46,
+  141,
+  143,
   144,
+  8,
+  30,
+  39,
+  52,
+  61,
+  110,
+  136,
+  117,
+  37,
+  45,
+  46,
+  44,
   48,
+  47,
+  145,
   49,
-  145
+  50,
+  146
 ])
 }),
 parseError: function parseError(str, hash, ExceptionClass) {
@@ -3926,9 +3943,9 @@ function DocumentNode(children, loc) {
   this.loc = loc
 }
 
-function TextNode(text, loc) {
+function TextNode(children, loc) {
   this.type = 'Text'
-  this.text = text
+  this.children = children
   this.loc = loc
 }
 
@@ -5283,7 +5300,12 @@ case 36 :
 /*! Rule::       \n+ */ 
  this.begin("INITIAL"); return 26; 
 break;
-case 39 : 
+case 37 : 
+/*! Conditions:: TEXT */ 
+/*! Rule::       \{ */ 
+ this.begin("EXPR"); return 7; 
+break;
+case 41 : 
 /*! Conditions:: BLOCK */ 
 /*! Rule::       .* */ 
  
@@ -5296,22 +5318,22 @@ case 39 :
                                      }
                                     
 break;
-case 40 : 
+case 42 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \n+ */ 
  this.begin("INITIAL"); return 26; 
 break;
-case 41 : 
+case 43 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       {Space}+ */ 
  /* skip whitespaces */ 
 break;
-case 60 : 
+case 62 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \{ */ 
  brackets.push("{"); return 7; 
 break;
-case 61 : 
+case 63 : 
 /*! Conditions:: EXPR */ 
 /*! Rule::       \} */ 
  
@@ -5323,7 +5345,7 @@ case 61 :
                                      return 8;
                                     
 break;
-case 109 : 
+case 111 : 
 /*! Conditions:: REGEXP */ 
 /*! Rule::       {RegularExpressionLiteral} */ 
  this.popState(); return 67; 
@@ -5380,206 +5402,209 @@ default:
   /*! Rule::       {ValueText} */ 
    34 : 29,
   /*! Conditions:: TEXT */ 
+  /*! Rule::       \} */ 
+   38 : 8,
+  /*! Conditions:: TEXT */ 
   /*! Rule::       {Text} */ 
-   37 : 29,
+   39 : 29,
   /*! Conditions:: BLOCK */ 
   /*! Rule::       \n+ */ 
-   38 : 26,
+   40 : 26,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {StringLiteral} */ 
-   42 : 66,
+   44 : 66,
   /*! Conditions:: EXPR */ 
   /*! Rule::       import\b */ 
-   43 : 37,
+   45 : 37,
   /*! Conditions:: EXPR */ 
   /*! Rule::       from\b */ 
-   44 : 38,
+   46 : 38,
   /*! Conditions:: EXPR */ 
   /*! Rule::       if\b */ 
-   45 : 31,
+   47 : 31,
   /*! Conditions:: EXPR */ 
   /*! Rule::       else\b */ 
-   46 : 32,
+   48 : 32,
   /*! Conditions:: EXPR */ 
   /*! Rule::       endif\b */ 
-   47 : 'ENDIF',
+   49 : 'ENDIF',
   /*! Conditions:: EXPR */ 
   /*! Rule::       for\b */ 
-   48 : 33,
+   50 : 33,
   /*! Conditions:: EXPR */ 
   /*! Rule::       of\b */ 
-   49 : 35,
+   51 : 35,
   /*! Conditions:: EXPR */ 
   /*! Rule::       in\b */ 
-   50 : 51,
+   52 : 51,
   /*! Conditions:: EXPR */ 
   /*! Rule::       instanceof\b */ 
-   51 : 50,
+   53 : 50,
   /*! Conditions:: EXPR */ 
   /*! Rule::       true\b */ 
-   52 : 63,
+   54 : 63,
   /*! Conditions:: EXPR */ 
   /*! Rule::       false\b */ 
-   53 : 64,
+   55 : 64,
   /*! Conditions:: EXPR */ 
   /*! Rule::       null\b */ 
-   54 : 62,
+   56 : 62,
   /*! Conditions:: EXPR */ 
   /*! Rule::       this\b */ 
-   55 : 60,
+   57 : 60,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {Identifier} */ 
-   56 : 34,
+   58 : 34,
   /*! Conditions:: EXPR */ 
   /*! Rule::       {DecimalLiteral} */ 
-   57 : 65,
-  /*! Conditions:: EXPR */ 
-  /*! Rule::       {HexIntegerLiteral} */ 
-   58 : 65,
-  /*! Conditions:: EXPR */ 
-  /*! Rule::       {OctalIntegerLiteral} */ 
    59 : 65,
   /*! Conditions:: EXPR */ 
+  /*! Rule::       {HexIntegerLiteral} */ 
+   60 : 65,
+  /*! Conditions:: EXPR */ 
+  /*! Rule::       {OctalIntegerLiteral} */ 
+   61 : 65,
+  /*! Conditions:: EXPR */ 
   /*! Rule::       \( */ 
-   62 : 20,
+   64 : 20,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \) */ 
-   63 : 21,
+   65 : 21,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \[ */ 
-   64 : 22,
+   66 : 22,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \] */ 
-   65 : 23,
+   67 : 23,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \. */ 
-   66 : 5,
+   68 : 5,
   /*! Conditions:: EXPR */ 
   /*! Rule::       ; */ 
-   67 : ';',
+   69 : ';',
   /*! Conditions:: EXPR */ 
   /*! Rule::       , */ 
-   68 : 3,
+   70 : 3,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \? */ 
-   69 : 10,
+   71 : 10,
   /*! Conditions:: EXPR */ 
   /*! Rule::       : */ 
-   70 : 11,
+   72 : 11,
   /*! Conditions:: EXPR */ 
   /*! Rule::       === */ 
-   71 : 46,
+   73 : 46,
   /*! Conditions:: EXPR */ 
   /*! Rule::       == */ 
-   72 : 44,
+   74 : 44,
   /*! Conditions:: EXPR */ 
   /*! Rule::       = */ 
-   73 : 6,
+   75 : 6,
   /*! Conditions:: EXPR */ 
   /*! Rule::       !== */ 
-   74 : 47,
+   76 : 47,
   /*! Conditions:: EXPR */ 
   /*! Rule::       != */ 
-   75 : 45,
+   77 : 45,
   /*! Conditions:: EXPR */ 
   /*! Rule::       ! */ 
-   76 : 19,
+   78 : 19,
   /*! Conditions:: EXPR */ 
   /*! Rule::       <<= */ 
-   77 : '<<=',
+   79 : '<<=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       << */ 
-   78 : 52,
+   80 : 52,
   /*! Conditions:: EXPR */ 
   /*! Rule::       <= */ 
-   79 : 48,
+   81 : 48,
   /*! Conditions:: EXPR */ 
   /*! Rule::       < */ 
-   80 : 12,
+   82 : 12,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>>= */ 
-   81 : '>>>=',
+   83 : '>>>=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>> */ 
-   82 : 54,
+   84 : 54,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >>= */ 
-   83 : '>>=',
+   85 : '>>=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       >> */ 
-   84 : 53,
+   86 : 53,
   /*! Conditions:: EXPR */ 
   /*! Rule::       >= */ 
-   85 : 49,
+   87 : 49,
   /*! Conditions:: EXPR */ 
   /*! Rule::       > */ 
-   86 : 13,
+   88 : 13,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+= */ 
-   87 : '+=',
+   89 : '+=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+\+ */ 
-   88 : 56,
+   90 : 56,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \+ */ 
-   89 : 14,
+   91 : 14,
   /*! Conditions:: EXPR */ 
   /*! Rule::       -= */ 
-   90 : '-=',
+   92 : '-=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       -- */ 
-   91 : 57,
+   93 : 57,
   /*! Conditions:: EXPR */ 
   /*! Rule::       - */ 
-   92 : 15,
+   94 : 15,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \*= */ 
-   93 : '*=',
+   95 : '*=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \* */ 
-   94 : 9,
+   96 : 9,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \/= */ 
-   95 : 68,
+   97 : 68,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \/ */ 
-   96 : 16,
+   98 : 16,
   /*! Conditions:: EXPR */ 
   /*! Rule::       %= */ 
-   97 : '%=',
+   99 : '%=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       % */ 
-   98 : 17,
+   100 : 17,
   /*! Conditions:: EXPR */ 
   /*! Rule::       && */ 
-   99 : 43,
+   101 : 43,
   /*! Conditions:: EXPR */ 
   /*! Rule::       &= */ 
-   100 : '&=',
+   102 : '&=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       & */ 
-   101 : '&',
+   103 : '&',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \|\| */ 
-   102 : 42,
+   104 : 42,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \|= */ 
-   103 : '|=',
+   105 : '|=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \| */ 
-   104 : 4,
+   106 : 4,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \^= */ 
-   105 : '^=',
+   107 : '^=',
   /*! Conditions:: EXPR */ 
   /*! Rule::       \^ */ 
-   106 : '^',
+   108 : '^',
   /*! Conditions:: EXPR */ 
   /*! Rule::       ~ */ 
-   107 : 18,
+   109 : 18,
   /*! Conditions:: EXPR */ 
   /*! Rule::       \.\.\. */ 
-   108 : '...'
+   110 : '...'
 },
     rules: [
 /^(?:$)/,
@@ -5619,6 +5644,8 @@ default:
 /^(?:([^"]+))/,
 /^(?:(["]))/,
 /^(?:\n+)/,
+/^(?:\{)/,
+/^(?:\})/,
 /^(?:([^\n={]+))/,
 /^(?:\n+)/,
 /^(?:.*)/,
@@ -5742,23 +5769,23 @@ default:
     rules: [
       0,
       36,
-      37
+      37,
+      38,
+      39
     ],
     inclusive: true
   },
   "BLOCK": {
     rules: [
       0,
-      38,
-      39
+      40,
+      41
     ],
     inclusive: true
   },
   "EXPR": {
     rules: [
       0,
-      40,
-      41,
       42,
       43,
       44,
@@ -5825,14 +5852,16 @@ default:
       105,
       106,
       107,
-      108
+      108,
+      109,
+      110
     ],
     inclusive: true
   },
   "REGEXP": {
     rules: [
       0,
-      109
+      111
     ],
     inclusive: true
   },

@@ -4,9 +4,9 @@ function DocumentNode(children, loc) {
   this.loc = loc
 }
 
-function TextNode(text, loc) {
+function TextNode(children, loc) {
   this.type = 'Text'
-  this.text = text
+  this.children = children
   this.loc = loc
 }
 

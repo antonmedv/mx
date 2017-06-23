@@ -308,7 +308,7 @@ DocumentNode {
         },
       ],
       "children": Array [
-        TextNode {
+        LiteralNode {
           "loc": SourceLocation {
             "end": Position {
               "column": 26,
@@ -320,10 +320,10 @@ DocumentNode {
               "line": 1,
             },
           },
-          "text": " Hello world",
-          "type": "Text",
+          "type": "Literal",
+          "value": "\\" Hello world\\"",
         },
-        TextNode {
+        LiteralNode {
           "loc": SourceLocation {
             "end": Position {
               "column": 27,
@@ -335,8 +335,8 @@ DocumentNode {
               "line": 1,
             },
           },
-          "text": "!",
-          "type": "Text",
+          "type": "Literal",
+          "value": "\\"!\\"",
         },
       ],
       "loc": SourceLocation {
@@ -412,6 +412,38 @@ DocumentNode {
       "attributes": Array [],
       "children": Array [
         TextNode {
+          "children": Array [
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 41,
+                  "line": 2,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 0,
+                  "line": 2,
+                },
+              },
+              "type": "Literal",
+              "value": "\\"  Please don't use this king of syntax 😉\\"",
+            },
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 0,
+                  "line": 3,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 41,
+                  "line": 2,
+                },
+              },
+              "type": "Literal",
+              "value": "\\"\\\\n\\"",
+            },
+          ],
           "loc": SourceLocation {
             "end": Position {
               "column": 0,
@@ -423,8 +455,6 @@ DocumentNode {
               "line": 2,
             },
           },
-          "text": "  Please don't use this king of syntax 😉
-",
           "type": "Text",
         },
       ],
@@ -681,6 +711,98 @@ DocumentNode {
           "attributes": Array [],
           "children": Array [
             TextNode {
+              "children": Array [
+                LiteralNode {
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 21,
+                      "line": 3,
+                    },
+                    "source": "file.mx",
+                    "start": Position {
+                      "column": 0,
+                      "line": 3,
+                    },
+                  },
+                  "type": "Literal",
+                  "value": "\\"    Beware of dragons\\"",
+                },
+                LiteralNode {
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 0,
+                      "line": 5,
+                    },
+                    "source": "file.mx",
+                    "start": Position {
+                      "column": 21,
+                      "line": 3,
+                    },
+                  },
+                  "type": "Literal",
+                  "value": "\\"\\\\n\\\\n\\"",
+                },
+                LiteralNode {
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 41,
+                      "line": 5,
+                    },
+                    "source": "file.mx",
+                    "start": Position {
+                      "column": 0,
+                      "line": 5,
+                    },
+                  },
+                  "type": "Literal",
+                  "value": "\\"    Dragons are very dangerous creatures,\\"",
+                },
+                LiteralNode {
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 0,
+                      "line": 6,
+                    },
+                    "source": "file.mx",
+                    "start": Position {
+                      "column": 41,
+                      "line": 5,
+                    },
+                  },
+                  "type": "Literal",
+                  "value": "\\"\\\\n\\"",
+                },
+                LiteralNode {
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 42,
+                      "line": 6,
+                    },
+                    "source": "file.mx",
+                    "start": Position {
+                      "column": 0,
+                      "line": 6,
+                    },
+                  },
+                  "type": "Literal",
+                  "value": "\\"    They live in a caves in the mountains.\\"",
+                },
+                LiteralNode {
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 0,
+                      "line": 7,
+                    },
+                    "source": "file.mx",
+                    "start": Position {
+                      "column": 42,
+                      "line": 6,
+                    },
+                  },
+                  "type": "Literal",
+                  "value": "\\"\\\\n\\"",
+                },
+              ],
               "loc": SourceLocation {
                 "end": Position {
                   "column": 0,
@@ -692,11 +814,6 @@ DocumentNode {
                   "line": 3,
                 },
               },
-              "text": "    Beware of dragons
-
-    Dragons are very dangerous creatures,
-    They live in a caves in the mountains.
-",
               "type": "Text",
             },
           ],
@@ -768,7 +885,7 @@ DocumentNode {
     ElementNode {
       "attributes": Array [],
       "children": Array [
-        TextNode {
+        LiteralNode {
           "loc": SourceLocation {
             "end": Position {
               "column": 20,
@@ -780,10 +897,10 @@ DocumentNode {
               "line": 1,
             },
           },
-          "text": " Beware of dragons ",
-          "type": "Text",
+          "type": "Literal",
+          "value": "\\" Beware of dragons \\"",
         },
-        TextNode {
+        LiteralNode {
           "loc": SourceLocation {
             "end": Position {
               "column": 22,
@@ -795,8 +912,8 @@ DocumentNode {
               "line": 1,
             },
           },
-          "text": "🔥",
-          "type": "Text",
+          "type": "Literal",
+          "value": "\\"🔥\\"",
         },
       ],
       "loc": SourceLocation {
@@ -835,10 +952,9 @@ DocumentNode {
     ElementNode {
       "attributes": Array [],
       "children": Array [
-        ElementNode {
-          "attributes": Array [],
+        TextNode {
           "children": Array [
-            TextNode {
+            LiteralNode {
               "loc": SourceLocation {
                 "end": Position {
                   "column": 23,
@@ -850,8 +966,8 @@ DocumentNode {
                   "line": 2,
                 },
               },
-              "text": " Here goes some text",
-              "type": "Text",
+              "type": "Literal",
+              "value": "\\" Here goes some text\\"",
             },
           ],
           "loc": SourceLocation {
@@ -865,8 +981,7 @@ DocumentNode {
               "line": 2,
             },
           },
-          "name": "text",
-          "type": "Element",
+          "type": "Text",
         },
       ],
       "loc": SourceLocation {

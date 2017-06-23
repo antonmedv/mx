@@ -1,3 +1,6 @@
 module.exports = {
-  Text: ({node, source}) => source`\`${node.text}\``
+  Text: ({node, source, compile}) => {
+    const children = node.children.map(child => compile(child))
+    return source`[${children}]`
+  }
 }

@@ -16,8 +16,8 @@ exports[`compile conditions 1`] = `
 
 export default function({ foo }) {
   return foo == \\"bar\\"
-    ? React.createElement(\\"p\\", null, \` Foo is bar\`)
-    : React.createElement(\\"p\\", null, \` Nope\`)
+    ? React.createElement(\\"p\\", null, \\" Foo is bar\\")
+    : React.createElement(\\"p\\", null, \\" Nope\\")
 }
 "
 `;
@@ -94,19 +94,14 @@ export default function() {
   return React.createElement(
     \\"p\\",
     null,
-    \` hello world\`,
-    \`!\`,
-  ), React.createElement(
-    \\"p\\",
-    null,
-    \`  here goes a long
-  block of text
-\`,
-  ), React.createElement(
-    \\"div\\",
-    null,
-    React.createElement(\\"text\\", null, \` Also a text\`),
-  )
+    \\" hello world\\",
+    \\"!\\",
+  ), React.createElement(\\"p\\", null, [
+    \\"  here goes a long\\",
+    \\"\\\\n\\",
+    \\"  block of text\\",
+    \\"\\\\n\\",
+  ]), React.createElement(\\"div\\", null, [\\" Also a text\\"])
 }
 "
 `;

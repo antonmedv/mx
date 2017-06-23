@@ -124,6 +124,8 @@ Quote [\"]
 <VALUE>{Quote}                     this.popState(); return "QUOTE";
 
 <TEXT>\n+                          this.begin("INITIAL"); return "NEWLINE";
+<TEXT>"{"                          this.begin("EXPR"); return "{";
+<TEXT>"}"                          return "}";
 <TEXT>{Text}                       return "TEXT";
 
 <BLOCK>\n+                         return "NEWLINE";
@@ -266,11 +268,11 @@ Element
 Text
     : "|" NEWLINE
         {
-            $$ = new ElementNode(" ", createSourceLocation(@1, @2));
+            $$ = new TextNode([], createSourceLocation(@1, @2));
         }
     | "|" ContentList NEWLINE
         {
-            $$ = new ElementNode("text", [], $2, createSourceLocation(@1, @3));
+            $$ = new TextNode($2, createSourceLocation(@1, @3));
         }
     ;
 
@@ -319,12 +321,13 @@ ContentList
 Content
     : ATTRIBUTE
         {
-            $$ = new TextNode($1, createSourceLocation(@1, @1));
+            $$ = new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1));
         }
     | TEXT
         {
-            $$ = new TextNode($1, createSourceLocation(@1, @1));
+            $$ = new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1));
         }
+    | Interpolation
     ;
 
 Block
@@ -337,17 +340,23 @@ Block
 BlockLines
     : BlockParts
         {
-            $$ = $1;
+            $$ = [$1];
         }
     | BlockLines BlockParts
         {
-            $$ = $1 + $2;
+            $$ = $1.concat($2);
         }
     ;
 
 BlockParts
     : NEWLINE
+        {
+            $$ = new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1));
+        }
     | TEXT
+        {
+            $$ = new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1));
+        }
     ;
 
 AttributeList

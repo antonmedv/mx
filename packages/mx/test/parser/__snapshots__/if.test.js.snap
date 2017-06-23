@@ -120,7 +120,7 @@ DocumentNode {
             ElementNode {
               "attributes": Array [],
               "children": Array [
-                TextNode {
+                LiteralNode {
                   "loc": SourceLocation {
                     "end": Position {
                       "column": 8,
@@ -132,8 +132,8 @@ DocumentNode {
                       "line": 6,
                     },
                   },
-                  "text": " Okay",
-                  "type": "Text",
+                  "type": "Literal",
+                  "value": "\\" Okay\\"",
                 },
               ],
               "loc": SourceLocation {
@@ -155,7 +155,7 @@ DocumentNode {
             ElementNode {
               "attributes": Array [],
               "children": Array [
-                TextNode {
+                LiteralNode {
                   "loc": SourceLocation {
                     "end": Position {
                       "column": 13,
@@ -167,8 +167,8 @@ DocumentNode {
                       "line": 4,
                     },
                   },
-                  "text": " Bar is ok",
-                  "type": "Text",
+                  "type": "Literal",
+                  "value": "\\" Bar is ok\\"",
                 },
               ],
               "loc": SourceLocation {
@@ -193,7 +193,7 @@ DocumentNode {
         ElementNode {
           "attributes": Array [],
           "children": Array [
-            TextNode {
+            LiteralNode {
               "loc": SourceLocation {
                 "end": Position {
                   "column": 16,
@@ -205,8 +205,8 @@ DocumentNode {
                   "line": 2,
                 },
               },
-              "text": " Foo is value",
-              "type": "Text",
+              "type": "Literal",
+              "value": "\\" Foo is value\\"",
             },
           ],
           "loc": SourceLocation {
