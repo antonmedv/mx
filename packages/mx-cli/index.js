@@ -3,7 +3,9 @@ const fs = require('fs')
 const mkdirp = require('mkdirp')
 const path = require('path')
 const prettier = require('prettier')
+const PrettyError = require('pretty-error')
 const columnify = require('columnify')
+const upperCamelCase = require('uppercamelcase')
 const parser = require('mx/src/parser/index')
 const compile = require('mx/src/compiler/index')
 
@@ -101,7 +103,9 @@ exports.render = function (options, emitter) {
       }
     } else {
       const ast = parser.parse(sourcePath, code)
-      const node = compile(ast, {})
+      const node = compile(ast, {
+        name: filename && upperCamelCase(filename.replace(/\.mx$/, ''))
+      })
 
       if (sourceMap) {
         node.add(`\n//# sourceMappingURL=${sourceMapPath}\n`)
@@ -116,6 +120,6 @@ exports.render = function (options, emitter) {
     }
     success(output)
   } catch (err) {
-    error(err)
+    error(new PrettyError().render(err))
   }
 }

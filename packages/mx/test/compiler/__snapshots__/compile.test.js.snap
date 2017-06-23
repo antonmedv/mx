@@ -110,3 +110,14 @@ export default function() {
 }
 "
 `;
+
+exports[`compile with name 1`] = `
+"import React from \\"react\\"
+
+const ComponentName = () => {
+  return React.createElement(\\"div\\", null)
+}
+
+export default ComponentName
+"
+`;

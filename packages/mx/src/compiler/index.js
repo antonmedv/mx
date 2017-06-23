@@ -18,7 +18,7 @@ const compilers = Object.assign({},
   include
 )
 
-function compile(ast, options) {
+function compile(ast, options = {}) {
   const scope = new Scope()
   return next(null, ast, scope, options)
 }

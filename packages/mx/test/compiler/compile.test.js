@@ -75,3 +75,10 @@ test('compile form tag', t => {
   `
   t.snapshot(compile(code))
 })
+
+test('compile with name', t => {
+  const code = `
+  div
+  `
+  t.snapshot(compile(code, {name: 'ComponentName'}))
+})
