@@ -67,6 +67,20 @@ export default function() {
 "
 `;
 
+exports[`compile interpolation 1`] = `
+"import React from \\"react\\"
+
+export default function({ name }) {
+  return React.createElement(
+    \\"div\\",
+    null,
+    React.createElement(\\"p\\", null, \\" Hello\\", \\", \\", name),
+    [\\" My name is \\", name],
+  )
+}
+"
+`;
+
 exports[`compile loop 1`] = `
 "import React from \\"react\\"
 

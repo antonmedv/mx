@@ -629,6 +629,180 @@ DocumentNode {
 }
 `;
 
+exports[`parse interpolation 1`] = `
+DocumentNode {
+  "children": Array [
+    ElementNode {
+      "attributes": Array [],
+      "children": Array [
+        ElementNode {
+          "attributes": Array [],
+          "children": Array [
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 9,
+                  "line": 2,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 3,
+                  "line": 2,
+                },
+              },
+              "type": "Literal",
+              "value": "\\" Hello\\"",
+            },
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 11,
+                  "line": 2,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 9,
+                  "line": 2,
+                },
+              },
+              "type": "Literal",
+              "value": "\\", \\"",
+            },
+            ExpressionNode {
+              "expression": IdentifierNode {
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 16,
+                    "line": 2,
+                  },
+                  "source": "file.mx",
+                  "start": Position {
+                    "column": 12,
+                    "line": 2,
+                  },
+                },
+                "name": "name",
+                "type": "Identifier",
+              },
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 17,
+                  "line": 2,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 11,
+                  "line": 2,
+                },
+              },
+              "type": "Expression",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 3,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 2,
+            },
+          },
+          "name": "p",
+          "type": "Element",
+        },
+        TextNode {
+          "children": Array [
+            LiteralNode {
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 15,
+                  "line": 3,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 3,
+                  "line": 3,
+                },
+              },
+              "type": "Literal",
+              "value": "\\" My name is \\"",
+            },
+            ExpressionNode {
+              "expression": IdentifierNode {
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 20,
+                    "line": 3,
+                  },
+                  "source": "file.mx",
+                  "start": Position {
+                    "column": 16,
+                    "line": 3,
+                  },
+                },
+                "name": "name",
+                "type": "Identifier",
+              },
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 21,
+                  "line": 3,
+                },
+                "source": "file.mx",
+                "start": Position {
+                  "column": 15,
+                  "line": 3,
+                },
+              },
+              "type": "Expression",
+            },
+          ],
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 0,
+              "line": 4,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 2,
+              "line": 3,
+            },
+          },
+          "type": "Text",
+        },
+      ],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 4,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "div",
+      "type": "Element",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 4,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
 exports[`parse single and double quotes 1`] = `
 DocumentNode {
   "children": Array [

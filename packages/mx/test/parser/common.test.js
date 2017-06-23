@@ -98,9 +98,18 @@ test('parse text tags', t => {
   t.snapshot(parse(code))
 })
 
+test('parse interpolation', t => {
+  const code = `
+  div
+    p Hello, {name}
+    | My name is {name}
+  `
+  t.snapshot(parse(code))
+})
+
 test('parse single and double quotes', t => {
   const code = `
-    input type="text" value='value'
+  input type="text" value='value'
   `
   t.snapshot(parse(code))
 })

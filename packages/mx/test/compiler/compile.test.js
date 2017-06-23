@@ -82,3 +82,12 @@ test('compile with name', t => {
   `
   t.snapshot(compile(code, {name: 'ComponentName'}))
 })
+
+test('compile interpolation', t => {
+  const code = `
+  div
+    p Hello, {name}
+    | My name is {name}
+  `
+  t.snapshot(compile(code))
+})
