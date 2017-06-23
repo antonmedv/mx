@@ -1,0 +1,23 @@
+{
+  "name": "mx-loader",
+  "version": "1.0.0",
+  "description": "Webpack loader for mx",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aviasales/mx.git"
+  },
+  "author": "Anton Medvedev <anton@medv.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aviasales/mx/issues"
+  },
+  "homepage": "https://github.com/aviasales/mx#readme",
+  "dependencies": {
+    "loader-utils": "^1.1.0",
+    "uppercamelcase": "^3.0.0"
+  },
+  "peerDependencies": {
+    "mx": "^1.0.0"
+  }
+}
