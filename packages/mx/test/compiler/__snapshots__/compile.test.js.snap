@@ -22,6 +22,15 @@ export default function({ foo }) {
 "
 `;
 
+exports[`compile form tag 1`] = `
+"import React from \\"react\\"
+
+export default function() {
+  return React.createElement(\\"form\\", null)
+}
+"
+`;
+
 exports[`compile html and components 1`] = `
 "import React from \\"react\\"
 

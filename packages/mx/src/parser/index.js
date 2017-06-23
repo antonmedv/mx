@@ -5199,17 +5199,17 @@ case 5 :
 break;
 case 6 : 
 /*! Conditions:: TAG */ 
-/*! Rule::       if */ 
+/*! Rule::       if\b */ 
  this.begin("EXPR"); return 31; 
 break;
 case 8 : 
 /*! Conditions:: TAG */ 
-/*! Rule::       for */ 
+/*! Rule::       for\b */ 
  this.begin("FOR"); return 33; 
 break;
 case 9 : 
 /*! Conditions:: TAG */ 
-/*! Rule::       import */ 
+/*! Rule::       import\b */ 
  this.begin("IMPORT"); return 37; 
 break;
 case 10 : 
@@ -5335,7 +5335,7 @@ default:
     simpleCaseActionClusters: {
 
   /*! Conditions:: TAG */ 
-  /*! Rule::       else */ 
+  /*! Rule::       else\b */ 
    7 : 32,
   /*! Conditions:: LINE */ 
   /*! Rule::       = */ 
@@ -5588,10 +5588,10 @@ default:
 /^(?:\n+)/,
 /^(?:([\t   -​\u2028\u2029　])+)/,
 /^(?:\|)/,
-/^(?:if)/,
-/^(?:else)/,
-/^(?:for)/,
-/^(?:import)/,
+/^(?:if\b)/,
+/^(?:else\b)/,
+/^(?:for\b)/,
+/^(?:import\b)/,
 /^(?:([\w#.][\w\-.]*))/,
 /^(?:\n+)/,
 /^(?:\.)/,

@@ -82,10 +82,10 @@ Quote [\"]
 <TAG>\n+                           this.begin("INITIAL"); return "NEWLINE";
 <TAG>{Space}+                      /* skip whitespaces */
 <TAG>"|"                           this.begin("TEXT"); return "|";
-<TAG>"if"                          this.begin("EXPR"); return "IF";
-<TAG>"else"                        return "ELSE";
-<TAG>"for"                         this.begin("FOR"); return "FOR";
-<TAG>"import"                      this.begin("IMPORT"); return "IMPORT";
+<TAG>"if"\b                        this.begin("EXPR"); return "IF";
+<TAG>"else"\b                      return "ELSE";
+<TAG>"for"\b                       this.begin("FOR"); return "FOR";
+<TAG>"import"\b                    this.begin("IMPORT"); return "IMPORT";
 <TAG>{Selector}                    %{
                                      this.begin("LINE");
                                      if (/\.$/.test(yytext)) {

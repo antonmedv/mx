@@ -68,3 +68,10 @@ test('compile loop', t => {
   `
   t.snapshot(compile(code))
 })
+
+test('compile form tag', t => {
+  const code = `
+  form
+  `
+  t.snapshot(compile(code))
+})
