@@ -8,6 +8,6 @@ module.exports = {
       scope.add(identifier)
     }
 
-    scope.imports.push(source`import ${identifier} from "${node.path}"`)
+    scope.imports.push(source`import ${identifier} from ${node.path}`)
   }
 }

@@ -42,10 +42,8 @@ Space [\t \u00a0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u20
 Selector [#\.\w][\.\-\w]*
 Attribute [\-\w\t ]+
 Text [^={\n]+
-ValueText [^\"]+
-Quote [\"]
 
-%s INITIAL TAG LINE VALUE TEXT BLOCK EXPR REGEXP FOR IMPORT
+%s INITIAL TAG LINE TEXT BLOCK EXPR REGEXP FOR IMPORT
 
 %%
 <<EOF>>                            %{
@@ -100,7 +98,7 @@ Quote [\"]
 <LINE>"{"                          this.begin("EXPR"); return "{";
 <LINE>"}"                          return "}";
 <LINE>{Attribute}                  return "ATTRIBUTE";
-<LINE>{Quote}                      this.begin("VALUE"); return "QUOTE";
+<LINE>{StringLiteral}              return "STRING_LITERAL";
 <LINE>{Text}                       return "TEXT";
 
 <FOR>\n+                           this.begin("INITIAL"); return "NEWLINE";
@@ -117,11 +115,8 @@ Quote [\"]
 <IMPORT>"}"                        return "}";
 <IMPORT>"*"                        return "*";
 <IMPORT>"as"                       return "AS";
-<IMPORT>{Quote}                    this.begin("VALUE"); return "QUOTE";
+<IMPORT>{StringLiteral}            return "STRING_LITERAL";
 <IMPORT>{Identifier}               return "IDENTIFIER";
-
-<VALUE>{ValueText}                 return "TEXT";
-<VALUE>{Quote}                     this.popState(); return "QUOTE";
 
 <TEXT>\n+                          this.begin("INITIAL"); return "NEWLINE";
 <TEXT>"{"                          this.begin("EXPR"); return "{";
@@ -376,17 +371,11 @@ Attribute
     ;
 
 PlainAttribute
-    : ATTRIBUTE "=" QUOTE AttributeValue QUOTE
+    : ATTRIBUTE "=" STRING_LITERAL
         {
-            $$ = new AttributeNode($1, $4, createSourceLocation(@1, @5));
-        }
-    ;
-
-AttributeValue
-    :
-    | TEXT
-        {
-            $$ = new LiteralNode(JSON.stringify($1), createSourceLocation(@1, @1));
+            $$ = new AttributeNode($1,
+                new LiteralNode($3, createSourceLocation(@3, @3)),
+                createSourceLocation(@1, @3));
         }
     ;
 
@@ -437,17 +426,17 @@ For
 
 
 Import
-    : IMPORT IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE
+    : IMPORT IDENTIFIER FROM STRING_LITERAL NEWLINE
         {
-            $$ = new ImportStatementNode($2, $TEXT, createSourceLocation(@1, @7));
+            $$ = new ImportStatementNode($2, $STRING_LITERAL, createSourceLocation(@1, @5));
         }
-    | IMPORT "{" ImportsList "}" FROM QUOTE TEXT QUOTE NEWLINE
+    | IMPORT "{" ImportsList "}" FROM STRING_LITERAL NEWLINE
         {
-            $$ = new ImportStatementNode($3, $TEXT, createSourceLocation(@1, @9));
+            $$ = new ImportStatementNode($3, $STRING_LITERAL, createSourceLocation(@1, @7));
         }
-    | IMPORT "*" AS IDENTIFIER FROM QUOTE TEXT QUOTE NEWLINE
+    | IMPORT "*" AS IDENTIFIER FROM STRING_LITERAL NEWLINE
         {
-            $$ = new ImportStatementNode($4, $TEXT, createSourceLocation(@1, @9));
+            $$ = new ImportStatementNode($4, $STRING_LITERAL, createSourceLocation(@1, @7));
         }
     ;
 

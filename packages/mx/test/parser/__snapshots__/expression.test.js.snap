@@ -248,12 +248,12 @@ DocumentNode {
           "value": LiteralNode {
             "loc": SourceLocation {
               "end": Position {
-                "column": 65,
+                "column": 66,
                 "line": 1,
               },
               "source": "file.mx",
               "start": Position {
-                "column": 61,
+                "column": 60,
                 "line": 1,
               },
             },

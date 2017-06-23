@@ -111,12 +111,12 @@ DocumentNode {
           "value": LiteralNode {
             "loc": SourceLocation {
               "end": Position {
-                "column": 12,
+                "column": 13,
                 "line": 1,
               },
               "source": "file.mx",
               "start": Position {
-                "column": 8,
+                "column": 7,
                 "line": 1,
               },
             },
@@ -141,12 +141,12 @@ DocumentNode {
           "value": LiteralNode {
             "loc": SourceLocation {
               "end": Position {
-                "column": 25,
+                "column": 26,
                 "line": 1,
               },
               "source": "file.mx",
               "start": Position {
-                "column": 21,
+                "column": 20,
                 "line": 1,
               },
             },
@@ -208,12 +208,12 @@ DocumentNode {
           "value": LiteralNode {
             "loc": SourceLocation {
               "end": Position {
-                "column": 12,
+                "column": 13,
                 "line": 1,
               },
               "source": "file.mx",
               "start": Position {
-                "column": 8,
+                "column": 7,
                 "line": 1,
               },
             },
@@ -293,12 +293,12 @@ DocumentNode {
           "value": LiteralNode {
             "loc": SourceLocation {
               "end": Position {
-                "column": 13,
+                "column": 14,
                 "line": 1,
               },
               "source": "file.mx",
               "start": Position {
-                "column": 11,
+                "column": 10,
                 "line": 1,
               },
             },
@@ -618,6 +618,103 @@ DocumentNode {
     "end": Position {
       "column": 0,
       "line": 8,
+    },
+    "source": "file.mx",
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "type": "Document",
+}
+`;
+
+exports[`parse single and double quotes 1`] = `
+DocumentNode {
+  "children": Array [
+    ElementNode {
+      "attributes": Array [
+        AttributeNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 17,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 5,
+              "line": 1,
+            },
+          },
+          "name": "type",
+          "type": "Attribute",
+          "value": LiteralNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 17,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 11,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "\\"text\\"",
+          },
+        },
+        AttributeNode {
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 31,
+              "line": 1,
+            },
+            "source": "file.mx",
+            "start": Position {
+              "column": 17,
+              "line": 1,
+            },
+          },
+          "name": "value",
+          "type": "Attribute",
+          "value": LiteralNode {
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 31,
+                "line": 1,
+              },
+              "source": "file.mx",
+              "start": Position {
+                "column": 24,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "'value'",
+          },
+        },
+      ],
+      "children": Array [],
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 0,
+          "line": 2,
+        },
+        "source": "file.mx",
+        "start": Position {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "name": "input",
+      "type": "Element",
+    },
+  ],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 0,
+      "line": 2,
     },
     "source": "file.mx",
     "start": Position {
