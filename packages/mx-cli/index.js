@@ -104,7 +104,8 @@ exports.render = function (options, emitter) {
     } else {
       const ast = parser.parse(sourcePath, code)
       const node = compile(ast, {
-        name: filename && upperCamelCase(filename.replace(/\.mx$/, ''))
+        name: filename && upperCamelCase(filename.replace(/\.mx$/, '')),
+        jsx: options.jsx
       })
 
       if (sourceMap) {

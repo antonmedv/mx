@@ -1,7 +1,7 @@
 const {AttributeNode, LiteralNode} = require('../parser').ast
 
 module.exports = {
-  Element: ({node, compile, source}) => {
+  Element: ({node, compile, source, options}) => {
     // All components must be capitalized,
     // otherwise start transforming node
     // name to tag name and class name.
@@ -22,20 +22,26 @@ module.exports = {
       }
     }
 
+    const {jsx} = options
     const children = node.children.map(child => compile(child))
-
-    let attributes = source`null`
+    let attributes = jsx ? source`` : source`null`
 
     if (node.attributes.length > 0) {
-      attributes = source`{`
+      jsx || (attributes = source`{`)
+
       node.attributes.forEach(attr => {
         attributes.add(
-          source`${attr.name}: ${attr.value ? compile(attr.value) : `null`},`
+          jsx ?
+            attr.value ? source`${attr.name}={${compile(attr.value)}} ` : source`${attr.name} ` :
+            source`${attr.name}: ${attr.value ? compile(attr.value) : `null`},`
         )
       })
-      attributes.add('}')
+
+      jsx || attributes.add('}')
     }
 
-    return source`React.createElement(${name}, ${attributes}, ${children})`
+    return jsx ?
+      source`<${name} ${attributes}>${children}</${name}>` :
+      source`React.createElement(${name}, ${attributes}, ${children})`
   }
 }
