@@ -7,10 +7,10 @@
     "precommit": "npm run lint; npm test"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
-    "lerna": "^2.0.0-rc.4",
-    "eslint": "^3.19.0",
-    "husky": "^0.13.4"
+    "ava": "^0.20.0",
+    "lerna": "^2.0.0-rc.5",
+    "eslint": "^4.1.1",
+    "husky": "^0.14.1"
   },
   "ava": {
     "files": [
