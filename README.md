@@ -1,5 +1,7 @@
 # mx
 
+[![Build Status](https://travis-ci.org/aviasales/mx.svg?branch=master)](https://travis-ci.org/aviasales/mx)
+
 > MX – Markup without jsX
 
 ## Install
