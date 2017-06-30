@@ -18,10 +18,10 @@ npm install mx-loader
 
 Then in `webpack.config.json` add new rule for `*.mx` filex:
 
-```js
+```diff
   module: {
     rules: [
-      { test: /\.mx$/, use: 'mx-loader' }
++     { test: /\.mx$/, use: 'mx-loader' }
     ]
   }
 ```
