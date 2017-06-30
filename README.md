@@ -53,7 +53,7 @@ However, there is no cross-platform way to run two scripts in parallel, so we wi
 npm install npm-run-all
 ```
 
-Then we can change start and build scripts to include the CSS preprocessor commands:
+Then we can change start and build scripts to include the _mx_ commands:
 
 ```diff
    "scripts": {
