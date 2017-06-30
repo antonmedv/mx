@@ -1,0 +1,24 @@
+{
+  "name": "babel-plugin-mx",
+  "version": "1.0.0",
+  "description": "Babel plugin for mx",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aviasales/mx.git"
+  },
+  "author": "Anton Medvedev <anton@medv.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aviasales/mx/issues"
+  },
+  "homepage": "https://github.com/aviasales/mx#readme",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "mx": "^1.0.0"
+  },
+  "devDependencies": {
+    "mx": "^1.0.0"
+  }
+}
