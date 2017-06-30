@@ -4,7 +4,8 @@
     "test": "ava",
     "lint": "eslint packages",
     "build": "make build",
-    "precommit": "npm run lint; npm test"
+    "precommit": "npm run lint; npm test",
+    "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
     "ava": "^0.20.0",

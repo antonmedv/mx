@@ -1,6 +1,13 @@
 language: node_js
+
 node_js:
  - stable
+
 matrix:
   fast_finish: true
+
+install:
+  - npm install
+  - npm run bootstrap
+
 sudo: false
