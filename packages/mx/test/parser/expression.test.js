@@ -17,7 +17,7 @@ test('parse objects in attributes', t => {
 
 test('parse regexp in attributes' ,t => {
   const code = `
-  p is={/[^\w]+/.test(foo) ? 'bar' : 'baz'}
+  p is={/[^]+/.test(foo) ? 'bar' : 'baz'}
   `
   t.snapshot(parse(code))
 })

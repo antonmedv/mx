@@ -1,12 +1,13 @@
+const path = require('path')
 const loaderUtils = require('loader-utils')
 const upperCamelCase = require('uppercamelcase')
 const parser = require('mx/src/parser/index')
 const compile = require('mx/src/compiler/index')
 
 module.exports = function (source) {
-  this.cacheable()
+  this.cacheable && this.cacheable()
   const request = loaderUtils.getCurrentRequest(this)
-  const filename = upperCamelCase(this.resourcePath.replace(/\.mx$/, ''))
+  const filename = upperCamelCase(path.basename(this.resourcePath).replace(/\.mx$/, ''))
 
   let node
   try {

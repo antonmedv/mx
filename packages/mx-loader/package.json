@@ -19,5 +19,10 @@
   },
   "peerDependencies": {
     "mx": "^1.0.0"
+  },
+  "devDependencies": {
+    "memory-fs": "^0.4.1",
+    "mx": "^1.0.0",
+    "webpack": "^3.0.0"
   }
 }

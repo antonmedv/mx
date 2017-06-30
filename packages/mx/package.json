@@ -4,8 +4,7 @@
   "description": "Markup without JSX",
   "main": "index.js",
   "scripts": {
-    "build": "make build",
-    "prepublish": "npm run build"
+    "build": "make build"
   },
   "repository": {
     "type": "git",
